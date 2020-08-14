@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <p>Hello World</p>
