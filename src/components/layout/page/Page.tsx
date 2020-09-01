@@ -4,6 +4,35 @@ import React from 'react';
 // Styles
 import './Page.scss';
 
+const PageSidebar: React.FunctionComponent = () => {
+    return (
+        <aside className="shelf-page-sidebar">
+            <section className="shelf-page-sidebar-shelves">
+                <h3>Shelves</h3>
+                <ul>
+                    <li>Books</li>
+                    <li>Magazines</li>
+                    <li>Comic Books</li>
+                    <li>Game Books</li>
+                </ul>
+            </section>
+
+            <section className="shelf-page-sidebar-shelf-form">
+                <label>
+                    <input type="text" placeholder="Name of shelf" />
+                </label>
+
+                <label>
+                    <input type="checkbox" /> Show Directories
+                    <input type="checkbox" /> Multi-File
+                </label>
+
+                <input type="submit" value="Create New Shelf" />
+            </section>
+        </aside>
+    );
+}
+
 /**
  * @function PageHeader
  * @summary Page Header Layout
@@ -56,6 +85,7 @@ const PageFooter: React.FunctionComponent = () => {
 const Page: React.FunctionComponent = (props) => {
     return (
         <main className="shelf-page-wrapper">
+            <PageSidebar />
             <PageHeader />
             <div className="shelf-page-content">
                 { props.children }
