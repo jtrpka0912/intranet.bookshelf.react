@@ -16,10 +16,10 @@ import Button from '../../common/button/Button';
  */
 const PageSidebar: React.FunctionComponent = () => {
     return (
-        <aside className="shelf-page-sidebar">
+        <aside className="shelf-page-sidebar closed">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
-                
+
                 <ul className="no-bullets">
                     <li>Books</li>
                     <li>Magazines</li>
@@ -59,6 +59,10 @@ const PageSidebar: React.FunctionComponent = () => {
 const PageHeader: React.FunctionComponent = () => {
     return (
         <header className="shelf-page-header">
+            <div className="shelf-page-header-sidebutton">
+                <Button type="button">|||</Button>    
+            </div>
+
             <div className="shelf-page-header-title">
                 <h1>SHELF</h1>
             </div>
