@@ -14,7 +14,17 @@ import './Page.scss';
 const PageHeader: React.FunctionComponent = () => {
     return (
         <header className="shelf-page-header">
-            <p>This is the header</p>
+            <div className="shelf-page-header-title">
+                <h1>SHELF</h1>
+            </div>
+
+            <nav className="shelf-page-header-links">
+                <ul>
+                    <li>Dark Mode</li>
+                    <li>Login</li>
+                    <li>Sign Up</li>
+                </ul>
+            </nav>
         </header>
     );
 };
