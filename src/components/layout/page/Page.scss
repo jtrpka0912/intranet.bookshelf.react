@@ -19,6 +19,13 @@
             padding: 18px 20px;
             background-color: yellow;
 
+            h3 {
+                margin: 0;
+                margin-bottom: 9px;
+                padding-bottom: 9px;
+                border-bottom: 1px solid #333;
+            }
+
             &-shelves {
                 li {
                     margin-bottom: 4px;

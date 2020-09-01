@@ -19,6 +19,7 @@ const PageSidebar: React.FunctionComponent = () => {
         <aside className="shelf-page-sidebar">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
+                
                 <ul className="no-bullets">
                     <li>Books</li>
                     <li>Magazines</li>
@@ -28,6 +29,8 @@ const PageSidebar: React.FunctionComponent = () => {
             </section>
 
             <section className="shelf-page-sidebar-shelf-form">
+                <h3>Create Shelf</h3>
+
                 <label>
                     <input type="text" placeholder="Name of shelf" />
                 </label>
