@@ -1,0 +1,29 @@
+.shelf {
+    &-page {
+        &-wrapper {
+            display: grid;
+            grid-template-rows: [page-header]100px [page-content]1fr [page-footer]100px;
+            grid-template-areas: 
+                "page-header"
+                "page-content"
+                "page-footer";
+
+            height: 100vh; // This will make the wrapper full height
+        }
+
+        &-header {
+            grid-area: page-header;
+            background-color: pink;
+        }
+
+        &-content {
+            grid-area: page-content;
+            background-color: lime;
+        }
+
+        &-footer {
+            grid-area: page-footer;
+            background-color: cyan;
+        }
+    }
+}

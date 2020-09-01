@@ -1,6 +1,9 @@
 // React
 import React from 'react';
 
+// Styles
+import './Page.scss';
+
 /**
  * @function PageHeader
  * @summary Page Header Layout
@@ -43,7 +46,9 @@ const Page: React.FunctionComponent = (props) => {
     return (
         <main className="shelf-page-wrapper">
             <PageHeader />
-            { props.children };
+            <div className="shelf-page-content">
+                { props.children }
+            </div>
             <PageFooter />
         </main>
     );
