@@ -4,6 +4,9 @@ import React from 'react';
 // Styles
 import './Page.scss';
 
+// Components
+import Button from '../../common/button/Button';
+
 /**
  * @function PageSidebar
  * @summary Page Sliding Sidebar Layout
@@ -37,7 +40,7 @@ const PageSidebar: React.FunctionComponent = () => {
                     <input type="checkbox" /> Multi-File
                 </label>
 
-                <input type="submit" value="Create New Shelf" />
+                <Button type="submit" block={true} rounded={true}>Create New Shelf</Button>
             </section>
         </aside>
     );
