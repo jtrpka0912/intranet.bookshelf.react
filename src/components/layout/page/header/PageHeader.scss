@@ -1,0 +1,29 @@
+.shelf {
+    &-page {
+        &-header {
+            display: inline-grid;
+            grid-template-columns: [header-button]auto [header-title]1fr [header-links]auto;
+            grid-column-gap: 10px;
+            align-items: center;
+            padding: 18px 20px;
+            background-color: pink;
+        
+            &-title {
+                h1 {
+                    margin: 0;
+                }
+            }
+        
+            &-links {
+                ul {
+                    display: inline-block;
+        
+                    li {
+                        display: inline-block;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,13 +2,13 @@
 import React from 'react';
 
 // Layout
-import Page from '../layout/page/Page';
+import PageWrapper from '../layout/page/wrapper/PageWrapper';
 
 const App = () => {
   return (
-    <Page>
+    <PageWrapper>
       <p>This is page content</p>
-    </Page>
+    </PageWrapper>
   );
 }
 
