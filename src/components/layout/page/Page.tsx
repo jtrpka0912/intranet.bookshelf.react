@@ -29,7 +29,8 @@ const PageHeader: React.FunctionComponent = () => {
 const PageFooter: React.FunctionComponent = () => {
     return (
         <footer className="shelf-page-footer">
-            <p>This is the footer</p>
+            <p><strong>SHELF</strong> was created by J. Trpka</p>
+            <p>&copy; { new Date().getFullYear() }</p>
         </footer>
     );
 };

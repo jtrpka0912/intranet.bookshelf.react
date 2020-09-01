@@ -2,7 +2,7 @@
     &-page {
         &-wrapper {
             display: grid;
-            grid-template-rows: [page-header]100px [page-content]1fr [page-footer]100px;
+            grid-template-rows: [page-header]auto [page-content]1fr [page-footer]auto;
             grid-template-areas: 
                 "page-header"
                 "page-content"
@@ -22,8 +22,16 @@
         }
 
         &-footer {
-            grid-area: page-footer;
             background-color: cyan;
+
+            grid-area: page-footer;
+            padding: 18px 0;
+            text-align: center;
+            
+            p {
+                margin: 0;
+                margin-bottom: 4px;
+            }
         }
     }
 }
