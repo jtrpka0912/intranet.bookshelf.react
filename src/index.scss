@@ -1,5 +1,9 @@
 @import './normalize'; // Figure out how to use @use as @import will eventually be deprecated
 
+// General styles
+* {
+    box-sizing: border-box;
+}
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,4 +16,26 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+ul.no-bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+// All input fields are inside labels
+label {
+    display: block;
+
+    input[type=text] {
+        display: block;
+        height: 30px;
+        padding: 0 10px;
+    }
+
+    input[type=checkbox], input[type=radio] {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }

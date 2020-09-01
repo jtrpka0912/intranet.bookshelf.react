@@ -4,12 +4,19 @@ import React from 'react';
 // Styles
 import './Page.scss';
 
+/**
+ * @function PageSidebar
+ * @summary Page Sliding Sidebar Layout
+ * @description A sliding sidebar "drawer" that goes in and out of app.
+ * @author J. Trpka <jtrpka0912@gmail.com>
+ * @returns { JSX }
+ */
 const PageSidebar: React.FunctionComponent = () => {
     return (
         <aside className="shelf-page-sidebar">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
-                <ul>
+                <ul className="no-bullets">
                     <li>Books</li>
                     <li>Magazines</li>
                     <li>Comic Books</li>
@@ -24,6 +31,9 @@ const PageSidebar: React.FunctionComponent = () => {
 
                 <label>
                     <input type="checkbox" /> Show Directories
+                </label>
+
+                <label>
                     <input type="checkbox" /> Multi-File
                 </label>
 
@@ -48,7 +58,7 @@ const PageHeader: React.FunctionComponent = () => {
             </div>
 
             <nav className="shelf-page-header-links">
-                <ul>
+                <ul className="no-bullets">
                     <li>Dark Mode</li>
                     <li>Login</li>
                     <li>Sign Up</li>
