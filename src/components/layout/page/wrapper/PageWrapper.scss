@@ -1,0 +1,14 @@
+.shelf {
+    &-page {
+        &-wrapper {
+            position: relative;
+            display: grid;
+            grid-template-rows: [page-header]auto [page-content]1fr [page-footer]auto;
+            height: 100vh; // This will make the wrapper full height
+        }
+
+        &-content {
+            background-color: lime;
+        }
+    }
+}
