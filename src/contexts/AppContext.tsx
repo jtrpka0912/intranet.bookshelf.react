@@ -13,7 +13,8 @@ import ShelfType from '../types/Shelf';
  * @property { boolean } isDarkMode
  */
 type AppContextType = {
-    currentShelf: ShelfType,
+    currentShelf: ShelfType | null,
+    currentFolder: any,
     // Add any additional theming options
     isDarkMode: boolean
     // TODO: Maybe have the slider nav status here
@@ -21,6 +22,7 @@ type AppContextType = {
 
 const defaultState: AppContextType = {
     currentShelf: null,
+    currentFolder: null,
     isDarkMode: false
 };
 
@@ -47,10 +49,11 @@ type AppContextProps = {
  */
 const AppContextProvider = (props: AppContextProps) => {
     const [currentShelf, setShelf] = useState(defaultState.currentShelf);
+    const [currentFolder, setFolder] = useState(defaultState.currentFolder);
     const [isDarkMode, toggleDarkMode] = useState(defaultState.isDarkMode);
 
     return (
-        <AppContext.Provider value={{ currentShelf, isDarkMode }}>
+        <AppContext.Provider value={{ currentShelf, currentFolder, isDarkMode }}>
             { props.children }
         </AppContext.Provider>
     )
