@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react';
 
 // Types
 import ShelfType from '../types/Shelf';
+import DirectoryType from '../types/Directory';
 
 /**
  * @type AppContextType
@@ -14,7 +15,7 @@ import ShelfType from '../types/Shelf';
  */
 type AppContextType = {
     currentShelf: ShelfType | null,
-    currentFolder: any,
+    currentFolder: DirectoryType | null,
     // Add any additional theming options
     isDarkMode: boolean
     // TODO: Maybe have the slider nav status here
