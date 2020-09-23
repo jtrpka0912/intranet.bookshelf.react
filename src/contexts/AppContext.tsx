@@ -14,16 +14,21 @@ import DirectoryType from '../types/Directory';
  * @property { boolean } isDarkMode
  */
 type AppContextType = {
+    // Shelves
+    availableShelves: ShelfType[],
     currentShelf: ShelfType | null,
     currentFolder: DirectoryType | null,
-    // Add any additional theming options
+    // Themes
     isDarkMode: boolean
     // TODO: Maybe have the slider nav status here
 };
 
 const defaultState: AppContextType = {
+    // Shelves
+    availableShelves: [],
     currentShelf: null,
     currentFolder: null,
+    // Themes
     isDarkMode: false
 };
 
@@ -49,12 +54,14 @@ type AppContextProps = {
  * @returns { JSX }
  */
 const AppContextProvider = (props: AppContextProps) => {
-    const [currentShelf, setShelf] = useState(defaultState.currentShelf);
-    const [currentFolder, setFolder] = useState(defaultState.currentFolder);
+    // TODO: Convert to reducers later on
+    const [availableShelves, setAvailableShelves] = useState(defaultState.availableShelves);
+    const [currentShelf, setCurrentShelf] = useState(defaultState.currentShelf);
+    const [currentFolder, setCurrentFolder] = useState(defaultState.currentFolder);
     const [isDarkMode, toggleDarkMode] = useState(defaultState.isDarkMode);
 
     return (
-        <AppContext.Provider value={{ currentShelf, currentFolder, isDarkMode }}>
+        <AppContext.Provider value={{ availableShelves, currentShelf, currentFolder, isDarkMode }}>
             { props.children }
         </AppContext.Provider>
     )

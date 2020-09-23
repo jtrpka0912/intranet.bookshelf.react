@@ -1,14 +1,22 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Layout
 import PageWrapper from '../layout/page/wrapper/PageWrapper';
 
+// Contexts
+import AppContextProvider from '../../contexts/AppContext';
+import ShelfContextProvider from '../../contexts/ShelfContext';
+
 const App = () => {
   return (
-    <PageWrapper>
-      <p>This is page content</p>
-    </PageWrapper>
+    <AppContextProvider>
+      <PageWrapper>
+        <ShelfContextProvider>
+          <p>This is page content</p>
+        </ShelfContextProvider>
+      </PageWrapper>
+    </AppContextProvider>
   );
 }
 
