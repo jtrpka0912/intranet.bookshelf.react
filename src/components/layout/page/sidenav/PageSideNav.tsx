@@ -1,11 +1,14 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Styles
 import './PageSideNav.scss';
 
 // Components
 import Button from '../../../common/button/Button';
+
+// Contexts
+import { AppContext } from '../../../../contexts/AppContext';
 
 /**
  * @function PageSideNav
@@ -15,16 +18,17 @@ import Button from '../../../common/button/Button';
  * @returns { JSX }
  */
 const PageSideNav: React.FunctionComponent = () => {
+    const { availableShelves } = useContext(AppContext);
+
     return (
         <aside className="shelf-page-sidebar closed">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
 
                 <ul className="no-bullets">
-                    <li>Books</li>
-                    <li>Magazines</li>
-                    <li>Comic Books</li>
-                    <li>Game Books</li>
+                    { availableShelves.map((item) => {
+                        return <li key={item.id}>{item.name}</li>  
+                    }) }
                 </ul>
             </section>
 

@@ -5,6 +5,9 @@ import React, { createContext, useState } from 'react';
 import ShelfType from '../types/Shelf';
 import DirectoryType from '../types/Directory';
 
+// Dummy Data
+import shelfData from '../data/shelves';
+
 /**
  * @type AppContextType
  * @summary Application Context Type
@@ -25,7 +28,7 @@ type AppContextType = {
 
 const defaultState: AppContextType = {
     // Shelves
-    availableShelves: [],
+    availableShelves: shelfData,
     currentShelf: null,
     currentFolder: null,
     // Themes
