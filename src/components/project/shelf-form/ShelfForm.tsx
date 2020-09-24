@@ -30,13 +30,40 @@ interface ShelfFormProps {
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // States
+    const [id, setId] = useState(0);
     const [nameOfShelf, setNameOfShelf] = useState('');
     const [pathOfShelf, setPathOfShelf] = useState('');
     const [showDirectories, toggleShowDirectories] = useState(false);
     const [multiFile, toggleMultiFile] = useState(false);
 
+    /**
+     * @function onSubmitForm
+     * @summary Submit Form Event
+     * @description Process the form data and send it to the server
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param { React.FormEvent } e 
+     */
+    const onSubmitForm = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // TODO: Show error messages
+        // TODO: Construct common form elements
+
+        try {
+            if(!nameOfShelf) throw Error('Name of shelf is required.');
+            if(!pathOfShelf) throw Error('Path of shelf is required.');
+
+            // Predefine the method first as POST unless there is an id set then PUT
+            let method = id > 0 ? 'PUT' : 'POST';
+
+            console.info('Method', method);
+        } catch(err) {
+            console.error('onSubmitForm Error: ', e);
+        }
+    }
+
     return (
-        <form className="shelf-form">
+        <form className="shelf-form" onSubmit={ onSubmitForm }>
             <h3>{ props.title ? props.title : 'Shelf Title' }</h3>
 
             <label>
