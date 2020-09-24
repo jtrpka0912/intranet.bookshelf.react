@@ -29,20 +29,48 @@ interface ShelfFormProps {
  * @returns { JSX }
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
+    // States
+    const [nameOfShelf, setNameOfShelf] = useState('');
+    const [pathOfShelf, setPathOfShelf] = useState('');
+    const [showDirectories, toggleShowDirectories] = useState(false);
+    const [multiFile, toggleMultiFile] = useState(false);
+
     return (
         <form className="shelf-form">
             <h3>{ props.title ? props.title : 'Shelf Title' }</h3>
 
             <label>
-                <input type="text" placeholder="Name of Shelf" />
+                <input type="text"
+                    name="name-of-shelf" 
+                    placeholder="Name of Shelf" 
+                    required 
+                    onChange={ (e) => setNameOfShelf(e.target.value) } 
+                />
+            </label>
+
+            { /* TODO: Need to figure out how to get a path prompt */ }
+            <label>
+                <input type="text" 
+                    name="path-of-shelf"
+                    placeholder="Path to Shelf Root" 
+                    required 
+                    onChange={ (e) => setPathOfShelf(e.target.value) }
+                />
             </label>
 
             <label>
-                <input type="checkbox" /> Show Directories
+                <input type="checkbox"
+                    name="show-directories"
+                    checked={ showDirectories } 
+                    onChange={ (e) => toggleShowDirectories(!showDirectories) }
+                /> Show Directories
             </label>
 
             <label>
-                <input type="checkbox" /> Multi-File
+                <input type="checkbox" 
+                    name="multi-file" 
+                    checked={ multiFile } 
+                    onChange={ (e) => toggleMultiFile(!multiFile) } /> Multi-File
             </label>
 
             <Button type="submit" block={ true } rounded={ true }>
