@@ -46,17 +46,31 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     const onSubmitForm = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // TODO: Show error messages
+        // TODO: Show error messages under form elements
         // TODO: Construct common form elements
 
         try {
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!pathOfShelf) throw Error('Path of shelf is required.');
 
+            // TODO: Check if pathOfShelf is a valid file path.
+
             // Predefine the method first as POST unless there is an id set then PUT
             let method = id > 0 ? 'PUT' : 'POST';
 
             console.info('Method', method);
+
+            const shelfFormResponse = await fetch('https://localhost:3003/api/v1/shelves/', {
+                method: 'POST',
+            });
+
+            console.info('Shelf Response', shelfFormResponse);
+
+            if(shelfFormResponse.status != 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
+
+            const shelfFormJson = await shelfFormResponse.json();
+
+            console.info('Shelf Response JSON', shelfFormJson);
         } catch(err) {
             console.error('onSubmitForm Error: ', e);
         }
