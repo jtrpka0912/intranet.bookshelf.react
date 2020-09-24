@@ -44,7 +44,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                     name="name-of-shelf" 
                     placeholder="Name of Shelf" 
                     required 
-                    onChange={ (e) => setNameOfShelf(e.target.value) } 
+                    onChange={ (e) => setNameOfShelf(e.target.value) }
+                    value={ nameOfShelf } 
                 />
             </label>
 
@@ -55,6 +56,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                     placeholder="Path to Shelf Root" 
                     required 
                     onChange={ (e) => setPathOfShelf(e.target.value) }
+                    value={ pathOfShelf }
                 />
             </label>
 
