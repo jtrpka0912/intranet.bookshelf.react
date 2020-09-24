@@ -6,6 +6,7 @@ import './PageSideNav.scss';
 
 // Components
 import Button from '../../../common/button/Button';
+import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
 import { AppContext } from '../../../../contexts/AppContext';
@@ -21,7 +22,7 @@ const PageSideNav: React.FunctionComponent = () => {
     const { availableShelves } = useContext(AppContext);
 
     return (
-        <aside className="shelf-page-sidebar closed">
+        <aside className="shelf-page-sidebar opened">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
 
@@ -32,22 +33,8 @@ const PageSideNav: React.FunctionComponent = () => {
                 </ul>
             </section>
 
-            <section className="shelf-page-sidebar-shelf-form">
-                <h3>Create Shelf</h3>
-
-                <label>
-                    <input type="text" placeholder="Name of shelf" />
-                </label>
-
-                <label>
-                    <input type="checkbox" /> Show Directories
-                </label>
-
-                <label>
-                    <input type="checkbox" /> Multi-File
-                </label>
-
-                <Button type="submit" block={true} rounded={true}>Create New Shelf</Button>
+            <section className="shelf-page-sidebar-form">
+                <ShelfForm buttonLabel="Create New Shelf" title="Create Shelf" />
             </section>
         </aside>
     );
