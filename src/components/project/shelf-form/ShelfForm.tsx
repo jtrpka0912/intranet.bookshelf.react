@@ -70,6 +70,10 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 multiFile
             };
 
+            if(id > 0) {
+                requestBody.id = id;
+            }
+
             const response = await getServerResponse(requestBody);
             console.info('Response JSON', response);
         } catch(err) {
@@ -86,8 +90,13 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @returns { JSON }
      */
     const getServerResponse = async (requestBody: ShelfRequestBody) => {
-        // Predefine the method first as POST unless there is an id set then PUT
-        const method = requestBody.id !== undefined ? 'PUT' : 'POST';
+        // Set this at POST at start
+        let method = 'POST';
+
+        // Unless id is set above 0 then set method to PUT
+        if(requestBody.id !== undefined && requestBody.id > 0) { // Need to check if id is also undefined
+            method = 'PUT';
+        }
 
         // TODO: Figure out how to be secured (https)
         const shelfFormResponse = await fetch('http://localhost:3001/api/v1/shelves/', {
@@ -107,6 +116,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
     return (
         <form className="shelf-form" onSubmit={ onSubmitForm }>
+            <input type="hidden" name="id" value={ id } />
+
             <h3>{ props.title ? props.title : 'Shelf Title' }</h3>
 
             <label>

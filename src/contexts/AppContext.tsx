@@ -19,20 +19,19 @@ import shelfData from '../data/shelves';
 type AppContextType = {
     // Shelves
     availableShelves: ShelfType[],
+    addToAvailableShelves: (shelf: ShelfType) => void,
     currentShelf: ShelfType | null,
+    setToCurrentShelf: (shelf: ShelfType) => void,
     currentFolder: DirectoryType | null,
-    // Themes
-    isDarkMode: boolean
-    // TODO: Maybe have the slider nav status here
 };
 
 const defaultState: AppContextType = {
     // Shelves
     availableShelves: shelfData,
+    addToAvailableShelves: availableShelves => console.warn('Unable to add to available shelves.'), // Not sure what to put in here
     currentShelf: null,
+    setToCurrentShelf: currentShelf => console.warn('Unable to set the current shelf'), // Again, not sure what to put in here
     currentFolder: null,
-    // Themes
-    isDarkMode: false
 };
 
 export const AppContext: React.Context<AppContextType> = createContext<AppContextType>(defaultState);
@@ -61,10 +60,23 @@ const AppContextProvider = (props: AppContextProps) => {
     const [availableShelves, setAvailableShelves] = useState(defaultState.availableShelves);
     const [currentShelf, setCurrentShelf] = useState(defaultState.currentShelf);
     const [currentFolder, setCurrentFolder] = useState(defaultState.currentFolder);
-    const [isDarkMode, toggleDarkMode] = useState(defaultState.isDarkMode);
+
+    const addToAvailableShelves = (shelf: ShelfType) => {
+        setAvailableShelves([...availableShelves, shelf]);
+    }
+
+    const setToCurrentShelf = (shelf: ShelfType) => {
+        setCurrentShelf(shelf);
+    }
 
     return (
-        <AppContext.Provider value={{ availableShelves, currentShelf, currentFolder, isDarkMode }}>
+        <AppContext.Provider value={{ 
+            availableShelves, 
+            addToAvailableShelves, 
+            currentShelf,
+            setToCurrentShelf,
+            currentFolder
+        }}>
             { props.children }
         </AppContext.Provider>
     )
