@@ -97,6 +97,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             } else {
                 // Creating a shelf
                 addToAvailableShelves(shelf);
+
+                // TODO: Should setToCurrentShelf call for shelf context (for books etc...) or this component?
                 setToCurrentShelf(shelf);
             }
             
@@ -110,6 +112,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @function getServerResponse
      * @description Send a request to the server to either create or update a shelf.
      * @author J. Trpka <jtrpka0912@gmail.com>
+     * @todo: Move this to services
      * @param { ShelfRequestBody } requestBody
      * @returns { JSON }
      */

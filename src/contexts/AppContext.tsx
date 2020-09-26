@@ -1,12 +1,12 @@
 // React
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 // Types
 import ShelfType from '../types/Shelf';
 import DirectoryType from '../types/Directory';
 
-// Dummy Data
-import shelfData from '../data/shelves';
+// Services
+import { retrieveAvailableShelves } from '../services/Shelves';
 
 /**
  * @type AppContextType
@@ -27,10 +27,10 @@ type AppContextType = {
 
 const defaultState: AppContextType = {
     // Shelves
-    availableShelves: shelfData,
-    addToAvailableShelves: availableShelves => console.warn('Unable to add to available shelves.'), // Not sure what to put in here
+    availableShelves: [],
+    addToAvailableShelves: availableShelves => console.warn('addToAvailableShelves is not available (check context provider in heirarchy)'), // Not sure what to put in here
     currentShelf: null,
-    setToCurrentShelf: currentShelf => console.warn('Unable to set the current shelf'), // Again, not sure what to put in here
+    setToCurrentShelf: currentShelf => console.warn('setToCurrentShelf is not available (check context provider in heirarchy)'), // Again, not sure what to put in here
     currentFolder: null,
 };
 
@@ -60,6 +60,20 @@ const AppContextProvider = (props: AppContextProps) => {
     const [availableShelves, setAvailableShelves] = useState(defaultState.availableShelves);
     const [currentShelf, setCurrentShelf] = useState(defaultState.currentShelf);
     const [currentFolder, setCurrentFolder] = useState(defaultState.currentFolder);
+
+    useEffect(() => {
+        // TODO: Would prefer to do a non-Promise solution
+        const something = retrieveAvailableShelves().then((shelves: ShelfType[]) => {
+            console.table(shelves);
+            // Set the available shelves at start, but after default (due to async).
+            // FIXME: This is repeating the action because it keeps refreshing the component.
+            // setAvailableShelves(shelves);
+        }).catch((err) => {
+            console.error('Unable to process retrieving shelves from server.');
+            console.error('Error', err);
+        });
+        console.info('Something', something);
+    });
 
     const addToAvailableShelves = (shelf: ShelfType) => {
         setAvailableShelves([...availableShelves, shelf]);

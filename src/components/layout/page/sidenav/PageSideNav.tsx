@@ -1,15 +1,17 @@
 // React
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // Styles
 import './PageSideNav.scss';
 
 // Components
-import Button from '../../../common/button/Button';
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
 import { AppContext } from '../../../../contexts/AppContext';
+
+// Types
+import ShelfType from '../../../../types/Shelf';
 
 /**
  * @function PageSideNav
@@ -21,7 +23,7 @@ import { AppContext } from '../../../../contexts/AppContext';
 const PageSideNav: React.FunctionComponent = () => {
     // Context
     const { availableShelves } = useContext(AppContext);
-
+    
     return (
         <aside className="shelf-page-sidebar opened">
             <section className="shelf-page-sidebar-shelves">

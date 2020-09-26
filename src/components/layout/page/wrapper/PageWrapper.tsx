@@ -1,13 +1,13 @@
 // React
 import React from 'react';
 
-// Styles
-import './PageWrapper.scss';
-
 // Components
 import PageHeader from '../header/PageHeader';
 import PageSideNav from '../sidenav/PageSideNav';
 import PageFooter from '../footer/PageFooter';
+
+// Styles
+import './PageWrapper.scss';
 
 /**
  * @function PageWrapper
