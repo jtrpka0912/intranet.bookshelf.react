@@ -4,7 +4,7 @@ import ShelfType from '../types/Shelf';
 const shelfDummyData: ShelfType[] = [];
 
 const shelfBooks: ShelfType = {
-    id: '1',
+    _id: '1',
     name: 'Book Shelf',
     root: '/foo/bar/book-shelf',
     showDirectories: true,
@@ -14,7 +14,7 @@ const shelfBooks: ShelfType = {
 shelfDummyData.push(shelfBooks);
 
 const shelfMagazines: ShelfType = {
-    id: '2',
+    _id: '2',
     name: 'Magazine Shelf',
     root: '/foo/bar/magazine-shelf',
     showDirectories: true,
@@ -24,7 +24,7 @@ const shelfMagazines: ShelfType = {
 shelfDummyData.push(shelfMagazines);
 
 const shelfComicBooks: ShelfType = {
-    id: '3',
+    _id: '3',
     name: 'Comic Books Shelf',
     root: '/foo/bar/comic-books',
     showDirectories: false,

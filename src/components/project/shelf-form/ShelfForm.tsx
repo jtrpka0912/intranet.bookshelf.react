@@ -1,11 +1,18 @@
 // React
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Components
 import Button from '../../common/button/Button';
 
+// Context
+import { AppContext } from '../../../contexts/AppContext';
+
+// Types
+import ShelfType from '../../../types/Shelf';
+
 // Styles
 import './ShelfForm.scss';
+
 
 /**
  * @interface ShelfFormProps
@@ -37,6 +44,9 @@ interface ShelfRequestBody {
  * @returns { JSX }
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
+    // Context
+    const { addToAvailableShelves, setToCurrentShelf } = useContext(AppContext);
+
     // States
     const [id, setId] = useState(0);
     const [nameOfShelf, setNameOfShelf] = useState('');
@@ -59,6 +69,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
         try {
             // TODO: Check if pathOfShelf is a valid file path.
+            // TODO: If multiFile is true then showDirectories need to be true too
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!pathOfShelf) throw Error('Path of shelf is required.');
 
@@ -70,12 +81,25 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 multiFile
             };
 
+            // If ID greater than 0 then we are modifying the shelf
             if(id > 0) {
                 requestBody.id = id;
             }
 
             const response = await getServerResponse(requestBody);
             console.info('Response JSON', response);
+            const shelf: ShelfType = response;
+
+            // Do actions depending on type of action for shelf
+            if(id > 0) {
+                // Modifying the shelf
+                // TODO: Not sure what to do with this...
+            } else {
+                // Creating a shelf
+                addToAvailableShelves(shelf);
+                setToCurrentShelf(shelf);
+            }
+            
         } catch(err) {
             console.error('onSubmitForm Error: ', e);
         }

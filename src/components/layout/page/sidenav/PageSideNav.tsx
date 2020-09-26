@@ -19,6 +19,7 @@ import { AppContext } from '../../../../contexts/AppContext';
  * @returns { JSX }
  */
 const PageSideNav: React.FunctionComponent = () => {
+    // Context
     const { availableShelves } = useContext(AppContext);
 
     return (
@@ -28,7 +29,7 @@ const PageSideNav: React.FunctionComponent = () => {
 
                 <ul className="no-bullets">
                     { availableShelves.map((item) => {
-                        return <li key={item.id}>{item.name}</li>  
+                        return <li key={item._id}>{item.name}</li>  
                     }) }
                 </ul>
             </section>
