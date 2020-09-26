@@ -20,6 +20,14 @@ interface ShelfFormProps {
     buttonLabel?: string
 };
 
+interface ShelfRequestBody {
+    id?: number,
+    name: string,
+    root: string,
+    showDirectories?: boolean,
+    multiFile?: boolean
+}
+
 /**
  * @function ShelfForm
  * @summary Shelf Form
@@ -50,38 +58,51 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         // TODO: Construct common form elements
 
         try {
+            // TODO: Check if pathOfShelf is a valid file path.
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!pathOfShelf) throw Error('Path of shelf is required.');
 
-            // TODO: Check if pathOfShelf is a valid file path.
+            // Convert to a Shelf Request Body
+            const requestBody: ShelfRequestBody = {
+                name: nameOfShelf,
+                root: pathOfShelf,
+                showDirectories,
+                multiFile
+            };
 
-            // Predefine the method first as POST unless there is an id set then PUT
-            let method = id > 0 ? 'PUT' : 'POST';
-
-            // TODO: Figure out how to be secured (https)
-            const shelfFormResponse = await fetch('http://localhost:3001/api/v1/shelves/', {
-                body: JSON.stringify({
-                    name: nameOfShelf,
-                    root: pathOfShelf,
-                    showDirectories,
-                    multiFile
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method
-            });
-
-            console.info('Shelf Response', shelfFormResponse);
-
-            if(shelfFormResponse.status !== 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
-
-            const shelfFormJson = await shelfFormResponse.json();
-
-            console.info('Shelf Response JSON', shelfFormJson);
+            const response = await getServerResponse(requestBody);
+            console.info('Response JSON', response);
         } catch(err) {
             console.error('onSubmitForm Error: ', e);
         }
+    }
+
+    /**
+     * @async
+     * @function getServerResponse
+     * @description Send a request to the server to either create or update a shelf.
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param { ShelfRequestBody } requestBody
+     * @returns { JSON }
+     */
+    const getServerResponse = async (requestBody: ShelfRequestBody) => {
+        // Predefine the method first as POST unless there is an id set then PUT
+        const method = requestBody.id !== undefined ? 'PUT' : 'POST';
+
+        // TODO: Figure out how to be secured (https)
+        const shelfFormResponse = await fetch('http://localhost:3001/api/v1/shelves/', {
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method
+        });
+
+        console.info('Shelf Response', shelfFormResponse);
+
+        if(shelfFormResponse.status !== 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
+
+        return await shelfFormResponse.json();
     }
 
     return (
