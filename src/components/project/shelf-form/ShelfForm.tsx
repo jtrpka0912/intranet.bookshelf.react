@@ -58,15 +58,23 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             // Predefine the method first as POST unless there is an id set then PUT
             let method = id > 0 ? 'PUT' : 'POST';
 
-            console.info('Method', method);
-
-            const shelfFormResponse = await fetch('https://localhost:3003/api/v1/shelves/', {
-                method: 'POST',
+            // TODO: Figure out how to be secured (https)
+            const shelfFormResponse = await fetch('http://localhost:3001/api/v1/shelves/', {
+                body: JSON.stringify({
+                    name: nameOfShelf,
+                    root: pathOfShelf,
+                    showDirectories,
+                    multiFile
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method
             });
 
             console.info('Shelf Response', shelfFormResponse);
 
-            if(shelfFormResponse.status != 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
+            if(shelfFormResponse.status !== 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
 
             const shelfFormJson = await shelfFormResponse.json();
 
