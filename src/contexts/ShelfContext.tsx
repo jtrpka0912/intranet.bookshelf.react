@@ -147,6 +147,9 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
 
             // Retrieve the data
             const responseJSON: EbookResponse = await response.json();
+            console.table(responseJSON.breadcrumbs);
+            console.table(responseJSON.directories);
+            console.table(responseJSON.files);
 
             // Check if data is there
             if(responseJSON.breadcrumbs && responseJSON.directories && responseJSON.files) {
@@ -161,7 +164,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         } catch (err) {
             console.error('ShelfContext - retrieveShelfContents()', err);
         }
-        
     };
 
     useEffect(() => {

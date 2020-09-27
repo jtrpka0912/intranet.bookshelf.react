@@ -51,6 +51,7 @@ const PageSideNav: React.FunctionComponent = () => {
                 <h3>Shelves</h3>
 
                 <ul className="shelves-listing no-bullets">
+                    { shelves.length === 0 ? <li>Currently no shelves available</li> : null }
                     { shelves.map((item) => {
                         // NOTE: This might be in a separate component. Not sure...
                         return (
