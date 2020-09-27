@@ -28,10 +28,23 @@
                 padding-bottom: 9px;
                 border-bottom: 1px solid #333;
             }
+        }
+    }
+}
 
-            &-shelves {
-                li {
-                    margin-bottom: 4px;
+// NOTE: This might be in a separate component. Not sure...
+// NOTE: If separate component, going to need separate styles for list and grid
+.shelves {
+    &-item {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin-bottom: 9px;
+
+        &.active {
+            .shelves {
+                &-name {
+                    font-weight: 700;
                 }
             }
         }
