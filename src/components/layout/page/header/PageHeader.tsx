@@ -1,9 +1,12 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+
+// Context
+import { AppContext } from '../../../../contexts/AppContext';
 
 // Styles
 import './PageHeader.scss';
@@ -16,10 +19,12 @@ import './PageHeader.scss';
  * @returns { JSX }
  */
 const PageHeader: React.FunctionComponent = () => {
+    // Context
+    const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
     return (
         <header className="shelf-page-header">
             <div className="shelf-page-header-sidebutton">
-                <FontAwesomeIcon icon={ faBars } />
+                <FontAwesomeIcon onClick={ () => toggleSideNav(!isSideNavOpen) } icon={ faBars } />
             </div>
 
             <div className="shelf-page-header-title">

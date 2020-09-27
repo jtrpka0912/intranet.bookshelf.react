@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faFolder, faClone } from '@fortawesome/free-regular-svg-icons';
+import { faEdit, faFolder, faClone, faWindowClose } from '@fortawesome/free-regular-svg-icons';
 
 // Styles
 import './PageSideNav.scss';
@@ -12,10 +12,12 @@ import './PageSideNav.scss';
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
+import { AppContext } from '../../../../contexts/AppContext';
 import { ShelfContext } from '../../../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../../types/Shelf';
+
 
 /**
  * @function PageSideNav
@@ -26,6 +28,7 @@ import ShelfType from '../../../../types/Shelf';
  */
 const PageSideNav: React.FunctionComponent = () => {
     // Context
+    const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
     const { shelves, activeShelf, setToActiveShelf } = useContext(ShelfContext);
 
     /**
@@ -40,8 +43,12 @@ const PageSideNav: React.FunctionComponent = () => {
     };
     
     return (
-        <aside className="shelf-page-sidebar closed">
+        <aside className={ `shelf-page-sidebar ${ isSideNavOpen ? 'opened' : 'closed' }`}>
             <section className="shelf-page-sidebar-shelves">
+                <FontAwesomeIcon className="shelf-page-sidebar-closebutton" 
+                    icon={ faWindowClose } 
+                    onClick={ () => toggleSideNav(!isSideNavOpen) }
+                />
                 <h3>Shelves</h3>
 
                 <ul className="shelves-listing no-bullets">
@@ -66,7 +73,7 @@ const PageSideNav: React.FunctionComponent = () => {
                                         <FontAwesomeIcon icon={ faFolder } />
                                     </span> : null }
                                     
-                                    <span className="shelves-item-icons-info" title="Edit Shelf">
+                                    <span className="shelves-item-icons-info" title={ `Edit ${item.name}` }>
                                         <FontAwesomeIcon icon={ faEdit } />
                                     </span>
                                 </div>

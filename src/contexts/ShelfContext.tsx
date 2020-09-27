@@ -11,9 +11,14 @@ import FileType from '../types/File';
  * @summary Shelf Context Type
  * @description Definition of the shelf context type
  * @author J. Trpka <jtrpka0912@gmail.com>
+ * @property { ShelfType[] } shelves
  * @property { DirectoryType[] } breadcrumbs
  * @property { DirectoryType[] } directories
  * @property { FileType[] } files
+ * @property { ShelfType | null } activeShelf
+ * @property { DirectoryType | null } activeFolder
+ * @property { function } addOneToShelves
+ * @property { function } setToActiveShelf
  */
 type ShelfContextType = {
     // Items

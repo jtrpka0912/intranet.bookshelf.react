@@ -1,3 +1,4 @@
+
 .shelf {
     &-page {
         &-sidebar {
@@ -12,14 +13,30 @@
             padding: 18px 20px;
             background-color: yellow;
 
-            transition: 2s ease-out;
+            transition: 0.5s ease-out;
+
+            // Only take up some width;
+            @media(min-width: 576px) {
+                width: 300px;
+            }
+
+            // Let it take up the whole screen
+            @media(max-width: 576px) {
+                width: 100vw;
+            }
 
             &.opened {
                 left: 0; top: 0;
             }
 
             &.closed {
-                left: -100vw;
+                @media(min-width: 576px) {
+                    left: -300px;
+                }
+    
+                @media(max-width: 576px) {
+                    left: -100vw;
+                }
             }
 
             h3 {
@@ -27,6 +44,14 @@
                 margin-bottom: 9px;
                 padding-bottom: 9px;
                 border-bottom: 1px solid #333;
+            }
+
+            &-closebutton {
+                cursor: pointer;
+                position: absolute;
+                top: 10px;
+                right: 9px;
+                font-size: 1.5rem;
             }
         }
     }
@@ -63,6 +88,10 @@
 
             span {
                 padding-left: 5px;
+            }
+
+            &-info {
+                cursor: pointer;
             }
         }
     }
