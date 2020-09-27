@@ -26,7 +26,7 @@ const PageSideNav: React.FunctionComponent = () => {
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
 
-                <ul className="shelf-shelves-listing no-bullets">
+                <ul className="shelves-listing no-bullets">
                     { shelves.map((item) => {
                         // NOTE: This might be in a separate component. Not sure...
                         // TODO: Need to show a marker that this shelf is the current shelf
