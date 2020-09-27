@@ -40,7 +40,7 @@ const PageSideNav: React.FunctionComponent = () => {
     };
     
     return (
-        <aside className="shelf-page-sidebar opened">
+        <aside className="shelf-page-sidebar closed">
             <section className="shelf-page-sidebar-shelves">
                 <h3>Shelves</h3>
 

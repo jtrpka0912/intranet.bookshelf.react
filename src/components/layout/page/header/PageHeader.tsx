@@ -1,3 +1,13 @@
+// React
+import React from 'react';
+
+// Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
+// Styles
+import './PageHeader.scss';
+
 /**
  * @function PageHeader
  * @summary Page Header Layout
@@ -5,20 +15,11 @@
  * @author J. Trpka <jtrpka0912@gmail.com>
  * @returns { JSX }
  */
-// React
-import React from 'react';
-
-// Styles
-import './PageHeader.scss';
-
-// Components
-import Button from '../../../common/button/Button';
-
 const PageHeader: React.FunctionComponent = () => {
     return (
         <header className="shelf-page-header">
             <div className="shelf-page-header-sidebutton">
-                <Button type="button">|||</Button>    
+                <FontAwesomeIcon icon={ faBars } />
             </div>
 
             <div className="shelf-page-header-title">
