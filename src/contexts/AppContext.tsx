@@ -5,9 +5,6 @@ import React, { createContext, useState, useEffect } from 'react';
 import ShelfType from '../types/Shelf';
 import DirectoryType from '../types/Directory';
 
-// Services
-import { retrieveAvailableShelves } from '../services/Shelves';
-
 /**
  * @type AppContextType
  * @summary Application Context Type
@@ -69,6 +66,49 @@ const AppContextProvider = (props: AppContextProps) => {
         setCurrentShelf(shelf);
     }
 
+    useEffect(() => {
+        /**
+         * @async
+         * @function retrieveAvailableShelves
+         * @description Retrieve all of the shelves from the database
+         * @author J. Trpka <jtrpka0912@gmail.com>
+         * @throws Error
+         * @returns ShelfType[]
+         */
+        const retrieveAvailableShelves = async () => {
+            const response = await fetch('http://localhost:3001/api/v1/shelves');
+
+            if(response.status !== 200 && !response.ok) {
+                throw Error('Unable to retrieve response');
+            }
+
+            const responseJSON: any[] = await response.json();
+
+            // TODO: Need a better way to map the data
+            let shelfArray: ShelfType[] = [];
+            
+            for(let shelfData of responseJSON) {
+                let shelf: ShelfType = {
+                    _id: shelfData._id,
+                    name: shelfData.name,
+                    root: shelfData.root,
+                    showDirectories: shelfData.showDirectories,
+                    multiFile: shelfData.multiFile
+                };
+
+                shelfArray.push(shelf);
+            }
+            
+            setAvailableShelves(shelfArray);
+        };
+        
+        try {
+            retrieveAvailableShelves();
+        } catch(err) {
+            console.error('AppContext useEffect', err);
+        }
+    }, []); // Pass any variables that useEffect should check each time the component gets re-rendered.
+
     return (
         <AppContext.Provider value={{ 
             availableShelves, 
@@ -80,6 +120,6 @@ const AppContextProvider = (props: AppContextProps) => {
             { props.children }
         </AppContext.Provider>
     )
-}
+};
 
 export default AppContextProvider;

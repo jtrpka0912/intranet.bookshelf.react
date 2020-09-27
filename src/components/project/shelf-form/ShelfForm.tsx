@@ -13,7 +13,6 @@ import ShelfType from '../../../types/Shelf';
 // Styles
 import './ShelfForm.scss';
 
-
 /**
  * @interface ShelfFormProps
  * @summary Shelf Form Props
@@ -112,7 +111,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @function getServerResponse
      * @description Send a request to the server to either create or update a shelf.
      * @author J. Trpka <jtrpka0912@gmail.com>
-     * @todo: Move this to services
      * @param { ShelfRequestBody } requestBody
      * @returns { JSON }
      */
