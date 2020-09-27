@@ -1,6 +1,10 @@
 // React
 import React, { useContext } from 'react';
 
+// Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faFolder, faClone } from '@fortawesome/free-regular-svg-icons';
+
 // Styles
 import './PageSideNav.scss';
 
@@ -53,9 +57,18 @@ const PageSideNav: React.FunctionComponent = () => {
                                 </div>
                                 
                                 <div className="shelves-item-icons">
-                                    { item.multiFile ? <span className="shelves-item-icons-multifile">m</span> : null }
-                                    { item.showDirectories ? <span className="shelves-item-icons-showdirectories">d</span> : null }
-                                    <span className="shelves-item-icons-info">i</span>
+                                    { item.multiFile ? <span title="Multi-File"
+                                    className="shelves-item-icons-multifile">
+                                        <FontAwesomeIcon icon={ faClone } />
+                                    </span> : null }
+                                    
+                                    { item.showDirectories ? <span title="Shows Directories" className="shelves-item-icons-showdirectories">
+                                        <FontAwesomeIcon icon={ faFolder } />
+                                    </span> : null }
+                                    
+                                    <span className="shelves-item-icons-info" title="Edit Shelf">
+                                        <FontAwesomeIcon icon={ faEdit } />
+                                    </span>
                                 </div>
                             </li>  
                         ); 
