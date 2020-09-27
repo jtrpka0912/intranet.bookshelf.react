@@ -5,7 +5,7 @@ import React, { useState, useContext } from 'react';
 import Button from '../../common/button/Button';
 
 // Context
-import { AppContext } from '../../../contexts/AppContext';
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../types/Shelf';
@@ -44,7 +44,7 @@ interface ShelfRequestBody {
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
-    const { addToAvailableShelves, setToCurrentShelf } = useContext(AppContext);
+    const { addToShelves, setActiveShelf } = useContext(ShelfContext);
 
     // States
     const [id, setId] = useState(0);
@@ -95,10 +95,10 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 // TODO: Not sure what to do with this...
             } else {
                 // Creating a shelf
-                addToAvailableShelves(shelf);
+                addToShelves(shelf);
 
                 // TODO: Should setToCurrentShelf call for shelf context (for books etc...) or this component?
-                setToCurrentShelf(shelf);
+                setActiveShelf(shelf);
             }
             
         } catch(err) {

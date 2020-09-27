@@ -1,5 +1,5 @@
 // React
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 // Styles
 import './PageSideNav.scss';
@@ -8,10 +8,7 @@ import './PageSideNav.scss';
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
-import { AppContext } from '../../../../contexts/AppContext';
-
-// Types
-import ShelfType from '../../../../types/Shelf';
+import { ShelfContext } from '../../../../contexts/ShelfContext';
 
 /**
  * @function PageSideNav
@@ -22,7 +19,7 @@ import ShelfType from '../../../../types/Shelf';
  */
 const PageSideNav: React.FunctionComponent = () => {
     // Context
-    const { availableShelves } = useContext(AppContext);
+    const { shelves } = useContext(ShelfContext);
     
     return (
         <aside className="shelf-page-sidebar opened">
@@ -30,7 +27,7 @@ const PageSideNav: React.FunctionComponent = () => {
                 <h3>Shelves</h3>
 
                 <ul className="no-bullets">
-                    { availableShelves.map((item) => {
+                    { shelves.map((item) => {
                         // TODO: Need to show a marker that this shelf is the current shelf
                         // TODO: Need to add onClick events to change current shelf
                         // TODO: Need to add markers to show that it shows directories and/or multi-file

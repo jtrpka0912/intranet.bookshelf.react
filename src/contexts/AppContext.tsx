@@ -1,34 +1,21 @@
 // React
-import React, { createContext, useState, useEffect } from 'react';
-
-// Types
-import ShelfType from '../types/Shelf';
-import DirectoryType from '../types/Directory';
+import React, { createContext, useState } from 'react';
 
 /**
  * @type AppContextType
  * @summary Application Context Type
  * @description Definition of the application context type
  * @author J. Trpka <jtrpka0912@gmail.com>
- * @property { ShelfType] } currentShelf
  * @property { boolean } isDarkMode
  */
 type AppContextType = {
-    // Shelves
-    availableShelves: ShelfType[],
-    addToAvailableShelves: (shelf: ShelfType) => void,
-    currentShelf: ShelfType | null,
-    setToCurrentShelf: (shelf: ShelfType) => void,
-    currentFolder: DirectoryType | null,
+    // Themes
+    isDarkMode: boolean
 };
 
 const defaultState: AppContextType = {
-    // Shelves
-    availableShelves: [],
-    addToAvailableShelves: availableShelves => console.warn('addToAvailableShelves is not available (check context provider in heirarchy)'), // Not sure what to put in here
-    currentShelf: null,
-    setToCurrentShelf: currentShelf => console.warn('setToCurrentShelf is not available (check context provider in heirarchy)'), // Again, not sure what to put in here
-    currentFolder: null,
+    // Themes
+    isDarkMode: false
 };
 
 export const AppContext: React.Context<AppContextType> = createContext<AppContextType>(defaultState);
@@ -53,69 +40,12 @@ type AppContextProps = {
  * @returns { JSX }
  */
 const AppContextProvider = (props: AppContextProps) => {
-    // TODO: Convert to reducers later on
-    const [availableShelves, setAvailableShelves] = useState(defaultState.availableShelves);
-    const [currentShelf, setCurrentShelf] = useState(defaultState.currentShelf);
-    const [currentFolder, setCurrentFolder] = useState(defaultState.currentFolder);
-
-    const addToAvailableShelves = (shelf: ShelfType) => {
-        setAvailableShelves([...availableShelves, shelf]);
-    }
-
-    const setToCurrentShelf = (shelf: ShelfType) => {
-        setCurrentShelf(shelf);
-    }
-
-    useEffect(() => {
-        /**
-         * @async
-         * @function retrieveAvailableShelves
-         * @description Retrieve all of the shelves from the database
-         * @author J. Trpka <jtrpka0912@gmail.com>
-         * @throws Error
-         * @returns ShelfType[]
-         */
-        const retrieveAvailableShelves = async () => {
-            const response = await fetch('http://localhost:3001/api/v1/shelves');
-
-            if(response.status !== 200 && !response.ok) {
-                throw Error('Unable to retrieve response');
-            }
-
-            const responseJSON: any[] = await response.json();
-
-            // TODO: Need a better way to map the data
-            let shelfArray: ShelfType[] = [];
-            
-            for(let shelfData of responseJSON) {
-                let shelf: ShelfType = {
-                    _id: shelfData._id,
-                    name: shelfData.name,
-                    root: shelfData.root,
-                    showDirectories: shelfData.showDirectories,
-                    multiFile: shelfData.multiFile
-                };
-
-                shelfArray.push(shelf);
-            }
-            
-            setAvailableShelves(shelfArray);
-        };
-        
-        try {
-            retrieveAvailableShelves();
-        } catch(err) {
-            console.error('AppContext useEffect', err);
-        }
-    }, []); // Pass any variables that useEffect should check each time the component gets re-rendered.
+    // TODO: Should I just bring in toggleDarkMode to context?
+    const [isDarkMode, toggleDarkMode] = useState(defaultState.isDarkMode);
 
     return (
         <AppContext.Provider value={{ 
-            availableShelves, 
-            addToAvailableShelves, 
-            currentShelf,
-            setToCurrentShelf,
-            currentFolder
+            isDarkMode
         }}>
             { props.children }
         </AppContext.Provider>

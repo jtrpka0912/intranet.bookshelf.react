@@ -12,11 +12,11 @@ const App = () => {
 
     return (
         <AppContextProvider>
-            <PageWrapper>
-                <ShelfContextProvider>
+            <ShelfContextProvider>
+                <PageWrapper>
                     <p>This is page content</p>
-                </ShelfContextProvider>
-            </PageWrapper>
+                </PageWrapper>
+            </ShelfContextProvider>
         </AppContextProvider>
     );
 }
