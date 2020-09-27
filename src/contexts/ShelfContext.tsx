@@ -75,6 +75,12 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const [activeFolder, setActiveFolder] = useState(defaultState.activeFolder);
     
 
+    /**
+     * @function addOneToShelves
+     * @description Add a shelf to the shelves state.
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param {  } shelf 
+     */
     const addOneToShelves = (shelf: ShelfType) => {
         setShelves([...shelves, shelf]);
     }
@@ -87,7 +93,10 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { ShelfType } shelf
      */
     const setToActiveShelf = (shelf: ShelfType) => {
+        // Set the active shelf to local storage
         localStorage.setItem(localStorageActiveShelfName, JSON.stringify(shelf));
+
+        // Then set to state
         setActiveShelf(shelf);
 
         // TODO: Then retrieve the breadcrumbs, directories, and files
@@ -102,6 +111,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         const retrieveLocalStorageActiveShelf = () => {
             const lastActiveShelfJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
 
+            // Check if there is any value in active shelf
             if(lastActiveShelfJSON) {
                 const lastActiveShelf: ShelfType = JSON.parse(lastActiveShelfJSON);
                 setActiveShelf(lastActiveShelf);
@@ -124,26 +134,9 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             }
 
             const responseJSON: any[] = await response.json();
-
-            // TODO: Need a better way to map the data
-            let shelfArray: ShelfType[] = [];
-            
-            for(let shelfData of responseJSON) {
-                let shelf: ShelfType = {
-                    _id: shelfData._id,
-                    name: shelfData.name,
-                    root: shelfData.root,
-                    showDirectories: shelfData.showDirectories,
-                    multiFile: shelfData.multiFile
-                };
-
-                shelfArray.push(shelf);
-            }
-            
+            let shelfArray: ShelfType[] = responseJSON;
             setShelves(shelfArray);
         };
-
-        // TODO: Add function to handle retrieving last active shelf from localStorage
         
         try {
             retrieveLocalStorageActiveShelf();
