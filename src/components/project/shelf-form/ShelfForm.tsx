@@ -69,7 +69,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
         try {
             // TODO: Check if pathOfShelf is a valid file path.
-            // TODO: If multiFile is true then showDirectories need to be true too
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!pathOfShelf) throw Error('Path of shelf is required.');
 
@@ -86,7 +85,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 requestBody.id = id;
             }
 
-            const response = await getServerResponse(requestBody);
+            const response = await sendShelfRequest(requestBody);
             const shelf: ShelfType = response;
 
             // Do actions depending on type of action for shelf
@@ -106,13 +105,13 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
     /**
      * @async
-     * @function getServerResponse
+     * @function sendShelfRequest
      * @description Send a request to the server to either create or update a shelf.
      * @author J. Trpka <jtrpka0912@gmail.com>
      * @param { ShelfRequestBody } requestBody
      * @returns { JSON }
      */
-    const getServerResponse = async (requestBody: ShelfRequestBody) => {
+    const sendShelfRequest = async (requestBody: ShelfRequestBody) => {
         // Set this at POST at start
         let method = 'POST';
 
@@ -136,24 +135,19 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     }
 
     const onChangeMultiFile = () => {
-        console.group('onChangeMultiFile');
         const newMultiFileState = !multiFile;
-        console.info('New MultiFile State', newMultiFileState);
 
         // If multifile is enabled then show directories must be enabled as well
         if(newMultiFileState) {
-            console.log('Checked');
             // Checked: show directories need to be enabled and set as readonly
             toggleShowDirectories(true);
             toggleShowDirectoriesReadOnly(true);
         } else {
-            console.log('Not Checked');
             // Unchecked: show directories must not be read only
             toggleShowDirectoriesReadOnly(false);
         }
 
         toggleMultiFile(newMultiFileState);
-        console.groupEnd();
     }
 
     return (
@@ -164,7 +158,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             <label>
                 <input type="text"
-                    name="name-of-shelf" 
                     placeholder="Name of Shelf" 
                     required 
                     onChange={ (e) => setNameOfShelf(e.target.value) }
@@ -175,7 +168,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             { /* TODO: Need to figure out how to get a path prompt */ }
             <label>
                 <input type="text" 
-                    name="path-of-shelf"
                     placeholder="Path to Shelf Root" 
                     required 
                     onChange={ (e) => setPathOfShelf(e.target.value) }
@@ -185,7 +177,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             <label title={ isShowDirectoriesReadOnly ? 'If multifile is enabled then show directories must be enabled as well.' : undefined }>
                 <input type="checkbox"
-                    name="show-directories"
                     checked={ showDirectories } 
                     readOnly={ isShowDirectoriesReadOnly }
                     disabled={ isShowDirectoriesReadOnly }
@@ -195,7 +186,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             <label>
                 <input type="checkbox" 
-                    name="multi-file" 
                     checked={ multiFile } 
                     onChange={ () => onChangeMultiFile() } /> Multi-File
             </label>
