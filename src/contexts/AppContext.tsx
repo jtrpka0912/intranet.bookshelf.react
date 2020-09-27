@@ -61,20 +61,6 @@ const AppContextProvider = (props: AppContextProps) => {
     const [currentShelf, setCurrentShelf] = useState(defaultState.currentShelf);
     const [currentFolder, setCurrentFolder] = useState(defaultState.currentFolder);
 
-    useEffect(() => {
-        // TODO: Would prefer to do a non-Promise solution
-        const something = retrieveAvailableShelves().then((shelves: ShelfType[]) => {
-            console.table(shelves);
-            // Set the available shelves at start, but after default (due to async).
-            // FIXME: This is repeating the action because it keeps refreshing the component.
-            // setAvailableShelves(shelves);
-        }).catch((err) => {
-            console.error('Unable to process retrieving shelves from server.');
-            console.error('Error', err);
-        });
-        console.info('Something', something);
-    });
-
     const addToAvailableShelves = (shelf: ShelfType) => {
         setAvailableShelves([...availableShelves, shelf]);
     }
