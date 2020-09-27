@@ -39,12 +39,11 @@ interface ShelfRequestBody {
  * @summary Shelf Form
  * @description A form to create/edit shelves
  * @author J. Trpka <jtrpka0912@gmail.com>
- * @todo: Figure out how to set props for TypeScript
  * @returns { JSX }
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
-    const { addToShelves, setToActiveShelf } = useContext(ShelfContext);
+    const { addOneToShelves, setToActiveShelf } = useContext(ShelfContext);
 
     // States
     const [id, setId] = useState(0);
@@ -63,9 +62,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      */
     const onSubmitForm = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        // TODO: Show error messages under form elements
-        // TODO: Construct common form elements
 
         try {
             // TODO: Check if pathOfShelf is a valid file path.
@@ -94,7 +90,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 // TODO: Not sure what to do after modifying a shelf
             } else {
                 // Creating a shelf
-                addToShelves(shelf);
+                addOneToShelves(shelf);
                 setToActiveShelf(shelf);
             }
             
@@ -158,7 +154,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             <label>
                 <input type="text"
-                    placeholder="Name of Shelf" 
+                    placeholder="Name of Shelf *" 
                     required 
                     onChange={ (e) => setNameOfShelf(e.target.value) }
                     value={ nameOfShelf } 
@@ -168,7 +164,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             { /* TODO: Need to figure out how to get a path prompt */ }
             <label>
                 <input type="text" 
-                    placeholder="Path to Shelf Root" 
+                    placeholder="Path to Shelf Root *" 
                     required 
                     onChange={ (e) => setPathOfShelf(e.target.value) }
                     value={ pathOfShelf }

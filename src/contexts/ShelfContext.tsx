@@ -25,7 +25,7 @@ type ShelfContextType = {
     activeShelf: ShelfType | null,
     activeFolder: DirectoryType | null,
     // Actions
-    addToShelves: (shelf: ShelfType) => void,
+    addOneToShelves: (shelf: ShelfType) => void,
     setToActiveShelf: (shelf: ShelfType) => void
 };
 
@@ -39,7 +39,7 @@ const defaultState: ShelfContextType = {
     activeShelf: null,
     activeFolder: null,
     // Actions
-    addToShelves: addToShelves => console.warn('addToShelves is not available (check context provider in heirarchy)'),
+    addOneToShelves: addOneToShelves => console.warn('addOneToShelves is not available (check context provider in heirarchy)'),
     setToActiveShelf: setToActiveShelf => console.warn('setToActiveShelf is not available (check context provider in heirarchy)')
 };
 
@@ -65,7 +65,8 @@ type ShelfContextProps = {
  * @returns { JSX }
  */
 const ShelfContextProvider = (props: ShelfContextProps) => {
-    // TODO: Convert availab reducers later on
+    const localStorageActiveShelfName = 'activeShelf';
+
     const [shelves, setShelves] = useState(defaultState.shelves);
     const [breadcrumbs, setBreadcrumbs] = useState(defaultState.breadcrumbs);
     const [directories, setDirectories] = useState(defaultState.directories);
@@ -74,7 +75,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const [activeFolder, setActiveFolder] = useState(defaultState.activeFolder);
     
 
-    const addToShelves = (shelf: ShelfType) => {
+    const addOneToShelves = (shelf: ShelfType) => {
         setShelves([...shelves, shelf]);
     }
 
@@ -86,13 +87,27 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { ShelfType } shelf
      */
     const setToActiveShelf = (shelf: ShelfType) => {
-        // TODO: Do local storage to keep state after refreshing
+        localStorage.setItem(localStorageActiveShelfName, JSON.stringify(shelf));
         setActiveShelf(shelf);
 
         // TODO: Then retrieve the breadcrumbs, directories, and files
     }
 
     useEffect(() => {
+        /**
+         * @function retrieveLocalStorageActiveShelf
+         * @description Retrieve, if any, the last active shelf prior to refreshing
+         * @author J. Trpka <jtrpka0912@gmail.com>
+         */
+        const retrieveLocalStorageActiveShelf = () => {
+            const lastActiveShelfJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
+
+            if(lastActiveShelfJSON) {
+                const lastActiveShelf: ShelfType = JSON.parse(lastActiveShelfJSON);
+                setActiveShelf(lastActiveShelf);
+            }
+        }
+
         /**
          * @async
          * @function retrieveAvailableShelves
@@ -127,8 +142,11 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             
             setShelves(shelfArray);
         };
+
+        // TODO: Add function to handle retrieving last active shelf from localStorage
         
         try {
+            retrieveLocalStorageActiveShelf();
             retrieveAvailableShelves();
         } catch(err) {
             console.error('AppContext useEffect', err);
@@ -143,7 +161,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             files,
             activeShelf,
             activeFolder,
-            addToShelves,
+            addOneToShelves,
             setToActiveShelf
         }}>
             { props.children }
