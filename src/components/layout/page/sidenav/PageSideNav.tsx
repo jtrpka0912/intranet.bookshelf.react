@@ -31,6 +31,9 @@ const PageSideNav: React.FunctionComponent = () => {
 
                 <ul className="no-bullets">
                     { availableShelves.map((item) => {
+                        // TODO: Need to show a marker that this shelf is the current shelf
+                        // TODO: Need to add onClick events to change current shelf
+                        // TODO: Need to add markers to show that it shows directories and/or multi-file
                         return <li key={item._id}>{item.name}</li>  
                     }) }
                 </ul>
