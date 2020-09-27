@@ -55,11 +55,8 @@ const PageSideNav: React.FunctionComponent = () => {
                     { shelves.map((item) => {
                         // NOTE: This might be in a separate component. Not sure...
                         return (
-                            <li key={item._id} 
-                                className={`shelves-item ${ activeShelf?._id === item._id ? 'active' : '' }`}
-                                onClick={ () => onClickShelfItem(item) }
-                            >
-                                <div className="shelves-item-name">
+                            <li key={item._id} className={`shelves-item ${ activeShelf?._id === item._id ? 'active' : '' }`}>
+                                <div className="shelves-item-name" onClick={ () => onClickShelfItem(item) }>
                                     {item.name}
                                 </div>
                                 
