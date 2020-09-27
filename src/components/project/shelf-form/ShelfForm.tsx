@@ -44,7 +44,7 @@ interface ShelfRequestBody {
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
-    const { addToShelves, setActiveShelf } = useContext(ShelfContext);
+    const { addToShelves, setToActiveShelf } = useContext(ShelfContext);
 
     // States
     const [id, setId] = useState(0);
@@ -86,19 +86,16 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             }
 
             const response = await getServerResponse(requestBody);
-            console.info('Response JSON', response);
             const shelf: ShelfType = response;
 
             // Do actions depending on type of action for shelf
             if(id > 0) {
                 // Modifying the shelf
-                // TODO: Not sure what to do with this...
+                // TODO: Not sure what to do after modifying a shelf
             } else {
                 // Creating a shelf
                 addToShelves(shelf);
-
-                // TODO: Should setToCurrentShelf call for shelf context (for books etc...) or this component?
-                setActiveShelf(shelf);
+                setToActiveShelf(shelf);
             }
             
         } catch(err) {
@@ -131,8 +128,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             },
             method
         });
-
-        console.info('Shelf Response', shelfFormResponse);
 
         if(shelfFormResponse.status !== 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
 

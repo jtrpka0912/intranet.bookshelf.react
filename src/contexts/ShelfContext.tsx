@@ -26,7 +26,7 @@ type ShelfContextType = {
     activeFolder: DirectoryType | null,
     // Actions
     addToShelves: (shelf: ShelfType) => void,
-    setActiveShelf: (shelf: ShelfType) => void
+    setToActiveShelf: (shelf: ShelfType) => void
 };
 
 const defaultState: ShelfContextType = {
@@ -39,8 +39,8 @@ const defaultState: ShelfContextType = {
     activeShelf: null,
     activeFolder: null,
     // Actions
-    addToShelves: availableShelves => console.warn('addToShelves is not available (check context provider in heirarchy)'),
-    setActiveShelf: currentShelf => console.warn('setActiveShelf is not available (check context provider in heirarchy)')
+    addToShelves: addToShelves => console.warn('addToShelves is not available (check context provider in heirarchy)'),
+    setToActiveShelf: setToActiveShelf => console.warn('setToActiveShelf is not available (check context provider in heirarchy)')
 };
 
 export const ShelfContext: React.Context<ShelfContextType> = createContext<ShelfContextType>(defaultState);
@@ -78,8 +78,18 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         setShelves([...shelves, shelf]);
     }
 
-    const setToCurrentShelf = (shelf: ShelfType) => {
+    /**
+     * @function setToActiveShelf
+     * @event onClick
+     * @description Set a shelf to be the active shelf (and display its items)
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param { ShelfType } shelf
+     */
+    const setToActiveShelf = (shelf: ShelfType) => {
+        // TODO: Do local storage to keep state after refreshing
         setActiveShelf(shelf);
+
+        // TODO: Then retrieve the breadcrumbs, directories, and files
     }
 
     useEffect(() => {
@@ -134,7 +144,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             activeShelf,
             activeFolder,
             addToShelves,
-            setActiveShelf
+            setToActiveShelf
         }}>
             { props.children }
         </ShelfContext.Provider>

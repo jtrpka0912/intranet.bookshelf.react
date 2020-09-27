@@ -36,6 +36,7 @@
 // NOTE: If separate component, going to need separate styles for list and grid
 .shelves {
     &-item {
+        cursor: pointer;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;

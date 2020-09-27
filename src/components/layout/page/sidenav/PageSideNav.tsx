@@ -10,6 +10,9 @@ import ShelfForm from '../../../project/shelf-form/ShelfForm';
 // Contexts
 import { ShelfContext } from '../../../../contexts/ShelfContext';
 
+// Types
+import ShelfType from '../../../../types/Shelf';
+
 /**
  * @function PageSideNav
  * @summary Page Sliding Side Navigation Layout
@@ -19,7 +22,18 @@ import { ShelfContext } from '../../../../contexts/ShelfContext';
  */
 const PageSideNav: React.FunctionComponent = () => {
     // Context
-    const { shelves, activeShelf } = useContext(ShelfContext);
+    const { shelves, activeShelf, setToActiveShelf } = useContext(ShelfContext);
+
+    /**
+     * @function onClickShelfItem
+     * @event onClick
+     * @description Set a shelf to be the active shelf (and display its items)
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param { ShelfType } shelf
+     */
+    const onClickShelfItem = (shelf: ShelfType) => {
+        setToActiveShelf(shelf);
+    };
     
     return (
         <aside className="shelf-page-sidebar opened">
@@ -29,10 +43,11 @@ const PageSideNav: React.FunctionComponent = () => {
                 <ul className="shelves-listing no-bullets">
                     { shelves.map((item) => {
                         // NOTE: This might be in a separate component. Not sure...
-                        // TODO: Need to show a marker that this shelf is the current shelf
-                        // TODO: Need to add onClick events to change current shelf
                         return (
-                            <li key={item._id} className={`shelves-item ${ activeShelf?._id === item._id ? 'active' : '' }`}>
+                            <li key={item._id} 
+                                className={`shelves-item ${ activeShelf?._id === item._id ? 'active' : '' }`}
+                                onClick={ () => onClickShelfItem(item) }
+                            >
                                 <div className="shelves-item-name">
                                     {item.name}
                                 </div>
