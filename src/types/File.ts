@@ -3,7 +3,7 @@
  * @summary File Type
  * @description Definition of the file type
  * @author J. Trpka <jtrpka0912@gmail.com>
- * @property { string } id
+ * @property { string } _id
  * @property { string } type
  * @property { string } name
  * @property { string } path
@@ -11,7 +11,7 @@
  * @property { boolean } didRead
  */
 type FileType = {
-    id: string,
+    _id: string,
     type: string, // TODO: Might be an enum
     name: string,
     path: string,

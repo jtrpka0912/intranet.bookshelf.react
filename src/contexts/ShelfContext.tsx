@@ -7,6 +7,21 @@ import DirectoryType from '../types/Directory';
 import FileType from '../types/File';
 
 /**
+ * @type EbookResponse
+ * @summary Ebook API Response
+ * @description An eBook response from the server
+ * @author J. Trpka <jtrpka0912@gmail.com>
+ * @property { DirectoryType[] } breadcrumbs
+ * @property { DirectoryType[] } directories
+ * @property { FileType[] } files
+ */
+type EbookResponse = {
+    breadcrumbs: DirectoryType[],
+    directories: DirectoryType[],
+    files: FileType[]
+};
+
+/**
  * @type ShelfContextType
  * @summary Shelf Context Type
  * @description Definition of the shelf context type
@@ -79,7 +94,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const [activeShelf, setActiveShelf] = useState(defaultState.activeShelf);
     const [activeFolder, setActiveFolder] = useState(defaultState.activeFolder);
     
-
     /**
      * @function addOneToShelves
      * @description Add a shelf to the shelves state.
@@ -105,7 +119,50 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         setActiveShelf(shelf);
 
         // TODO: Then retrieve the breadcrumbs, directories, and files
+        retrieveShelfContents(shelf);
     }
+
+    /**
+     * @async
+     * @function retrieveShelfContents
+     * @description Retrieve the shelves contents
+     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @param { ShelfType } shelf 
+     * @param { DirectoryType } directory 
+     */
+    const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
+        try{
+            let api: string = `http://localhost:3001/api/v1/ebooks/shelf/${shelf._id}`;
+
+            // If directory, then add the folder property to the endpoint.
+            if(directory) {
+                api.concat(`/folder/${directory._id}`);
+            }
+
+            const response: Response = await fetch(api);
+
+            if(response.status !== 200 && !response.ok) {
+                throw Error('Unable to get response.');
+            }
+
+            // Retrieve the data
+            const responseJSON: EbookResponse = await response.json();
+
+            // Check if data is there
+            if(responseJSON.breadcrumbs && responseJSON.directories && responseJSON.files) {
+                const breadcrumbs: DirectoryType[] = responseJSON.breadcrumbs;
+                const directories: DirectoryType[] = responseJSON.directories;
+                const files: FileType[] = responseJSON.files;
+
+                setBreadcrumbs(breadcrumbs);
+                setDirectories(directories);
+                setFiles(files);
+            }
+        } catch (err) {
+            console.error('ShelfContext - retrieveShelfContents()', err);
+        }
+        
+    };
 
     useEffect(() => {
         /**
@@ -119,7 +176,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             // Check if there is any value in active shelf
             if(lastActiveShelfJSON) {
                 const lastActiveShelf: ShelfType = JSON.parse(lastActiveShelfJSON);
-                setActiveShelf(lastActiveShelf);
+                setToActiveShelf(lastActiveShelf);
             }
         }
 
@@ -128,6 +185,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
          * @function retrieveAvailableShelves
          * @description Retrieve all of the shelves from the database
          * @author J. Trpka <jtrpka0912@gmail.com>
+         * @note Should this be stand alone?
          * @throws Error
          * @returns ShelfType[]
          */

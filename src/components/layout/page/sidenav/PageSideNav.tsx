@@ -18,7 +18,6 @@ import { ShelfContext } from '../../../../contexts/ShelfContext';
 // Types
 import ShelfType from '../../../../types/Shelf';
 
-
 /**
  * @function PageSideNav
  * @summary Page Sliding Side Navigation Layout

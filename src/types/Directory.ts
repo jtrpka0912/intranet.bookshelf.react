@@ -3,12 +3,12 @@
  * @summary Directory Type
  * @description Definition of the directory type
  * @author J. Trpka <jtrpka0912@gmail.com>
- * @property { string } id
+ * @property { string } _id
  * @property { string } name
  * @property { string } path
  */
 type DirectoryType = {
-    id: string,
+    _id: string,
     name: string,
     path: string
 };
