@@ -7,6 +7,7 @@ import PageWrapper from '../layout/page/wrapper/PageWrapper';
 // Contexts
 import AppContextProvider from '../../contexts/AppContext';
 import ShelfContextProvider from '../../contexts/ShelfContext';
+import Modal from '../../components/common/modal/Modal';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
                 <PageWrapper>
                     <p>This is page content</p>
                 </PageWrapper>
+                <Modal>Hello There</Modal>
             </ShelfContextProvider>
         </AppContextProvider>
     );

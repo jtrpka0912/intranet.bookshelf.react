@@ -4,6 +4,16 @@ import React from 'react';
 // Style
 import './Button.scss';
 
+/**
+ * @interface ButtonProps
+ * @description The acceptable props for the Button component
+ * @author J. Trpka <jtrpka0912@gmail.com>
+ * @property { React.ReactNode } children
+ * @property { any } type // TODO: type: any
+ * @property { boolean } boolean
+ * @property { boolean } boolean
+ * @property { any } onClick // TODO: type:any
+ */
 interface ButtonProps {
     children: React.ReactNode,
     type: any,
