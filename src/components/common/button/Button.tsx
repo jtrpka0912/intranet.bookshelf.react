@@ -22,6 +22,14 @@ interface ButtonProps {
     onClick?: any
 }
 
+/**
+ * @function Button
+ * @summary Button Component
+ * @description A button component for the site.
+ * @author J. Trpka <jtrpka0912@gmail.com>
+ * @param { ButtonProps } props 
+ * @returns { JSX }
+ */
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
     /**
      * @function printClasses
