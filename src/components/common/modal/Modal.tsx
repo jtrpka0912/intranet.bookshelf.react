@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+
+// Components
+import Button from '../button/Button';
+
 // Styles
 import './Modal.scss';
 
@@ -30,7 +34,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(true);
     return (
         <div className={ `shelves-modal-overlay ${isOpened ? 'opened' : 'closed'}` }>
-            <div className="shelves-modal-body">
+            <div className="shelves-modal-container">
                 <header className="shelves-modal-header">
                     <h2 className="shelves-modal-header-title">
                         { props.title ? props.title : 'Modal Title Here' }
@@ -41,7 +45,13 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                     />
                 </header>
                 
-                { props.children }
+                <div className="shelves-modal-body">
+                    { props.children }
+                </div>
+
+                <div className="shelves-modal-footer">
+                    <Button>Button Here</Button>
+                </div>
             </div>
         </div>
     )

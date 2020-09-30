@@ -20,16 +20,18 @@
             }
         }
 
-        &-body {
+        &-container {
             position: absolute;
             top: 0; bottom: 0;
             left: 0; right: 0;
+
+            // TODO: Do CSS Grid for modal container
+
             width: 50%;
             height: 50%;
             margin: auto;
             padding: 9px 10px;
             background-color: #fff;
-
         }
 
         &-header {

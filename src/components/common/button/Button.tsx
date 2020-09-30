@@ -16,7 +16,7 @@ import './Button.scss';
  */
 interface ButtonProps {
     children: React.ReactNode,
-    type: any,
+    type?: any,
     block?: boolean,
     rounded?: boolean,
     onClick?: any
