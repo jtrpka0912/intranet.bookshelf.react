@@ -1,6 +1,9 @@
 // React
-import React from 'react';
+import React, { useState } from 'react';
 
+// Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 // Styles
 import './Modal.scss';
 
@@ -11,7 +14,8 @@ import './Modal.scss';
  * @property { React.ReactNode } children
  */
 interface ModalProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    title?: string
 }
 
 /**
@@ -23,9 +27,20 @@ interface ModalProps {
  * @returns { JSX }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
+    const [isOpened, toggleModal] = useState(true);
     return (
-        <div className="shelves-modal-overlay hidden">
+        <div className={ `shelves-modal-overlay ${isOpened ? 'opened' : 'closed'}` }>
             <div className="shelves-modal-body">
+                <header className="shelves-modal-header">
+                    <h2 className="shelves-modal-header-title">
+                        { props.title ? props.title : 'Modal Title Here' }
+                    </h2>
+                    <FontAwesomeIcon icon={ faWindowClose } 
+                        className="shelves-modal-header-close"
+                        onClick={ () => toggleModal(!isOpened) }
+                    />
+                </header>
+                
                 { props.children }
             </div>
         </div>
