@@ -8,7 +8,7 @@ import './PageFooter.scss';
  * @function PageFooter
  * @summary Page Footer Layout
  * @description The footer for all pages for the web app
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @returns { JSX }
  */
 const PageFooter: React.FunctionComponent = () => {

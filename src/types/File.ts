@@ -2,7 +2,7 @@
  * @type FileType
  * @summary File Type
  * @description Definition of the file type
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { string } _id
  * @property { string } type
  * @property { string } name

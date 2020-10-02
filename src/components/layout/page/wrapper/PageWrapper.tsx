@@ -13,7 +13,7 @@ import './PageWrapper.scss';
  * @function PageWrapper
  * @summary Page Layout Wrapper
  * @description The layout for all pages for the web app
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @param { object } props 
  * @returns { JSX }
  */

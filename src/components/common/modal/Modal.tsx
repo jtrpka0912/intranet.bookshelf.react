@@ -14,7 +14,7 @@ import './Modal.scss';
 /**
  * @interface ModalProps
  * @description The acceptable props for the Modal component
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { React.ReactNode } children
  */
 interface ModalProps {
@@ -26,7 +26,7 @@ interface ModalProps {
  * @function Modal
  * @summary Modal Skeleton Component
  * @description This is the base component for a modal
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @param { ModalProps } props 
  * @returns { JSX }
  */

@@ -5,7 +5,7 @@ import React, { createContext, useState } from 'react';
  * @type AppContextType
  * @summary Application Context Type
  * @description Definition of the application context type
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { boolean } isSideNavOpen
  */
 type AppContextType = {
@@ -26,7 +26,7 @@ export const AppContext: React.Context<AppContextType> = createContext<AppContex
  * @type AppContextProps
  * @summary Application context props
  * @description Define the structure the application context props
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { React.ReactNode } children
  */
 type AppContextProps = {
@@ -37,7 +37,7 @@ type AppContextProps = {
  * @function AppContextProvider
  * @summary Application Context Provider
  * @description A state managed provider to hold all other application data.
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @param { AppContextProps } props 
  * @returns { JSX }
  */

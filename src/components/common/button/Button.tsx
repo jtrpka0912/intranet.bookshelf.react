@@ -7,7 +7,7 @@ import './Button.scss';
 /**
  * @interface ButtonProps
  * @description The acceptable props for the Button component
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { React.ReactNode } children
  * @property { any } type // TODO: type: any
  * @property { boolean } boolean
@@ -26,7 +26,7 @@ interface ButtonProps {
  * @function Button
  * @summary Button Component
  * @description A button component for the site.
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @param { ButtonProps } props 
  * @returns { JSX }
  */
@@ -35,7 +35,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
      * @function printClasses
      * @summary Print button classes
      * @description Print out the button classes depending on attributes
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { any } type 
      * @param { boolean } block 
      * @param { boolean } rounded

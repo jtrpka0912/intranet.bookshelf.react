@@ -10,7 +10,7 @@ import FileType from '../types/File';
  * @type EbookResponse
  * @summary Ebook API Response
  * @description An eBook response from the server
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { DirectoryType[] } breadcrumbs
  * @property { DirectoryType[] } directories
  * @property { FileType[] } files
@@ -25,7 +25,7 @@ type EbookResponse = {
  * @type ShelfContextType
  * @summary Shelf Context Type
  * @description Definition of the shelf context type
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { ShelfType[] } shelves
  * @property { DirectoryType[] } breadcrumbs
  * @property { DirectoryType[] } directories
@@ -69,7 +69,7 @@ export const ShelfContext: React.Context<ShelfContextType> = createContext<Shelf
  * @type ShelfContextProps
  * @summary Shelf context props
  * @description Define the structure the shelf context props
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { React.ReactNode } children
  */
 type ShelfContextProps = {
@@ -80,7 +80,7 @@ type ShelfContextProps = {
  * @function ShelfContextProvider
  * @summary Shelf Context Provider
  * @description A state managed provider to hold all of the directories and files of the shelf (and current folder).
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @param { ShelfContextProps } props 
  * @returns { JSX }
  */
@@ -97,7 +97,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     /**
      * @function addOneToShelves
      * @description Add a shelf to the shelves state.
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param {  } shelf 
      */
     const addOneToShelves = (shelf: ShelfType) => {
@@ -108,7 +108,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @function setToActiveShelf
      * @event onClick
      * @description Set a shelf to be the active shelf (and display its items)
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { ShelfType } shelf
      */
     const setToActiveShelf = (shelf: ShelfType) => {
@@ -126,7 +126,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @async
      * @function retrieveShelfContents
      * @description Retrieve the shelves contents
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { ShelfType } shelf 
      * @param { DirectoryType } directory 
      */
@@ -170,7 +170,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         /**
          * @function retrieveLocalStorageActiveShelf
          * @description Retrieve, if any, the last active shelf prior to refreshing
-         * @author J. Trpka <jtrpka0912@gmail.com>
+         * @author J.T.
          */
         const retrieveLocalStorageActiveShelf = () => {
             const lastActiveShelfJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
@@ -186,7 +186,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
          * @async
          * @function retrieveAvailableShelves
          * @description Retrieve all of the shelves from the database
-         * @author J. Trpka <jtrpka0912@gmail.com>
+         * @author J.T.
          * @note Should this be stand alone?
          * @throws Error
          * @returns ShelfType[]

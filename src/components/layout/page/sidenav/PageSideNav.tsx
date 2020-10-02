@@ -24,7 +24,7 @@ import ShelfType from '../../../../types/Shelf';
  * @function PageSideNav
  * @summary Page Sliding Side Navigation Layout
  * @description A sliding side nav "drawer" that goes in and out of app.
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @returns { JSX }
  */
 const PageSideNav: React.FunctionComponent = () => {
@@ -36,7 +36,7 @@ const PageSideNav: React.FunctionComponent = () => {
      * @function onClickShelfItem
      * @event onClick
      * @description Set a shelf to be the active shelf (and display its items)
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { ShelfType } shelf
      */
     const onClickShelfItem = (shelf: ShelfType) => {

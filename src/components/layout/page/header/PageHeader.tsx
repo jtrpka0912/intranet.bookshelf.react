@@ -15,7 +15,7 @@ import './PageHeader.scss';
  * @function PageHeader
  * @summary Page Header Layout
  * @description The header for all pages for the web app
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @returns { JSX }
  */
 const PageHeader: React.FunctionComponent = () => {

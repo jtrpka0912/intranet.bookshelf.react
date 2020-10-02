@@ -17,7 +17,7 @@ import './ShelfForm.scss';
  * @interface ShelfFormProps
  * @summary Shelf Form Props
  * @description The props for the shelf form component
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { string } title - Label of the form
  * @property { string } buttonLabel - Button label
  */
@@ -38,7 +38,7 @@ interface ShelfRequestBody {
  * @function ShelfForm
  * @summary Shelf Form
  * @description A form to create/edit shelves
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @returns { JSX }
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
@@ -57,7 +57,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @function onSubmitForm
      * @summary Submit Form Event
      * @description Process the form data and send it to the server
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { React.FormEvent } e 
      */
     const onSubmitForm = async (e: React.FormEvent) => {
@@ -103,7 +103,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @async
      * @function sendShelfRequest
      * @description Send a request to the server to either create or update a shelf.
-     * @author J. Trpka <jtrpka0912@gmail.com>
+     * @author J.T.
      * @param { ShelfRequestBody } requestBody
      * @returns { JSON }
      */

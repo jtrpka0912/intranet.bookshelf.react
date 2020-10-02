@@ -2,7 +2,7 @@
  * @type ShelfType
  * @summary Shelf Type
  * @description Definition of the shelf type
- * @author J. Trpka <jtrpka0912@gmail.com>
+ * @author J.T.
  * @property { string } _id
  * @property { string } name
  * @property { string } root
