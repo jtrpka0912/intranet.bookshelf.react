@@ -17,7 +17,7 @@ const App = () => {
                 <PageWrapper>
                     <p>This is page content</p>
                 </PageWrapper>
-                <Modal fade={ true }>Hello There</Modal>
+                <Modal fade={true}>Hello There</Modal>
             </ShelfContextProvider>
         </AppContextProvider>
     );

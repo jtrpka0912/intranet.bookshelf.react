@@ -6,17 +6,42 @@
             left: 0; right: 0;
             width: 100%;
             height: 100%;
-            //background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.5);
 
             &.closed {
+                animation: toggleToNone 1s forwards;
+
                 &.fade {
-                    animation: fadeOut 1s forwards;
+                    .common-modal {
+                        &-container {
+                            animation: fadeOut 1s forwards;
+                        }
+                    }
+                }
+                &.slide {
+                    animation: slideDown 1s forwards;
+                }
+                &.no-effects {
+                    display: none;
                 }
             }
 
             &.opened {
+                animation: toggleToBlock 1s forwards;
+
                 &.fade {
-                    animation: fadeIn 1s forwards;
+                    .common-modal {
+                        &-container {
+                            animation: fadeIn 1s forwards;
+                        }
+                    }
+                }
+
+                &.slide {
+                    animation: slideUp 1s forwards;
+                }
+                &.no-effects {
+                    display: block;
                 }
             }
         }
@@ -70,7 +95,6 @@
 
 @keyframes fadeIn {
     from {
-        display: block;
         opacity: 0;
     }
 
@@ -85,7 +109,49 @@
     }
 
     to {
-        display: none;
         opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        // display: none;
+        transform: translateY(100vw);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        // display: block;
+        transform: translateY(100vw);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+// FIXME: Try to use scale to shrink the size of the opacity
+
+@keyframes toggleToNone {
+    from {
+        display: block;
+    }
+
+    to {
+        display: none;
+    }
+}
+
+@keyframes toggleToBlock {
+    from {
+        display: none;
+    }
+
+    to {
+        display: block;
     }
 }

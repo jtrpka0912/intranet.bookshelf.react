@@ -21,6 +21,7 @@ interface ModalProps {
     children: React.ReactNode,
     title?: string
     fade?: boolean
+    slide?: boolean;
 }
 
 /**
@@ -39,8 +40,16 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         let classArray: string[] = ['common-modal-overlay'];
 
         classArray.push(isOpened ? 'opened' : 'closed');
+
+        // Need to check if fade and slide are not disabled
+        const fade = props.fade;
+        const slide = props.slide;
+
+        if(!fade && !slide) classArray.push('no-effects');
         
-        if(props.fade) classArray.push('fade');
+        if(fade) classArray.push('fade');
+
+        if(slide) classArray.push('slide');
 
         return classArray.join(' ');
     }
