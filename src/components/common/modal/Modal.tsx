@@ -20,6 +20,7 @@ import './Modal.scss';
 interface ModalProps {
     children: React.ReactNode,
     title?: string
+    fade?: boolean
 }
 
 /**
@@ -32,8 +33,20 @@ interface ModalProps {
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(true);
+
+    // TODO: props set as any
+    const overlayClasses = (props: any): string => {
+        let classArray: string[] = ['common-modal-overlay'];
+
+        classArray.push(isOpened ? 'opened' : 'closed');
+        
+        if(props.fade) classArray.push('fade');
+
+        return classArray.join(' ');
+    }
+
     return (
-        <div className={ `common-modal-overlay ${isOpened ? 'opened' : 'closed'}` }         
+        <div className={ overlayClasses(props) }
             onClick={ () => toggleModal(!isOpened) }
         >
             <div className="common-modal-container" 

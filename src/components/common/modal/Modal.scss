@@ -9,11 +9,15 @@
             //background-color: rgba(0,0,0,0.5);
 
             &.closed {
-                animation: fadeOut 1s forwards;
+                &.fade {
+                    animation: fadeOut 1s forwards;
+                }
             }
 
             &.opened {
-                animation: fadeIn 1s forwards;
+                &.fade {
+                    animation: fadeIn 1s forwards;
+                }
             }
         }
 
