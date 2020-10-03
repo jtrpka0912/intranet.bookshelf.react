@@ -1,4 +1,4 @@
-.shelves {
+.common {
     &-modal {
         &-overlay {
             position: fixed;
@@ -26,6 +26,8 @@
             left: 0; right: 0;
 
             // TODO: Do CSS Grid for modal container
+            display: grid;
+            grid-template-rows: auto 1fr auto;
 
             width: 50%;
             height: 50%;
@@ -49,6 +51,17 @@
                 top: 2px; right: 10px;
                 font-size: 1.5em;
             }
+        }
+
+        &-body {
+            margin-bottom: 9px;
+        }
+
+        &-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 9px;
+            border-top: 1px solid #333;
         }
     }
 }

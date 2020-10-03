@@ -33,23 +33,23 @@ interface ModalProps {
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(true);
     return (
-        <div className={ `shelves-modal-overlay ${isOpened ? 'opened' : 'closed'}` }>
-            <div className="shelves-modal-container">
-                <header className="shelves-modal-header">
-                    <h2 className="shelves-modal-header-title">
+        <div className={ `common-modal-overlay ${isOpened ? 'opened' : 'closed'}` }>
+            <div className="common-modal-container">
+                <header className="common-modal-header">
+                    <h2 className="common-modal-header-title">
                         { props.title ? props.title : 'Modal Title Here' }
                     </h2>
                     <FontAwesomeIcon icon={ faWindowClose } 
-                        className="shelves-modal-header-close"
+                        className="common-modal-header-close"
                         onClick={ () => toggleModal(!isOpened) }
                     />
                 </header>
                 
-                <div className="shelves-modal-body">
+                <div className="common-modal-body">
                     { props.children }
                 </div>
 
-                <div className="shelves-modal-footer">
+                <div className="common-modal-footer">
                     <Button>Button Here</Button>
                 </div>
             </div>
