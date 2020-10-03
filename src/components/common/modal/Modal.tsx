@@ -33,8 +33,12 @@ interface ModalProps {
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(true);
     return (
-        <div className={ `common-modal-overlay ${isOpened ? 'opened' : 'closed'}` }>
-            <div className="common-modal-container">
+        <div className={ `common-modal-overlay ${isOpened ? 'opened' : 'closed'}` }         
+            onClick={ () => toggleModal(!isOpened) }
+        >
+            <div className="common-modal-container" 
+                onClick={ (e) => e.stopPropagation() }
+            >
                 <header className="common-modal-header">
                     <h2 className="common-modal-header-title">
                         { props.title ? props.title : 'Modal Title Here' }
