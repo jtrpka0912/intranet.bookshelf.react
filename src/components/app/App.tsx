@@ -17,7 +17,7 @@ const App = () => {
                 <PageWrapper>
                     <p>This is page content</p>
                 </PageWrapper>
-                <Modal size={ Size.Medium } slide={true}>Hello There</Modal>
+                <Modal size={ Size.Large } slide={true}>Hello There</Modal>
             </ShelfContextProvider>
         </AppContextProvider>
     );
