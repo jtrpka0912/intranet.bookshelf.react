@@ -1,5 +1,7 @@
 .common {
     &-modal {
+        $modalClass: &;
+
         &-overlay {
             position: fixed;
             top: 0; bottom: 0;
@@ -8,14 +10,14 @@
             height: 100%;
             background-color: rgba(0,0,0,0.5);
 
+            // TODO: Figure out how to animate when closing the modal that doesn't retain the overlay.
             &.closed {
-                // TODO: Figure out how to animate when closing the modal that doesn't retain the overlay.
                 display: none;
             }
 
             &.opened {
                 &.fade {
-                    .common-modal {
+                    #{$modalClass} {
                         &-container {
                             animation: fadeIn 1s forwards;
                         }
@@ -23,7 +25,7 @@
                 }
 
                 &.slide {
-                    .common-modal {
+                    #{$modalClass} {
                         &-container {
                             animation: slideUp 1s forwards;
                         }
@@ -41,16 +43,37 @@
             top: 0; bottom: 0;
             left: 0; right: 0;
 
-            // TODO: Do CSS Grid for modal container
             display: grid;
             grid-template-rows: auto 1fr auto;
-
-            width: 50%;
             height: 50%;
+
             margin: auto;
             padding: 9px 10px;
             background-color: #fff;
             box-shadow: 10px 9px 5px 4px rgba(0,0,0,0.3);
+
+            &.small {
+                width: 360px;
+            }
+
+            &.medium {
+                width: 480px;
+            }
+
+            &.large {
+                width: 520px;
+            }
+
+            // To tablet devices
+            // NOTE: https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/
+            @media (max-width: 768px) {
+                height: 100%;
+
+                // Needs to override these classes
+                &.small, &.medium, &.large {
+                    width: 100%;    
+                }
+            }
         }
 
         &-header {
@@ -82,6 +105,8 @@
         }
     }
 }
+
+
 
 @keyframes fadeIn {
     from {
