@@ -9,26 +9,11 @@
             background-color: rgba(0,0,0,0.5);
 
             &.closed {
-                animation: toggleToNone 1s forwards;
-
-                &.fade {
-                    .common-modal {
-                        &-container {
-                            animation: fadeOut 1s forwards;
-                        }
-                    }
-                }
-                &.slide {
-                    animation: slideDown 1s forwards;
-                }
-                &.no-effects {
-                    display: none;
-                }
+                // TODO: Figure out how to animate when closing the modal that doesn't retain the overlay.
+                display: none;
             }
 
             &.opened {
-                animation: toggleToBlock 1s forwards;
-
                 &.fade {
                     .common-modal {
                         &-container {
@@ -38,8 +23,13 @@
                 }
 
                 &.slide {
-                    animation: slideUp 1s forwards;
+                    .common-modal {
+                        &-container {
+                            animation: slideUp 1s forwards;
+                        }
+                    }
                 }
+
                 &.no-effects {
                     display: block;
                 }
@@ -131,27 +121,5 @@
     }
     to {
         transform: translateY(0);
-    }
-}
-
-// FIXME: Try to use scale to shrink the size of the opacity
-
-@keyframes toggleToNone {
-    from {
-        display: block;
-    }
-
-    to {
-        display: none;
-    }
-}
-
-@keyframes toggleToBlock {
-    from {
-        display: none;
-    }
-
-    to {
-        display: block;
     }
 }

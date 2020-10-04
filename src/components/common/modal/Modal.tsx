@@ -46,9 +46,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         const slide = props.slide;
 
         if(!fade && !slide) classArray.push('no-effects');
-        
         if(fade) classArray.push('fade');
-
         if(slide) classArray.push('slide');
 
         return classArray.join(' ');
