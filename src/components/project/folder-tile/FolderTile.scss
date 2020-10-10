@@ -6,13 +6,16 @@
         &-wrapper {
             display: inline-block;
             max-width: $constraintWidth;
+            margin: 9px 10px;
         }
 
         &-icon {
             max-width: $constraintWidth;
             max-height: 140px;
             padding: 45px 50px;
+            background-color: #fefefe;
             border: 1px solid $color;
+            box-shadow: 5px 4px 10px 1px #333;
 
             svg {
                 font-size: 3em;

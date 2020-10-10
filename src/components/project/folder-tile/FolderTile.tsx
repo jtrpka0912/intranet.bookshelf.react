@@ -21,7 +21,7 @@ const FolderTile: React.FunctionComponent = () => {
                 <FontAwesomeIcon icon={ faFolderOpen } />
             </div>
 
-            <h3 className="shelf-foldertile-name">Stupid long name for a tile.</h3>
+            <h3 className="shelf-foldertile-name">Stupid</h3>
         </div>
     );
 };

@@ -14,7 +14,7 @@ const App = () => {
     const mockBreadcrumbsStyles = {
         display: 'flex',
         flexFlow: 'row wrap',
-        justifyContent: 'space-around',
+        justifyContent: 'flex-start',
         width: '90vw',
         margin: '0 auto'
     };
