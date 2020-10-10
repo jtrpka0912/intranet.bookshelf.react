@@ -1,25 +1,16 @@
 .shelf {
     $color: #333;
-    $constraintWidth: 156px;
 
     &-foldertile {
         &-wrapper {
             display: inline-block;
-            max-width: $constraintWidth;
-            margin: 9px 10px;
+            margin: 18px 20px;
         }
 
         &-icon {
-            max-width: $constraintWidth;
-            max-height: 140px;
-            padding: 45px 50px;
             background-color: #fefefe;
             border: 1px solid $color;
             box-shadow: 5px 4px 10px 1px #333;
-
-            svg {
-                font-size: 3em;
-            }
         }
 
         &-name {
@@ -33,5 +24,57 @@
     }
 }
 
-// Desktop size widths: 156px
-// TV size widths: bigger
+// NOTE: https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/
+
+// Size the tiles based on size of the device
+@mixin sizing-tiles(
+    $padding, 
+    $width-constraint: 100%, 
+    $height-constraint: 100%, 
+    $font-size: 3em
+) {
+    .shelf {
+        &-foldertile {
+            &-wrapper {
+                max-width: $width-constraint;
+            }
+
+            &-icon {
+                max-width: $width-constraint;
+                max-height: $height-constraint;
+                padding: $padding;
+
+                svg {
+                    font-size: $font-size;
+                }
+            }
+        }
+    }
+}
+
+// TODO: Convert the media queries into variables that they can be shared through the entire project
+
+// Phones
+@media (max-width: 480px) {
+    @include sizing-tiles(9px 10px, 76px, 68px, 1.0em);
+}
+
+// Tablets
+@media (min-width: 481px) and (max-width: 768px) {
+    @include sizing-tiles(18px 20px, 96px, 86px, 1.5em);
+}
+
+// Laptops
+@media (min-width: 769px) and (max-width: 1024px) {
+    @include sizing-tiles(27px 30px, 116px, 104px, 2.0em);
+}
+
+// Desktops
+@media (min-width: 1025px) and (max-width: 1200px) {
+    @include sizing-tiles(36px 40px, 136px, 122px, 2.5em);
+}
+
+// TVs
+@media (min-width: 1201px) {
+    @include sizing-tiles(45px 50px, 156px, 140px, 3.0em);
+}
