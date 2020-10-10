@@ -1,5 +1,43 @@
 @import './normalize'; // Figure out how to use @use as @import will eventually be deprecated
 
+// TODO: This may all need to be moved to a single SCSS file to get use working. Need to figure out how to do that with a React project.
+
+$phoneWidth: 480px;
+$tabletWidth: 768px;
+$laptopWidth: 1024px;
+$desktopWidth: 1200px;
+
+// Media Query Mixins
+@mixin phoneDevice {
+    @media(max-width: $phoneWidth) {
+        @content;
+    }
+}
+
+@mixin tabletDevice {
+    @media(min-width: $phoneWidth + 1) and (max-width: $tabletWidth) {
+        @content;
+    }
+}
+
+@mixin laptopDevice {
+    @media(min-width: $tabletWidth + 1) and (max-width: $laptopWidth) {
+        @content;
+    }
+}
+
+@mixin desktopDevice {
+    @media (min-width: $laptopWidth + 1) and (max-width: $desktopWidth) {
+        @content;
+    }
+}
+
+@mixin tvDevice {
+    @media (min-width: $desktopWidth + 1) {
+        @content;
+    }
+}
+
 // General styles
 * {
     box-sizing: border-box;
