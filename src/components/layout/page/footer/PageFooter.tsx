@@ -9,7 +9,7 @@ import './PageFooter.scss';
  * @summary Page Footer Layout
  * @description The footer for all pages for the web app
  * @author J.T.
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const PageFooter: React.FunctionComponent = () => {
     return (

@@ -28,7 +28,7 @@ interface ButtonProps {
  * @description A button component for the site.
  * @author J.T.
  * @param { ButtonProps } props 
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
     /**

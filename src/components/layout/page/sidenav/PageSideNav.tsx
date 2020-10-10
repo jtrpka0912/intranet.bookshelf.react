@@ -23,7 +23,7 @@ import ShelfType from '../../../../types/Shelf';
  * @summary Page Sliding Side Navigation Layout
  * @description A sliding side nav "drawer" that goes in and out of app.
  * @author J.T.
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const PageSideNav: React.FunctionComponent = () => {
     // Context

@@ -15,7 +15,7 @@ import './PageWrapper.scss';
  * @description The layout for all pages for the web app
  * @author J.T.
  * @param { object } props 
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const PageWrapper: React.FunctionComponent = (props) => {
     return (

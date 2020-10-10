@@ -46,7 +46,7 @@ interface ModalProps {
  * @description This is the base component for a modal
  * @author J.T.
  * @param { ModalProps } props 
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(false);

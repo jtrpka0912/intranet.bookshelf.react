@@ -39,7 +39,7 @@ type AppContextProps = {
  * @description A state managed provider to hold all other application data.
  * @author J.T.
  * @param { AppContextProps } props 
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const AppContextProvider = (props: AppContextProps) => {
     // States

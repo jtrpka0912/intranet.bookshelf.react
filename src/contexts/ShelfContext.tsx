@@ -82,7 +82,7 @@ type ShelfContextProps = {
  * @description A state managed provider to hold all of the directories and files of the shelf (and current folder).
  * @author J.T.
  * @param { ShelfContextProps } props 
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const ShelfContextProvider = (props: ShelfContextProps) => {
     const localStorageActiveShelfName = 'activeShelf';

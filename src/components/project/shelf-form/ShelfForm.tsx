@@ -39,7 +39,7 @@ interface ShelfRequestBody {
  * @summary Shelf Form
  * @description A form to create/edit shelves
  * @author J.T.
- * @returns { JSX }
+ * @returns { React.ReactNode }
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
