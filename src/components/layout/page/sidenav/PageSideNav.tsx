@@ -3,9 +3,7 @@ import React, { useContext } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// TODO: Convert back to solid-svg-icons so we can stay with one library of icons to reduce size
-import { faEdit, faFolder, faClone } from '@fortawesome/free-regular-svg-icons';
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose, faClone, faFolder, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 import './PageSideNav.scss';

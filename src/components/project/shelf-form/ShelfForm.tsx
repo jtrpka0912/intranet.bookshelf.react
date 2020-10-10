@@ -87,7 +87,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             // Do actions depending on type of action for shelf
             if(id > 0) {
                 // Modifying the shelf
-                // TODO: Not sure what to do after modifying a shelf
+                // NOTE: Not sure what to do after modifying a shelf
             } else {
                 // Creating a shelf
                 addOneToShelves(shelf);
