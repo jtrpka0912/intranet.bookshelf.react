@@ -49,7 +49,7 @@ interface ModalProps {
  * @returns { JSX }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(true);
+    const [isOpened, toggleModal] = useState(false);
 
     /**
      * @function overlayClasses
@@ -71,8 +71,6 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         if(!fade && !slide) classArray.push('no-effects');
         if(fade) classArray.push('fade');
         if(slide) classArray.push('slide');
-
-        
 
         return classArray.join(' ');
     }
