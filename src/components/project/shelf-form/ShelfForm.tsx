@@ -64,15 +64,16 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         e.preventDefault();
 
         try {
+            const revisedPathOfShelf = pathOfShelf.replace(/\\/g, '/'); // /\\/ looks for forward slashes, g means all instances
+
             // TODO: Check if pathOfShelf is a valid file path.
-            // TODO: May need to convert the back slashes to forward slashes.
             if(!nameOfShelf) throw Error('Name of shelf is required.');
-            if(!pathOfShelf) throw Error('Path of shelf is required.');
+            if(!revisedPathOfShelf) throw Error('Path of shelf is required.');
 
             // Convert to a Shelf Request Body
             const requestBody: ShelfRequestBody = {
                 name: nameOfShelf,
-                root: pathOfShelf,
+                root: revisedPathOfShelf,
                 showDirectories,
                 multiFile
             };
@@ -84,6 +85,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             const response = await sendShelfRequest(requestBody);
             const shelf: ShelfType = response;
+
+            // TODO: Clear the form data
 
             // Do actions depending on type of action for shelf
             if(id > 0) {
@@ -132,6 +135,12 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         return await shelfFormResponse.json();
     }
 
+    /**
+     * @function onChangeMultiFile
+     * @event onChange
+     * @description If the multi-file checkbox is checked then show directories need to be set
+     * @author J.T.
+     */
     const onChangeMultiFile = () => {
         const newMultiFileState = !multiFile;
 
