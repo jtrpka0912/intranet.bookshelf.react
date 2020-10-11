@@ -1,5 +1,8 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Context
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import DirectoryType from '../../../types/Directory';
@@ -31,10 +34,16 @@ interface FolderTileProps {
  * @return { React.ReactNode }
  */
 const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
+    const { setToActiveFolder } = useContext(ShelfContext);
+
+    const onClickCurrentFolder = () => {
+        setToActiveFolder(props.directory);
+    }
+
     // TODO: This will need a click event to set the currentFolder state and populate the SHELF
     return (
         <div className="shelf-foldertile-wrapper">
-            <div className="shelf-foldertile-icon">
+            <div className="shelf-foldertile-icon" onClick={ onClickCurrentFolder }>
                 <FontAwesomeIcon icon={ props.opened ? faFolderOpen : faFolder } />
             </div>
 

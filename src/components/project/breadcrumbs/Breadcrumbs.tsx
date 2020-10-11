@@ -22,11 +22,8 @@ import './Breadcrumbs.scss';
  * @returns { React.ReactNode }
  */
 const Breadcrumbs: React.FunctionComponent = () => {
-    // TODO: Flag the FolderTile's icon prop to open
     return (
         <div className="shelf-breadcrumbs">
-            { /* TODO: This will need to be mapped and generate the folder tiles from an array of DirectoryType objects */ }
-
             { directories.map((directory: DirectoryType) => {
                 return (
                     <FolderTile key={ directory._id } directory={ directory} opened={ true } />
