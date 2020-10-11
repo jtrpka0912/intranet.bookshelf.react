@@ -121,7 +121,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         // Then set to state
         setActiveShelf(shelf);
 
-        // TODO: Then retrieve the breadcrumbs, directories, and files
+        // Then retrieve the breadcrumbs, directories, and files
         retrieveShelfContents(shelf);
     }
 
@@ -132,7 +132,23 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { DirectoryType } directory 
      */
     const setToActiveDirectory = (directory: DirectoryType) => {
-        console.table(directory);
+        // Set the active directory to local storage
+        localStorage.setItem(localStorageActiveDirectoryName, JSON.stringify(directory));
+
+        // Then set to state
+        setActiveDirectory(directory);
+
+        // Then retrieve the breadcrumbs, directories, and files (assuming there is an activeShelf)
+        try {
+            if(activeShelf) {
+                retrieveShelfContents(activeShelf, directory);
+            } else {
+                throw Error('No active shelf was set');
+            }
+        } catch(error) {
+            // TODO: Display a more friendlier error message for toast prompts
+            console.error('ShelfContext - retrieveShelfContents()', error);
+        }
     }
 
     /**
@@ -175,6 +191,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
                 setFiles(files);
             }
         } catch (err) {
+            // TODO: Display a more friendlier error message for toast prompts
             console.error('ShelfContext - retrieveShelfContents()', err);
         }
     };
@@ -218,8 +235,10 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         
         try {
             retrieveLocalStorageActiveShelf();
+            // TODO: retreieve the active directory, if any
             retrieveAvailableShelves();
         } catch(err) {
+            // TODO: Display a more friendlier error message for toast prompts
             console.error('AppContext useEffect', err);
         }
     }, []); // Pass any variables that useEffect should check each time the component gets re-rendered.
