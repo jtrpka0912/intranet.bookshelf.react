@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
 
 // Components
 import FolderTile from '../folder-tile/FolderTile';
@@ -8,10 +8,11 @@ import FolderTile from '../folder-tile/FolderTile';
 import DirectoryType from '../../../types/Directory';
 
 // Faux Data
-import directories from '../../../data/directories';
+// import directories from '../../../data/directories';
 
 // Styles
 import './Breadcrumbs.scss';
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 
 /**
@@ -22,6 +23,9 @@ import './Breadcrumbs.scss';
  * @returns { React.ReactNode }
  */
 const Breadcrumbs: React.FunctionComponent = () => {
+    // TODO: Point this to breadcrumbs
+    const { directories } = useContext(ShelfContext);
+
     return (
         <div className="shelf-breadcrumbs">
             { directories.map((directory: DirectoryType) => {
