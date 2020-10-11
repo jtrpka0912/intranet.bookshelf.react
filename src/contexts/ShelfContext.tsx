@@ -138,6 +138,8 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         // Then set to state
         setActiveDirectory(directory);
 
+        console.info('Active shelf in active directory', activeShelf);
+
         // Then retrieve the breadcrumbs, directories, and files (assuming there is an activeShelf)
         try {
             if(activeShelf) {
@@ -147,7 +149,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             }
         } catch(error) {
             // TODO: Display a more friendlier error message for toast prompts
-            console.error('ShelfContext - retrieveShelfContents()', error);
+            console.error('ShelfContext - setToActiveDirectory()', error);
         }
     }
 
@@ -161,6 +163,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      */
     const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
         try{
+            // TODO: Make another API string if directory is not undefined
             let api: string = `http://localhost:3001/api/v1/ebooks/shelf/${shelf._id}`;
 
             // If directory, then add the folder property to the endpoint.
@@ -176,9 +179,14 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
 
             // Retrieve the data
             const responseJSON: EbookResponse = await response.json();
+            console.group('Retrieved JSON');
+            console.log('Breadcrumbs');
             console.table(responseJSON.breadcrumbs);
+            console.log('Directories');
             console.table(responseJSON.directories);
+            console.log('Files');
             console.table(responseJSON.files);
+            console.groupEnd();
 
             // Check if data is there
             if(responseJSON.breadcrumbs && responseJSON.directories && responseJSON.files) {
@@ -201,30 +209,40 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
          * @function retrieveLocalStorageActiveShelf
          * @description Retrieve, if any, the last active shelf prior to refreshing
          * @author J.T.
+         * @returns { ShelfType | null }
          */
-        const retrieveLocalStorageActiveShelf = () => {
+        const retrieveLocalStorageActiveShelf = (): ShelfType | null => {
             const lastActiveShelfJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
 
             // Check if there is any value in active shelf
             if(lastActiveShelfJSON) {
                 const lastActiveShelf: ShelfType = JSON.parse(lastActiveShelfJSON);
-                setToActiveShelf(lastActiveShelf);
+                setActiveShelf(lastActiveShelf);
+
+                return lastActiveShelf;
             }
+
+            return null;
         }
 
         /**
          * @function retrieveLocalStorageActiveDirectory
          * @description Retrieve, if any, the last active directory prior to refreshing
          * @author J.T.
+         * @note Instead of null; set it to undefined so it acts as if the variable doesn't exist for the retrieve shelf contents function
+         * @returns { DirectoryType | undefined }
          */
-        const retrieveLocalStorageActiveDirectory = () => {
+        const retrieveLocalStorageActiveDirectory = (): DirectoryType | undefined => {
             const lastActiveDirectoryJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
 
             // Check if there is any value in active directory
             if(lastActiveDirectoryJSON) {
                 const lastActiveDirectory: DirectoryType = JSON.parse(lastActiveDirectoryJSON);
-                setToActiveDirectory(lastActiveDirectory);
+                setActiveDirectory(lastActiveDirectory);
+                return lastActiveDirectory;
             }
+
+            return undefined;
         }
 
         /**
@@ -249,9 +267,17 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         };
         
         try {
-            retrieveLocalStorageActiveShelf();
-            retrieveLocalStorageActiveDirectory();
+            // Apparently the state variables will not be recognized even after retrieval and setting to state.
+            const currentShelf: ShelfType | null = retrieveLocalStorageActiveShelf();
+            const currentDirectory: DirectoryType | undefined = retrieveLocalStorageActiveDirectory();
+
+            // Do not need to retrieve the shelves state
             retrieveAvailableShelves();
+
+            // Check if any current shelf
+            if(currentShelf) {
+                retrieveShelfContents(currentShelf, currentDirectory);
+            }
         } catch(err) {
             // TODO: Display a more friendlier error message for toast prompts
             console.error('AppContext useEffect', err);

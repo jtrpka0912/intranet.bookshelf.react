@@ -64,6 +64,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         e.preventDefault();
 
         try {
+            // Replace back slashes with forward slashes on the path, but make it discreet with the revisedPathOfShelf variable
             const revisedPathOfShelf = pathOfShelf.replace(/\\/g, '/'); // /\\/ looks for forward slashes, g means all instances
 
             // TODO: Check if pathOfShelf is a valid file path.
@@ -83,6 +84,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 requestBody.id = id;
             }
 
+            // Submit and retrieve the newly created shelf from the backend
             const response = await sendShelfRequest(requestBody);
             const shelf: ShelfType = response;
 
