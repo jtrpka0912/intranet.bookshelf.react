@@ -12,7 +12,7 @@ import './Button.scss';
  * @property { any } type // TODO: type: any
  * @property { boolean } boolean
  * @property { boolean } boolean
- * @property { any } onClick // TODO: type:any
+ * @property { any } onClick // TODO: type: any
  */
 interface ButtonProps {
     children: React.ReactNode,

@@ -43,8 +43,8 @@ type AppContextProps = {
  */
 const AppContextProvider = (props: AppContextProps) => {
     // States
-    const [isSideNavOpen, toggleSideNav] = useState(defaultState.isSideNavOpen);
     // TODO: Need to figure out how to toggle when clicking ANYWHERE outside of side navigation.
+    const [isSideNavOpen, toggleSideNav] = useState(defaultState.isSideNavOpen);
 
     return (
         <AppContext.Provider value={{

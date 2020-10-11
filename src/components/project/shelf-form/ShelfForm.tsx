@@ -65,6 +65,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
         try {
             // TODO: Check if pathOfShelf is a valid file path.
+            // TODO: May need to convert the back slashes to forward slashes.
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!pathOfShelf) throw Error('Path of shelf is required.');
 
@@ -95,6 +96,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             }
             
         } catch(err) {
+            // TODO: Display a more friendlier error message for toast prompts
             console.error('onSubmitForm Error: ', e);
         }
     }

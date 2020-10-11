@@ -213,6 +213,21 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         }
 
         /**
+         * @function retrieveLocalStorageActiveDirectory
+         * @description Retrieve, if any, the last active directory prior to refreshing
+         * @author J.T.
+         */
+        const retrieveLocalStorageActiveDirectory = () => {
+            const lastActiveDirectoryJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
+
+            // Check if there is any value in active directory
+            if(lastActiveDirectoryJSON) {
+                const lastActiveDirectory: DirectoryType = JSON.parse(lastActiveDirectoryJSON);
+                setToActiveDirectory(lastActiveDirectory);
+            }
+        }
+
+        /**
          * @async
          * @function retrieveAvailableShelves
          * @description Retrieve all of the shelves from the database
@@ -235,7 +250,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
         
         try {
             retrieveLocalStorageActiveShelf();
-            // TODO: retreieve the active directory, if any
+            retrieveLocalStorageActiveDirectory();
             retrieveAvailableShelves();
         } catch(err) {
             // TODO: Display a more friendlier error message for toast prompts
