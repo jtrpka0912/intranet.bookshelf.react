@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Layout
-import PageWrapper from '../layout/page/wrapper/PageWrapper';
+import PageWrapper from '../pages/layout/wrapper/PageWrapper';
 
 // Contexts
 import AppContextProvider from '../../contexts/AppContext';
