@@ -4,8 +4,15 @@ import React from 'react';
 // Components
 import FolderTile from '../folder-tile/FolderTile';
 
+// Types
+import DirectoryType from '../../../types/Directory';
+
+// Faux Data
+import directories from '../../../data/directories';
+
 // Styles
 import './Breadcrumbs.scss';
+
 
 /**
  * @function Breadcrumbs
@@ -19,16 +26,12 @@ const Breadcrumbs: React.FunctionComponent = () => {
     return (
         <div className="shelf-breadcrumbs">
             { /* TODO: This will need to be mapped and generate the folder tiles from an array of DirectoryType objects */ }
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
-            <FolderTile />
+
+            { directories.map((directory: DirectoryType) => {
+                return (
+                    <FolderTile key={ directory._id } directory={ directory} opened={ true } />
+                )
+            }) }
         </div>
     )
 };

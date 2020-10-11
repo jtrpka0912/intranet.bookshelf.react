@@ -1,30 +1,44 @@
 // React
 import React from 'react';
 
+// Types
+import DirectoryType from '../../../types/Directory';
+
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 import './FolderTile.scss';
 
 /**
+ * @interface FolderTileProps
+ * @description The acceptable props for the FolderTile component
+ * @author J.T.
+ * @property { DirectoryType } directory
+ * @property { boolean } opened 
+ */
+interface FolderTileProps {
+    directory: DirectoryType,
+    opened: boolean
+}
+
+/**
  * @function FolderTile
  * @summary Folder Tile Component
  * @description A folder tile represents a directory in the shelf.
+ * @author J.T.
  * @return { React.ReactNode }
  */
-const FolderTile: React.FunctionComponent = () => {
-    // TODO: Retrieve a DirectoryType object as a prop
+const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
     // TODO: This will need a click event to set the currentFolder state and populate the SHELF
-    // TODO: I would like to have the breadcrumb component to have the open folder icon and the directory component to use the closed folder icon (faFolder)
     return (
         <div className="shelf-foldertile-wrapper">
             <div className="shelf-foldertile-icon">
-                <FontAwesomeIcon icon={ faFolderOpen } />
+                <FontAwesomeIcon icon={ props.opened ? faFolderOpen : faFolder } />
             </div>
 
-            <h3 className="shelf-foldertile-name">Folder</h3>
+            <h3 className="shelf-foldertile-name">{ props.directory.name }</h3>
         </div>
     );
 };

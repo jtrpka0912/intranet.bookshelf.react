@@ -31,6 +31,10 @@ export enum Size {
  * @description The acceptable props for the Modal component
  * @author J.T.
  * @property { React.ReactNode } children
+ * @property { string } title
+ * @property { boolean } fade
+ * @property { boolean } slide
+ * @property { Size } size
  */
 interface ModalProps {
     children: React.ReactNode,
