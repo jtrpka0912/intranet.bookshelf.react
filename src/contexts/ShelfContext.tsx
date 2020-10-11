@@ -31,10 +31,10 @@ type EbookResponse = {
  * @property { DirectoryType[] } directories
  * @property { FileType[] } files
  * @property { ShelfType | null } activeShelf
- * @property { DirectoryType | null } activeFolder
+ * @property { DirectoryType | null } activeDirectory
  * @property { function } addOneToShelves
  * @property { function } setToActiveShelf
- * @property { function } setToActiveFolder
+ * @property { function } setToActiveDirectory
  */
 type ShelfContextType = {
     // Items
@@ -44,11 +44,11 @@ type ShelfContextType = {
     files: FileType[],
     // Status
     activeShelf: ShelfType | null,
-    activeFolder: DirectoryType | null,
+    activeDirectory: DirectoryType | null,
     // Actions
     addOneToShelves: (shelf: ShelfType) => void,
     setToActiveShelf: (shelf: ShelfType) => void,
-    setToActiveFolder: (directory: DirectoryType) => void
+    setToActiveDirectory: (directory: DirectoryType) => void
 };
 
 const defaultState: ShelfContextType = {
@@ -59,11 +59,11 @@ const defaultState: ShelfContextType = {
     files: [],
     // Status
     activeShelf: null,
-    activeFolder: null,
+    activeDirectory: null,
     // Actions
     addOneToShelves: addOneToShelves => console.warn('addOneToShelves is not available (check context provider in heirarchy)'),
     setToActiveShelf: setToActiveShelf => console.warn('setToActiveShelf is not available (check context provider in heirarchy)'),
-    setToActiveFolder: setToActiveFolder => console.warn('setToActiveFolder is not available (check context provider in heirarchy)')
+    setToActiveDirectory: setToActiveDirectory => console.warn('setToActiveDirectory is not available (check context provider in heirarchy)')
 };
 
 export const ShelfContext: React.Context<ShelfContextType> = createContext<ShelfContextType>(defaultState);
@@ -89,13 +89,14 @@ type ShelfContextProps = {
  */
 const ShelfContextProvider = (props: ShelfContextProps) => {
     const localStorageActiveShelfName = 'activeShelf';
+    const localStorageActiveDirectoryName = 'activeDirectory';
 
     const [shelves, setShelves] = useState(defaultState.shelves);
     const [breadcrumbs, setBreadcrumbs] = useState(defaultState.breadcrumbs);
     const [directories, setDirectories] = useState(defaultState.directories);
     const [files, setFiles] = useState(defaultState.files);
     const [activeShelf, setActiveShelf] = useState(defaultState.activeShelf);
-    const [activeFolder, setActiveFolder] = useState(defaultState.activeFolder);
+    const [activeDirectory, setActiveDirectory] = useState(defaultState.activeDirectory);
     
     /**
      * @function addOneToShelves
@@ -125,12 +126,12 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     }
 
     /**
-     * @function setToActiveFolder
+     * @function setToActiveDirectory
      * @description Set the directory to be the current folder in the active shelf (and display its items)
      * @author J.T.
      * @param { DirectoryType } directory 
      */
-    const setToActiveFolder = (directory: DirectoryType) => {
+    const setToActiveDirectory = (directory: DirectoryType) => {
         console.table(directory);
     }
 
@@ -230,10 +231,10 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             directories, 
             files,
             activeShelf,
-            activeFolder,
+            activeDirectory,
             addOneToShelves,
             setToActiveShelf,
-            setToActiveFolder
+            setToActiveDirectory
         }}>
             { props.children }
         </ShelfContext.Provider>
