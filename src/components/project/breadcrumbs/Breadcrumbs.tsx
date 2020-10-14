@@ -23,7 +23,6 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
  * @returns { React.ReactNode }
  */
 const Breadcrumbs: React.FunctionComponent = () => {
-    // TODO: Point this to breadcrumbs
     const { breadcrumbs } = useContext(ShelfContext);
 
     return (

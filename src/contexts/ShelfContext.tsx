@@ -163,7 +163,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      */
     const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
         try{
-            // TODO: Make another API string if directory is not undefined
             let api: string = `http://localhost:3001/api/v1/ebooks/shelf/${shelf._id}`;
 
             // If directory, then add the folder property to the endpoint.
