@@ -11,24 +11,23 @@ import DirectoryType from '../../../types/Directory';
 // import directories from '../../../data/directories';
 
 // Styles
-import './Breadcrumbs.scss';
+import './Directories.scss';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 
 /**
- * @function Breadcrumbs
- * @summary Breadcrumb Component
- * @description Show the path that precedes the current folder for the SHELF
+ * @function Directories
+ * @summary Directories Component
+ * @description Show any directories currently residing in the SHELF and current folder.
  * @author J.T.
  * @returns { React.ReactNode }
  */
-const Breadcrumbs: React.FunctionComponent = () => {
-    // TODO: Point this to breadcrumbs
-    const { breadcrumbs } = useContext(ShelfContext);
+const Directories: React.FunctionComponent = () => {
+    const { directories } = useContext(ShelfContext);
 
     return (
-        <div className="shelf-breadcrumbs">
-            { breadcrumbs.map((directory: DirectoryType) => {
+        <div className="shelf-directories">
+            { directories.map((directory: DirectoryType) => {
                 return (
                     <FolderTile key={ directory._id } directory={ directory} opened={ true } />
                 )
@@ -37,4 +36,4 @@ const Breadcrumbs: React.FunctionComponent = () => {
     )
 };
 
-export default Breadcrumbs;
+export default Directories;

@@ -10,6 +10,7 @@ import ShelfContextProvider from '../../contexts/ShelfContext';
 
 // Components
 import Breadcrumbs from '../project/breadcrumbs/Breadcrumbs';
+import Directories from '../project/directories/Directories';
 import Modal, { Size } from '../../components/common/modal/Modal';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <ShelfContextProvider>
                 <PageWrapper>
                     <Breadcrumbs />
+                    <Directories />
                 </PageWrapper>
                 
                 <Modal size={ Size.Large } slide={true}>Hello There</Modal>

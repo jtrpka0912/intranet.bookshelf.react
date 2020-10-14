@@ -1,0 +1,12 @@
+.shelf {
+    &-directories {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        
+        // TODO: width for now is temporary
+        width: 90vw;
+        margin: 0 auto;
+        padding: 18px 20px;
+    }
+}
