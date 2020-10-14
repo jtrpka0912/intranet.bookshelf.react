@@ -27,10 +27,16 @@ const Breadcrumbs: React.FunctionComponent = () => {
 
     return (
         <div className="shelf-breadcrumbs">
-            { breadcrumbs.map((directory: DirectoryType) => {
-                return (
-                    <FolderTile key={ directory._id } directory={ directory} opened={ true } />
-                )
+            { breadcrumbs.map((directory: DirectoryType, index: number) => {
+                if(index > 0) {
+                    return (
+                        <FolderTile key={ directory._id } directory={ directory} opened={ true } />
+                    )
+                } else {
+                    // TODO: Need to figure out what to do with the first item (Shelf item)
+                    return null;
+                }
+                
             }) }
         </div>
     )
