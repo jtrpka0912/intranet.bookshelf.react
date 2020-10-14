@@ -38,6 +38,10 @@ const PageSideNav: React.FunctionComponent = () => {
      * @param { ShelfType } shelf
      */
     const onClickShelfItem = (shelf: ShelfType) => {
+        // Close the side-nav
+        toggleSideNav(!isSideNavOpen);
+
+        // Then set the active shelf
         setToActiveShelf(shelf);
     };
     

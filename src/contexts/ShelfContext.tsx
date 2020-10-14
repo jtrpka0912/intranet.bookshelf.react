@@ -117,6 +117,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const setToActiveShelf = (shelf: ShelfType) => {
         // Set the active shelf to local storage
         localStorage.setItem(localStorageActiveShelfName, JSON.stringify(shelf));
+        localStorage.removeItem(localStorageActiveDirectoryName); // Unset the active directory
 
         // Then set to state
         setActiveShelf(shelf);
@@ -137,8 +138,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
 
         // Then set to state
         setActiveDirectory(directory);
-
-        console.info('Active shelf in active directory', activeShelf);
 
         // Then retrieve the breadcrumbs, directories, and files (assuming there is an activeShelf)
         try {
@@ -162,12 +161,13 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { DirectoryType } directory 
      */
     const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
+        console.info('Retrieving shelf contents', shelf, directory);
         try{
             let api: string = `http://localhost:3001/api/v1/ebooks/shelf/${shelf._id}`;
 
             // If directory, then add the folder property to the endpoint.
             if(directory) {
-                api.concat(`/folder/${directory._id}`);
+                api = api.concat(`/folder/${directory._id}`);
             }
 
             const response: Response = await fetch(api);
@@ -232,7 +232,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
          * @returns { DirectoryType | undefined }
          */
         const retrieveLocalStorageActiveDirectory = (): DirectoryType | undefined => {
-            const lastActiveDirectoryJSON: string | null = localStorage.getItem(localStorageActiveShelfName);
+            const lastActiveDirectoryJSON: string | null = localStorage.getItem(localStorageActiveDirectoryName);
 
             // Check if there is any value in active directory
             if(lastActiveDirectoryJSON) {
