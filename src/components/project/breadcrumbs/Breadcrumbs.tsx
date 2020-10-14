@@ -7,9 +7,6 @@ import FolderTile from '../folder-tile/FolderTile';
 // Types
 import DirectoryType from '../../../types/Directory';
 
-// Faux Data
-// import directories from '../../../data/directories';
-
 // Styles
 import './Breadcrumbs.scss';
 import { ShelfContext } from '../../../contexts/ShelfContext';

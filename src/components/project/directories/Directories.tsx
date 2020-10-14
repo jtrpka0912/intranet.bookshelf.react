@@ -7,9 +7,6 @@ import FolderTile from '../folder-tile/FolderTile';
 // Types
 import DirectoryType from '../../../types/Directory';
 
-// Faux Data
-// import directories from '../../../data/directories';
-
 // Styles
 import './Directories.scss';
 import { ShelfContext } from '../../../contexts/ShelfContext';
@@ -29,7 +26,7 @@ const Directories: React.FunctionComponent = () => {
         <div className="shelf-directories">
             { directories.map((directory: DirectoryType) => {
                 return (
-                    <FolderTile key={ directory._id } directory={ directory} opened={ true } />
+                    <FolderTile key={ directory._id } directory={ directory} opened={ false } />
                 )
             }) }
         </div>
