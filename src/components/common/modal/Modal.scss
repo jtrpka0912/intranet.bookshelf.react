@@ -16,10 +16,16 @@
             }
 
             &.opened {
+                display: block;
+            }
+
+            $animationTime: 1s;
+
+            &.is-opening {
                 &.fade {
                     #{$modalClass} {
                         &-container {
-                            animation: fadeIn 1s forwards;
+                            animation: fadeIn $animationTime forwards;
                         }
                     }
                 }
@@ -27,13 +33,27 @@
                 &.slide {
                     #{$modalClass} {
                         &-container {
-                            animation: slideUp 1s forwards;
+                            animation: slideUp $animationTime forwards;
+                        }
+                    }
+                }
+            }
+
+            &.is-closing {
+                &.fade {
+                    #{$modalClass} {
+                        &-container {
+                            animation: fadeOut $animationTime forwards;
                         }
                     }
                 }
 
-                &.no-effects {
-                    display: block;
+                &.slide {
+                    #{$modalClass} {
+                        &-container {
+                            animation: slideDown $animationTime forwards;
+                        }
+                    }
                 }
             }
         }

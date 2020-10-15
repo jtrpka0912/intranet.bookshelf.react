@@ -53,7 +53,8 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(false);
+    const [isOpened, toggleModal] = useState(true);
+    const [isAnimating, animateModal] = useState(false);
 
     /**
      * @function overlayClasses
@@ -66,6 +67,12 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const overlayClasses = (props: ModalProps): string => {
         let classArray: string[] = ['common-modal-overlay'];
 
+        // Is the modal animating (going to open or close)
+        if(isAnimating) {
+            classArray.push(isOpened ? 'is-closing' : 'is-opening');
+        }
+
+        // Is the modal opened or closed
         classArray.push(isOpened ? 'opened' : 'closed');
 
         // Need to check if fade and slide are not disabled
@@ -100,9 +107,34 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         return classArray.join(' ');
     }
 
+    /**
+     * @function onClickAnimateModal
+     * @event onClick
+     * @description Animate the container and then toggle the overlay of the modal
+     * @note Lot of the magic happen in the overlayClasses function
+     * @author J.T.
+     */
+    const onClickAnimateModal = () => {
+        const animationTime: number = 900; // Little less than one second
+
+        // Lets close or open the modal with two steps
+        animateModal(true); // Mark the animation as started
+        
+        if(isOpened) { // Close the modal
+            // Wait for animation time to end then change modal status
+            setTimeout(() => {
+                animateModal(false); // No longer animating
+                toggleModal(false); // Modal is finally closed
+            }, animationTime);
+        } else { // Open the modal
+            toggleModal(true); // Open it immeditately
+            animateModal(false); // Mark it done animating
+        }
+    }
+
     return (
         <div className={ overlayClasses(props) }
-            onClick={ () => toggleModal(!isOpened) }
+            onClick={ () => onClickAnimateModal() }
         >
             <div className={ containerClasses(props) } 
                 onClick={ (e) => e.stopPropagation() }
@@ -113,7 +145,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                     </h2>
                     <FontAwesomeIcon icon={ faWindowClose } 
                         className="common-modal-header-close"
-                        onClick={ () => toggleModal(!isOpened) }
+                        onClick={ () => onClickAnimateModal() }
                     />
                 </header>
                 
