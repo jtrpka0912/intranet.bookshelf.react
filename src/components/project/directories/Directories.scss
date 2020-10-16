@@ -1,14 +1,24 @@
 .shelf {
     &-directories {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        
+        position: relative;
+
         // TODO: width for now is temporary
         width: 90vw;
         margin: 0 auto;
-        padding: 18px 20px;
+        background-color: red;
 
-        background-color: red; // Temporary
+        &-listdisplay {
+            position: absolute;
+            top: 9px;
+            right: 10px;
+        }
+
+        &-items {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+
+            padding: 27px 20px 18px; // Give some more padding, on top, for list display
+        }
     }
 }

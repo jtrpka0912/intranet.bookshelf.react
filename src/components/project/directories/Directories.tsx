@@ -1,16 +1,18 @@
 // React
 import React, { useContext } from 'react';
 
+// Context
+import { ShelfContext } from '../../../contexts/ShelfContext';
+
 // Components
 import FolderTile from '../folder-tile/FolderTile';
+import ListDisplay from '../../common/list-display/ListDisplay';
 
 // Types
 import DirectoryType from '../../../types/Directory';
 
 // Styles
 import './Directories.scss';
-import { ShelfContext } from '../../../contexts/ShelfContext';
-
 
 /**
  * @function Directories
@@ -26,13 +28,19 @@ const Directories: React.FunctionComponent = () => {
 
     return (
         <div className="shelf-directories">
-            { 
-                directories.map((directory: DirectoryType) => {
-                    return (
-                        <FolderTile key={ directory._id } directory={ directory} opened={ false } />
-                    )
-                }) 
-            }
+            <div className="shelf-directories-listdisplay">
+                <ListDisplay />
+            </div>
+            
+            <div className="shelf-directories-items">
+                { 
+                    directories.map((directory: DirectoryType) => {
+                        return (
+                            <FolderTile key={ directory._id } directory={ directory} opened={ false } />
+                        )
+                    }) 
+                }
+            </div>
         </div>
     )
 };
