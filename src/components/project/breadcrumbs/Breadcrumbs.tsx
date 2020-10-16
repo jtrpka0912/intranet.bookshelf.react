@@ -24,6 +24,8 @@ import './Breadcrumbs.scss';
 const Breadcrumbs: React.FunctionComponent = () => {
     const { activeShelf, breadcrumbs } = useContext(ShelfContext);
 
+    // TODO: Make sure this does not get displayed if no items in breadcrumbs.
+
     return (
         <div className="shelf-breadcrumbs">
             { // Make sure active shelf is not null, and there is at least one item in the breadcrumbs

@@ -10,7 +10,6 @@
             height: 100%;
             background-color: rgba(0,0,0,0.5);
 
-            // TODO: Figure out how to animate when closing the modal that doesn't retain the overlay.
             &.closed {
                 display: none;
             }

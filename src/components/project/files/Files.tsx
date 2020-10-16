@@ -18,6 +18,8 @@ import './Files.scss';
 const Files: React.FunctionComponent = () => {
     const { files } = useContext(ShelfContext);
 
+    // TODO: Make sure this does not get displayed if no items in files.
+
     return (
         <div className="shelf-files">
             {

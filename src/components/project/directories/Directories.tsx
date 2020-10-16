@@ -22,6 +22,8 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 const Directories: React.FunctionComponent = () => {
     const { directories } = useContext(ShelfContext);
 
+    // TODO: Make sure this does not get displayed if no items in directories.
+
     return (
         <div className="shelf-directories">
             { 
