@@ -14,19 +14,35 @@ import { faGripHorizontal, faList, faBreadSlice } from '@fortawesome/free-solid-
 import './ListDisplay.scss';
 
 /**
+ * @interface ListDisplayProps
+ * @description The acceptable props for the list display component
+ * @author J.T.
+ * @property { boolean } tile
+ * @property { boolean } list
+ * @property { boolean } breadcrumb
+ */
+interface ListDisplayProps {
+    tile?: boolean,
+    list?: boolean,
+    breadcrumb?: boolean
+}
+
+/**
  * @function ListDisplay
  * @summary List Display Component
  * @description A component to toggle the appearance of a collection of items.
  * @author J.T.
  * @returns { React.ReactNode }
  */
-const ListDisplay: React.FunctionComponent = () => {
+const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
     return (
         <div className="common-listdisplay">
             <div className="common-listdisplay-buttons">
-                <IconButton title="Tile View" icon={ faGripHorizontal } onClick={ () => console.log('Clicked Grid') } />
-                <IconButton title="List View" icon={ faList } onClick={ () => console.log('Clicked List') } />
-                <IconButton title="Breadcrumbs View" icon={ faBreadSlice } onClick={ () => console.log('Clicked Breadcrumbs') } />
+                { props.tile ? <IconButton title="Tile View" icon={ faGripHorizontal } onClick={ () => console.log('Clicked Grid') } /> : null }
+
+                { props.list ? <IconButton title="List View" icon={ faList } onClick={ () => console.log('Clicked List') } /> : null }
+                
+                { props.breadcrumb ? <IconButton title="Breadcrumbs View" icon={ faBreadSlice } onClick={ () => console.log('Clicked Breadcrumbs') } /> : null }
             </div>
         </div>
     );

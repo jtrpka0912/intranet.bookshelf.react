@@ -29,7 +29,7 @@ const Directories: React.FunctionComponent = () => {
     return (
         <div className="shelf-directories">
             <div className="shelf-directories-listdisplay">
-                <ListDisplay />
+                <ListDisplay tile list />
             </div>
             
             <div className="shelf-directories-items">

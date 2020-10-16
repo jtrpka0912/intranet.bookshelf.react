@@ -1,5 +1,9 @@
 .common {
     &-listdisplay {
-        background-color: white;
+        &-buttons {
+            button {
+                margin: 0 5px;
+            }
+        }
     }
 }
