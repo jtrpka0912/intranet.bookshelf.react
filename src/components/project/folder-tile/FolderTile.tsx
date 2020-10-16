@@ -47,12 +47,12 @@ const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
     }
     
     return (
-        <div className="shelf-foldertile-wrapper">
-            <div className="shelf-foldertile-icon" onClick={ onClickCurrentDirectory }>
+        <div className="shelf-tile-wrapper shelf-tile-folder">
+            <div className="shelf-tile-icon" onClick={ onClickCurrentDirectory }>
                 <FontAwesomeIcon icon={ props.opened ? faFolderOpen : faFolder } />
             </div>
 
-            <h3 className="shelf-foldertile-name">{ props.directory.name }</h3>
+            <h3 className="shelf-tile-name">{ props.directory.name }</h3>
         </div>
     );
 };

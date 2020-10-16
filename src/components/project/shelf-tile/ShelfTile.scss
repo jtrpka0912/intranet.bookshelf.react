@@ -2,9 +2,9 @@
     &-tile {
         $shelfTile: &;
 
-        &-folder {
+        &-shelf {
             #{$shelfTile}-icon {
-                background-color: #fefefe;
+                background-color: #cdcdcd;
                 border-color: #333;
             }
         }

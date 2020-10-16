@@ -3,14 +3,16 @@ import React, { useContext } from 'react';
 
 // Components
 import FolderTile from '../folder-tile/FolderTile';
+import ShelfTile from '../shelf-tile/ShelfTile';
 
 // Types
 import DirectoryType from '../../../types/Directory';
 
-// Styles
-import './Breadcrumbs.scss';
+// Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
+// Styles
+import './Breadcrumbs.scss';
 
 /**
  * @function Breadcrumbs
@@ -20,20 +22,22 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
  * @returns { React.ReactNode }
  */
 const Breadcrumbs: React.FunctionComponent = () => {
-    const { breadcrumbs } = useContext(ShelfContext);
+    const { activeShelf, breadcrumbs } = useContext(ShelfContext);
 
     return (
         <div className="shelf-breadcrumbs">
+            { // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
+                activeShelf !== null && breadcrumbs.length > 0 ? ( <ShelfTile shelf={ activeShelf } /> ) : null 
+            }
+            
             { breadcrumbs.map((directory: DirectoryType, index: number) => {
                 if(index > 0) {
                     return (
                         <FolderTile key={ directory._id } directory={ directory} opened={ true } />
                     )
-                } else {
-                    // TODO: Need to figure out what to do with the first item (Shelf item)
-                    return null;
                 }
-                
+
+                return null; // Only there to let the map function not complain
             }) }
         </div>
     )

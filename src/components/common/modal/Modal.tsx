@@ -53,7 +53,7 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(true);
+    const [isOpened, toggleModal] = useState(false);
     const [isAnimating, animateModal] = useState(false);
 
     /**
