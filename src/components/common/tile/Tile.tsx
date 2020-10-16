@@ -3,13 +3,12 @@ import React from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmile, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
 import './Tile.scss';
 
 /**
- * @exports
  * @interface TileProps
  * @summary Tile Props
  * @description The acceptable props for the Tile component
@@ -19,7 +18,7 @@ import './Tile.scss';
  * @property { string } baseClass
  * @property { any } onClick
  */
- export interface TileProps {
+ interface TileProps {
     children: React.ReactNode,
     icon: IconDefinition,
     baseClass: string,
@@ -36,7 +35,13 @@ import './Tile.scss';
   */
  const Tile: React.FunctionComponent<TileProps> = (props) => {
     return (
-        <div></div>
+        <div className={ `common-tile-wrapper ${props.baseClass}` }>
+            <div className="common-tile-icon" onClick={ props.onClick }>
+                <FontAwesomeIcon icon={ props.icon } />
+            </div>
+
+            <h3 className="common-tile-name">{ props.children }</h3>
+        </div>
     )
  };
 

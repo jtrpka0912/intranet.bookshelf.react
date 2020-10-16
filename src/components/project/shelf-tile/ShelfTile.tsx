@@ -1,6 +1,9 @@
 // React
 import React, { useContext } from 'react';
 
+// Components
+import Tile from '../../common/tile/Tile';
+
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
@@ -8,7 +11,6 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 import ShelfType from '../../../types/Shelf';
 
 // Font Awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // TODO: Not a fan with this icon; lets pick another to represent a shelf.
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -47,14 +49,11 @@ const ShelfTile: React.FunctionComponent<ShelfTileProps> = (props) => {
     }
     
     return (
-        <div className="shelf-tile-wrapper shelf-tile-shelf">
-            <div className="shelf-tile-icon" onClick={ onClickCurrentShelf }>
-                <FontAwesomeIcon icon={ faFolderPlus } />
-            </div>
-
-            <h3 className="shelf-tile-name">{ props.shelf.name }</h3>
-        </div>
-    );
+        <Tile baseClass="shelf-tile-shelf"
+            icon={ faFolderPlus }
+            onClick={ onClickCurrentShelf }
+        >{ props.shelf.name }</Tile>
+    )
 };
 
 export default ShelfTile;

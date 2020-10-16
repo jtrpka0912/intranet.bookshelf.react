@@ -1,12 +1,7 @@
-.shelf {
-    &-tile {
-        $shelfTile: &;
-
-        &-shelf {
-            #{$shelfTile}-icon {
-                background-color: #cdcdcd;
-                border-color: #333;
-            }
-        }
+// TODO: Restructure the styling
+.shelf-tile-shelf {
+    .common-tile-icon {
+        background-color: #cdcdcd;
+        border-color: #333;
     }
 }

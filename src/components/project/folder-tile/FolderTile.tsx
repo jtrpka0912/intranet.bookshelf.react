@@ -1,6 +1,9 @@
 // React
 import React, { useContext } from 'react';
 
+// Components
+import Tile from '../../common/tile/Tile';
+
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
@@ -8,7 +11,6 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 import DirectoryType from '../../../types/Directory';
 
 // Font Awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
@@ -45,16 +47,13 @@ const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
     const onClickCurrentDirectory = () => {
         setToActiveDirectory(props.directory);
     }
-    
-    return (
-        <div className="shelf-tile-wrapper shelf-tile-folder">
-            <div className="shelf-tile-icon" onClick={ onClickCurrentDirectory }>
-                <FontAwesomeIcon icon={ props.opened ? faFolderOpen : faFolder } />
-            </div>
 
-            <h3 className="shelf-tile-name">{ props.directory.name }</h3>
-        </div>
-    );
+    return (
+        <Tile baseClass="shelf-tile-folder" 
+            icon={ props.opened ? faFolderOpen : faFolder }    
+            onClick={ onClickCurrentDirectory }
+        >{ props.directory.name }</Tile>
+    )
 };
 
 export default FolderTile;

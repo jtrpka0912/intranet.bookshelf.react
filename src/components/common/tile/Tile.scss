@@ -1,0 +1,78 @@
+.common {
+    &-tile {
+        &-wrapper {
+            display: inline-block;
+            margin: 18px 20px;
+        }
+
+        &-icon {
+            cursor: pointer;
+            border: 1px solid;
+            box-shadow: 5px 4px 10px 1px #333;
+        }
+
+        &-name {
+            // Long names will get truncated with overflow, text-overflow, and white-space
+            overflow: hidden;
+            font-size: 0.9em;
+            text-align: center;
+            text-overflow: ellipsis; // This will give it the ... when overflown
+            white-space: nowrap;
+        }
+    }
+}
+
+// NOTE: https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/
+
+// Size the tiles based on size of the device
+@mixin sizing-tiles(
+    $padding, 
+    $width-constraint: 100%, 
+    $height-constraint: 100%, 
+    $font-size: 3em
+) {
+    .common {
+        &-tile {
+            &-wrapper {
+                max-width: $width-constraint;
+            }
+
+            &-icon {
+                max-width: $width-constraint;
+                max-height: $height-constraint;
+                padding: $padding;
+
+                svg {
+                    font-size: $font-size;
+                }
+            }
+        }
+    }
+}
+
+// TODO: Refer to the index.scss to utilize the media query mixins.
+
+// Phones
+@media (max-width: 480px) {
+    @include sizing-tiles(9px 10px, 76px, 68px, 1.0em);
+}
+
+// Tablets
+@media (min-width: 481px) and (max-width: 768px) {
+    @include sizing-tiles(18px 20px, 96px, 86px, 1.5em);
+}
+
+// Laptops
+@media (min-width: 769px) and (max-width: 1024px) {
+    @include sizing-tiles(27px 30px, 116px, 104px, 2.0em);
+}
+
+// Desktops
+@media (min-width: 1025px) and (max-width: 1200px) {
+    @include sizing-tiles(36px 40px, 136px, 122px, 2.5em);
+}
+
+// TVs
+@media (min-width: 1201px) {
+    @include sizing-tiles(45px 50px, 156px, 140px, 3.0em);
+}
