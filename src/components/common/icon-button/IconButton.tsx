@@ -18,6 +18,7 @@ import './IconButton.scss';
 interface IconButtonProps {
     icon: IconDefinition,
     onClick: any
+    // TODO: Add different sizes for icon button
 };
 
 /**
