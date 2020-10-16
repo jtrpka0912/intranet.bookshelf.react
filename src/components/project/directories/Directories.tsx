@@ -24,11 +24,13 @@ const Directories: React.FunctionComponent = () => {
 
     return (
         <div className="shelf-directories">
-            { directories.map((directory: DirectoryType) => {
-                return (
-                    <FolderTile key={ directory._id } directory={ directory} opened={ false } />
-                )
-            }) }
+            { 
+                directories.map((directory: DirectoryType) => {
+                    return (
+                        <FolderTile key={ directory._id } directory={ directory} opened={ false } />
+                    )
+                }) 
+            }
         </div>
     )
 };
