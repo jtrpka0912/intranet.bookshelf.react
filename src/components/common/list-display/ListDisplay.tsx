@@ -1,8 +1,5 @@
 // React
-import React, { useContext } from 'react';
-
-// Context
-import { AppContext } from '../../../contexts/AppContext';
+import React from 'react';
 
 // Components
 import IconButton from '../../common/icon-button/IconButton';
@@ -20,12 +17,19 @@ import './ListDisplay.scss';
  * @property { boolean } tile
  * @property { boolean } list
  * @property { boolean } breadcrumb
+ * @property { any } onClickTile
+ * @property { any } onClickList
+ * @property { any } onClickBreadcrumb
  */
 interface ListDisplayProps {
     tile?: boolean,
     list?: boolean,
-    breadcrumb?: boolean
-}
+    breadcrumb?: boolean,
+    // TODO: onClick: any
+    onClickTile?: any,
+    onClickList?: any,
+    onClickBreadcrumb?: any
+};
 
 /**
  * @function ListDisplay
@@ -38,11 +42,26 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
     return (
         <div className="common-listdisplay">
             <div className="common-listdisplay-buttons">
-                { props.tile ? <IconButton title="Tile View" icon={ faGripHorizontal } onClick={ () => console.log('Clicked Grid') } /> : null }
+                { props.tile ? 
+                    <IconButton title="Tile View" 
+                        icon={ faGripHorizontal } 
+                        onClick={ props.onClickTile } 
+                    /> : null 
+                }
 
-                { props.list ? <IconButton title="List View" icon={ faList } onClick={ () => console.log('Clicked List') } /> : null }
+                { props.list ? 
+                    <IconButton title="List View" 
+                        icon={ faList } 
+                        onClick={ props.onClickList } 
+                    /> : null 
+                }
                 
-                { props.breadcrumb ? <IconButton title="Breadcrumbs View" icon={ faBreadSlice } onClick={ () => console.log('Clicked Breadcrumbs') } /> : null }
+                { props.breadcrumb ? 
+                    <IconButton title="Breadcrumbs View" 
+                        icon={ faBreadSlice } 
+                        onClick={ props.onClickBreadcrumb } 
+                    /> : null 
+                }
             </div>
         </div>
     );

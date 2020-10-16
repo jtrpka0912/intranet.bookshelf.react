@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 
 // Context
+import { AppContext, ListViews } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Components
@@ -22,8 +23,11 @@ import './Directories.scss';
  * @returns { React.ReactNode }
  */
 const Directories: React.FunctionComponent = () => {
+    // TODO: Use directoryView to toggle the directories map function
+    // TODO: Figure out how to add the ListViews enum inside the toggleDirectoryView (and the other two)
+    const { directoryView, toggleDirectoryView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
-
+    
     // TODO: Make sure this does not get displayed if no items in directories.
 
     return (
