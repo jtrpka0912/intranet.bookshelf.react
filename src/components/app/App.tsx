@@ -26,7 +26,6 @@ const App = () => {
                     <Breadcrumbs />
                     <Directories />
                     <Files />
-                    <IconButton />
                 </PageWrapper>
                 
                 <Modal size={ Size.Large } slide={true}>Hello There</Modal>
