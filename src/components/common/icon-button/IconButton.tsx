@@ -14,10 +14,12 @@ import './IconButton.scss';
  * @author J.T.
  * @property { IconButtonProps } icon
  * @property { any } onClick // TODO: type: any
+ * @property { string } title
  */
 interface IconButtonProps {
     icon: IconDefinition,
-    onClick: any
+    onClick: any,
+    title?: string
     // TODO: Add different sizes for icon button
 };
 
@@ -30,7 +32,10 @@ interface IconButtonProps {
  */
 const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
     return (
-        <button className="common-iconbutton" onClick={ props.onClick }>
+        <button className="common-iconbutton" 
+            title={ props.title } 
+            onClick={ props.onClick }
+        >
             <FontAwesomeIcon icon={ props.icon ? props.icon : faSmile } />
         </button>
     );

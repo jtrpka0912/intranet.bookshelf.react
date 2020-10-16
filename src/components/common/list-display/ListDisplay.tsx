@@ -24,9 +24,9 @@ const ListDisplay: React.FunctionComponent = () => {
     return (
         <div className="common-listdisplay">
             <div className="common-listdisplay-buttons">
-                <IconButton icon={ faGripHorizontal } onClick={ () => console.log('Clicked Grid') } />
-                <IconButton icon={ faList } onClick={ () => console.log('Clicked List') } />
-                <IconButton icon={ faBreadSlice } onClick={ () => console.log('Clicked Breadcrumbs') } />
+                <IconButton title="Tile View" icon={ faGripHorizontal } onClick={ () => console.log('Clicked Grid') } />
+                <IconButton title="List View" icon={ faList } onClick={ () => console.log('Clicked List') } />
+                <IconButton title="Breadcrumbs View" icon={ faBreadSlice } onClick={ () => console.log('Clicked Breadcrumbs') } />
             </div>
         </div>
     );
