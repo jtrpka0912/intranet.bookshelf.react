@@ -1,3 +1,5 @@
+// NOTE: Go by BEM conventions from here on out.
+// https://github.com/adobe/aem-core-wcm-components/wiki/css-coding-conventions
 .shelf {
     &-directories {
         position: relative;
@@ -7,18 +9,24 @@
         margin: 0 auto;
         background-color: red;
 
-        &-listdisplay {
+        &__list-display {
             position: absolute;
             top: 9px;
             right: 10px;
         }
 
-        &-items {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: flex-start;
-
+        &__items {
             padding: 27px 20px 18px; // Give some more padding, on top, for list display
+
+            &--tile {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+            }
+
+            &--list {
+                display: block;
+            }
         }
     }
 }

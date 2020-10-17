@@ -29,33 +29,34 @@ const Directories: React.FunctionComponent = () => {
     // TODO: Make sure this does not get displayed if no items in directories.
 
     /**
-     * @function directoryClasses
-     * @description Print out the classes for the directories wrapper element
+     * @function directoryItemsClass
+     * @description Print out the classes for the directories items element
      * @author J.T.
      * @returns { string }
      */
-    const directoryClasses = (): string => {
-        let classArray = ['shelf-directories'];
+    const directoryItemsClass = (): string => {
+        const baseClass: string = 'shelf-directories__items';
+        let classArray: string[] = [baseClass];
 
         if(directoryView === ListViews.Tile) {
-            classArray.push('tile');
+            classArray.push(baseClass + '--tile')
         } else if(directoryView === ListViews.List) {
-            classArray.push('list');
+            classArray.push(baseClass + '--list')
         }
 
         return classArray.join(' ');
     }
 
     return (
-        <div className={ directoryClasses() }>
-            <div className="shelf-directories-listdisplay">
+        <div className='shelf-directories'>
+            <div className="shelf-directories__list-display">
                 <ListDisplay tile list 
                     onClickTile={ () => toggleDirectoryView(ListViews.Tile) } 
                     onClickList={ () => toggleDirectoryView(ListViews.List) }
                 />
             </div>
             
-            <div className="shelf-directories-items">
+            <div className={ directoryItemsClass() }>
                 { 
                     directories.map((directory: DirectoryType) => {
                         if(directoryView === ListViews.Tile) {
@@ -70,7 +71,7 @@ const Directories: React.FunctionComponent = () => {
                             return null;
                         }
                         
-                    }) 
+                    })
                 }
             </div>
         </div>
