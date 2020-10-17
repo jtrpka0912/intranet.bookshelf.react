@@ -25,8 +25,6 @@ import './Directories.scss';
 const Directories: React.FunctionComponent = () => {
     const { directoryView, toggleDirectoryView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
-    
-    // TODO: Make sure this does not get displayed if no items in directories.
 
     /**
      * @function directoryItemsClass
@@ -47,35 +45,40 @@ const Directories: React.FunctionComponent = () => {
         return classArray.join(' ');
     }
 
-    return (
-        <div className='shelf-directories'>
-            <div className="shelf-directories__list-display">
-                <ListDisplay tile list 
-                    onClickTile={ () => toggleDirectoryView(ListViews.Tile) } 
-                    onClickList={ () => toggleDirectoryView(ListViews.List) }
-                />
+    if(directories.length > 0) {
+        return (
+            <div className='shelf-directories'>
+                <div className="shelf-directories__list-display">
+                    <ListDisplay tile list 
+                        onClickTile={ () => toggleDirectoryView(ListViews.Tile) } 
+                        onClickList={ () => toggleDirectoryView(ListViews.List) }
+                    />
+                </div>
+                
+                <div className={ directoryItemsClass() }>
+                    { 
+                        directories.map((directory: DirectoryType) => {
+                            if(directoryView === ListViews.Tile) {
+                                return (
+                                    <FolderTile key={ directory._id } directory={ directory} opened={ false } />
+                                )
+                            } else if(directoryView === ListViews.List) {
+                                // TODO: Construct the List Item component
+                                return  <div key={ directory._id } className="placeholder">{ directory.name }</div>
+                            } else {
+                                // Return nothing
+                                return null;
+                            }
+                            
+                        })
+                    }
+                </div>
             </div>
-            
-            <div className={ directoryItemsClass() }>
-                { 
-                    directories.map((directory: DirectoryType) => {
-                        if(directoryView === ListViews.Tile) {
-                            return (
-                                <FolderTile key={ directory._id } directory={ directory} opened={ false } />
-                            )
-                        } else if(directoryView === ListViews.List) {
-                            // TODO: Construct the List Item component
-                            return  <div key={ directory._id } className="placeholder">{ directory.name }</div>
-                        } else {
-                            // Return nothing
-                            return null;
-                        }
-                        
-                    })
-                }
-            </div>
-        </div>
-    )
+        );
+    } else {
+        // Do not show directories since there are no "directories"
+        return null;
+    }
 };
 
 export default Directories;

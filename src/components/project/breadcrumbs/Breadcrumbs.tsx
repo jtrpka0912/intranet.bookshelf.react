@@ -27,8 +27,6 @@ const Breadcrumbs: React.FunctionComponent = () => {
     const { breadcrumbView, toggleBreadcrumbView } = useContext(AppContext);
     const { activeShelf, breadcrumbs } = useContext(ShelfContext);
 
-    // TODO: Make sure this does not get displayed if no items in breadcrumbs.
-
     /**
      * @function breadcrumbsItemsClass
      * @description Print out the classes for the breadcrumbs items element
@@ -68,36 +66,41 @@ const Breadcrumbs: React.FunctionComponent = () => {
         return null;
     }
 
-    return (
-        <div className="shelf-breadcrumbs">
-            
-            <div className="shelf-breadcrumbs__list-display">
-                <ListDisplay tile breadcrumb 
-                    onClickTile={ () => toggleBreadcrumbView(ListViews.Tile) }
-                    onClickBreadcrumb={ () => toggleBreadcrumbView(ListViews.Breadcrumb) }
-                />
-            </div>
-
-            <div className={ breadcrumbsItemsClass() }>
-                { renderActiveShelf() }
+    if(breadcrumbs.length > 0) {
+        return (
+            <div className="shelf-breadcrumbs">
                 
-                { breadcrumbs.map((directory: DirectoryType, index: number) => {
-                    if(index > 0) {
-                        if(breadcrumbView === ListViews.Tile) {
-                            return (
-                                <FolderTile key={ directory._id } directory={ directory} opened={ true } />
-                            )
-                        } else if(breadcrumbView === ListViews.Breadcrumb) {
-                            // TODO: Might have to do something different on how to display tile versus breadcrumbs
-                            return null;
+                <div className="shelf-breadcrumbs__list-display">
+                    <ListDisplay tile breadcrumb 
+                        onClickTile={ () => toggleBreadcrumbView(ListViews.Tile) }
+                        onClickBreadcrumb={ () => toggleBreadcrumbView(ListViews.Breadcrumb) }
+                    />
+                </div>
+    
+                <div className={ breadcrumbsItemsClass() }>
+                    { renderActiveShelf() }
+                    
+                    { breadcrumbs.map((directory: DirectoryType, index: number) => {
+                        if(index > 0) {
+                            if(breadcrumbView === ListViews.Tile) {
+                                return (
+                                    <FolderTile key={ directory._id } directory={ directory} opened={ true } />
+                                )
+                            } else if(breadcrumbView === ListViews.Breadcrumb) {
+                                // TODO: Might have to do something different on how to display tile versus breadcrumbs
+                                return null;
+                            }
                         }
-                    }
-
-                    return null; // Only there to let the map function not complain
-                }) }
+    
+                        return null; // Only there to let the map function not complain
+                    }) }
+                </div>
             </div>
-        </div>
-    )
+        );
+    } else {
+        // Do not show breadcrumbs since there are no "breadcrumbs"
+        return null;
+    }
 };
 
 export default Breadcrumbs;

@@ -20,17 +20,23 @@ const Files: React.FunctionComponent = () => {
 
     // TODO: Make sure this does not get displayed if no items in files.
 
-    return (
-        <div className="shelf-files">
-            {
-                files.map((file: FileType) => {
-                    return (
-                        <div key={ file._id } className="shelf-files-placeholder">{ file.name }</div>
-                    );
-                })    
-            }
-        </div>
-    );
+    if(files.length > 0) {
+        return (
+            <div className="shelf-files">
+                {
+                    files.map((file: FileType) => {
+                        return (
+                            <div key={ file._id } className="shelf-files-placeholder">{ file.name }</div>
+                        );
+                    })    
+                }
+            </div>
+        );
+    } else {
+        // Do not show files since there are no "files"
+        return null;
+    }
+    
 };
 
 export default Files;
