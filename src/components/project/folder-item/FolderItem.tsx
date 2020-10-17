@@ -20,10 +20,12 @@ import './FolderItem.scss';
  * @interface FolderItemProps
  * @description The acceptable props for the Folder Item component
  * @author J.T.
+ * @property { string } className
  * @property { DirectoryType } directory
  * @property { boolean } opened 
  */
 interface FolderItemProps {
+    className?: string,
     directory: DirectoryType,
     opened: boolean
 }
@@ -49,7 +51,7 @@ const FolderItem: React.FunctionComponent<FolderItemProps> = (props) => {
     }
 
     return (
-        <Item baseClass="shelf-folderitem" 
+        <Item className={ `shelf-folderitem ${ props.className }` }
             icon={ props.opened ? faFolderOpen : faFolder }    
             onClick={ onClickCurrentDirectory }
         >{ props.directory.name }</Item>

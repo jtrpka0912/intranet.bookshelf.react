@@ -1,22 +1,52 @@
 .common {
     &-item {
-        display: inline-block;
+        $commonItem: &;
         margin: 18px 20px;
 
-        &--icon {
-            cursor: pointer;
+        &__icon {
             border: 1px solid;
-            box-shadow: 5px 4px 10px 1px #333;
         }
 
-        &--name {
-            // NOTE: This is for tiles
-            // Long names will get truncated with overflow, text-overflow, and white-space
-            overflow: hidden;
+        &__name {
             font-size: 0.9em;
-            text-align: center;
-            text-overflow: ellipsis; // This will give it the ... when overflown
-            white-space: nowrap;
+        }
+
+        &--list {
+            cursor: pointer;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+
+            #{$commonItem} {
+                &__icon {
+                    padding: 4px 5px;
+                }
+
+                &__name {
+                    margin: 0; // Resetting
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        &--tile {
+            display: inline-block;
+
+            #{$commonItem} {
+                &__icon {
+                    cursor: pointer;
+                    box-shadow: 5px 4px 10px 1px #333;
+                }
+
+                &__name {
+                    // Long names will get truncated with overflow, text-overflow, and white-space
+                    overflow: hidden;
+                    text-align: center;
+                    text-overflow: ellipsis; // This will give it the ... when overflown
+                    white-space: nowrap;
+                }
+            }
         }
     }
 }
@@ -32,17 +62,21 @@
 ) {
     .common {
         &-item {
-            // NOTE: This is good for tiles only
-            max-width: $width-constraint;
+            $commonItem: &;
 
-            &--icon {
-                // NOTE: This is good for tiles only
+            &--tile {
                 max-width: $width-constraint;
-                max-height: $height-constraint;
-                padding: $padding;
 
-                svg {
-                    font-size: $font-size;
+                #{$commonItem} {
+                    &__icon {
+                        max-width: $width-constraint;
+                        max-height: $height-constraint;
+                        padding: $padding;
+
+                        svg {
+                            font-size: $font-size;
+                        }
+                    }
                 }
             }
         }

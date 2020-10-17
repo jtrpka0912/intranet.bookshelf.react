@@ -14,14 +14,14 @@ import './Item.scss';
  * @description The acceptable props for the Item component
  * @author J.T.
  * @property { React.ReactNode } children
- * @property { IconDefinition } icon
  * @property { string } baseClass
+ * @property { IconDefinition } icon
  * @property { any } onClick
  */
  interface ItemProps {
     children: React.ReactNode,
+    className: string,
     icon: IconDefinition,
-    baseClass: string,
     onClick: any // TODO: Figure out what should be onClick
  };
 
@@ -34,14 +34,13 @@ import './Item.scss';
   * @returns { React.ReactNode }
   */
  const Item: React.FunctionComponent<ItemProps> = (props) => {
-    // TODO: Should this be refactored to show as a list item?
     return (
-        <div className={ `common-item ${props.baseClass}` }>
-            <div className="common-item--icon" onClick={ props.onClick }>
+        <div className={ `common-item ${props.className}` }>
+            <div className="common-item__icon" onClick={ props.onClick }>
                 <FontAwesomeIcon icon={ props.icon } />
             </div>
 
-            <h3 className="common-item--name">{ props.children }</h3>
+            <h3 className="common-item__name">{ props.children }</h3>
         </div>
     );
  };

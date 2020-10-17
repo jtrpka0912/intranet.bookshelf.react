@@ -28,25 +28,6 @@ const Breadcrumbs: React.FunctionComponent = () => {
     const { activeShelf, breadcrumbs } = useContext(ShelfContext);
 
     /**
-     * @function breadcrumbsItemsClass
-     * @description Print out the classes for the breadcrumbs items element
-     * @author J.T.
-     * @returns { string }
-     */
-    const breadcrumbsItemsClass = (): string => {
-        const baseClass: string = 'shelf-breadcrumbs__items';
-        let classArray: string[] = [baseClass];
-
-        if(breadcrumbView === ListViews.Tile) {
-            classArray.push(baseClass + '--tile')
-        } else if(breadcrumbView === ListViews.Breadcrumb) {
-            classArray.push(baseClass + '--breadcrumb')
-        }
-
-        return classArray.join(' ');
-    }
-
-    /**
      * @function renderActiveShelf
      * @description Render the active shelf as the first breadcrumb item if any
      * @author J.T.
@@ -56,9 +37,9 @@ const Breadcrumbs: React.FunctionComponent = () => {
         // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
         if(activeShelf !== null && breadcrumbs.length > 0 ) {
             if(breadcrumbView === ListViews.Tile) {
-                return <ShelfItem shelf={ activeShelf } />
+                return <ShelfItem className="common-item--tile" shelf={ activeShelf } />
             } else if(breadcrumbView === ListViews.Breadcrumb) {
-                // TODO: Create the breadcrumb item for shelf
+                // TODO: Might have to do something different for breadcrumbs
                 return <div>{ activeShelf.name }</div>
             }
         }
@@ -77,14 +58,18 @@ const Breadcrumbs: React.FunctionComponent = () => {
                     />
                 </div>
     
-                <div className={ breadcrumbsItemsClass() }>
+                <div className="shelf-breadcrumbs__items">
                     { renderActiveShelf() }
                     
                     { breadcrumbs.map((directory: DirectoryType, index: number) => {
                         if(index > 0) {
                             if(breadcrumbView === ListViews.Tile) {
                                 return (
-                                    <FolderItem key={ directory._id } directory={ directory} opened={ true } />
+                                    <FolderItem key={ directory._id } 
+                                        className="common-item--tile"
+                                        directory={ directory} 
+                                        opened={ true } 
+                                    />
                                 )
                             } else if(breadcrumbView === ListViews.Breadcrumb) {
                                 // TODO: Might have to do something different on how to display tile versus breadcrumbs

@@ -21,11 +21,12 @@ import './ShelfItem.scss';
  * @interface ShelfItemProps
  * @description The acceptable props for the ShelfTile component
  * @author J.T.
+ * @property { string } className
  * @property { ShelfType } shelf
- * @property { boolean } opened 
  */
 interface ShelfItemProps {
-    shelf: ShelfType,
+    className?: string,
+    shelf: ShelfType
 }
 
 /**
@@ -49,7 +50,7 @@ const ShelfItem: React.FunctionComponent<ShelfItemProps> = (props) => {
     }
     
     return (
-        <Tile baseClass="shelf-shelfitem"
+        <Tile className={ `shelf-shelfitem ${ props.className }` }
             icon={ faFolderPlus }
             onClick={ onClickCurrentShelf }
         >{ props.shelf.name }</Tile>
