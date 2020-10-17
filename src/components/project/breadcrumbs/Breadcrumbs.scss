@@ -1,18 +1,40 @@
 .shelf {
     &-breadcrumbs {
-        position: relative;
-
+        $shelfBreadcrumbs: &;
         
+        @mixin listDisplayOpenPosition() {
+            top: 9px;
+            opacity: 1;
+        };
+
+        position: relative;
+        overflow: hidden;
         
         // TODO: width for now is temporary
         width: 90vw;
         margin: 9px auto 0;
         background-color: blue;
 
+        &:hover {
+            & #{$shelfBreadcrumbs}__list-display {
+                @include listDisplayOpenPosition();
+            }
+        }
+
         &__list-display {
             position: absolute;
-            top: 9px;
+            top: -18px;
             right: 10px;
+            opacity: 0;
+
+            transition: 
+                0.5s top ease-in,
+                0.375s opacity linear 0.125s;
+
+            // From Phone to Tablet
+            @media (max-width: 768px) {
+                @include listDisplayOpenPosition();
+            }
         }
 
         &__items {
