@@ -1,12 +1,32 @@
 .shelf {
     &-breadcrumbs {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
+        position: relative;
+
+        
         
         // TODO: width for now is temporary
         width: 90vw;
-        margin: 0 auto;
-        padding: 18px 20px;
+        margin: 9px auto 0;
+        background-color: blue;
+
+        &__list-display {
+            position: absolute;
+            top: 9px;
+            right: 10px;
+        }
+
+        &__items {
+            padding: 27px 20px 18px;
+
+            &--tile {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+            }
+
+            &--breadcrumb {
+                display: block;
+            }
+        }
     }
 }

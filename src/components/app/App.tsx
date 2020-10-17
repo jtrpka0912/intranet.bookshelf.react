@@ -15,7 +15,6 @@ import Files from '../project/files/Files';
 
 // Temporary Components
 import Modal, { Size } from '../../components/common/modal/Modal';
-import IconButton from '../../components/common/icon-button/IconButton';
 
 
 const App = () => {
