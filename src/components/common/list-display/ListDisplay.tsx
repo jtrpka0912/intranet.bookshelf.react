@@ -41,7 +41,7 @@ interface ListDisplayProps {
 const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
     return (
         <div className="common-listdisplay">
-            <div className="common-listdisplay-buttons">
+            <div className="common-listdisplay__buttons">
                 { props.tile ? 
                     <IconButton title="Tile View" 
                         icon={ faGripHorizontal } 
