@@ -49,7 +49,7 @@ const ShelfItem: React.FunctionComponent<ShelfItemProps> = (props) => {
     }
     
     return (
-        <Tile baseClass="shelf-tile-shelf"
+        <Tile baseClass="shelf-shelfitem"
             icon={ faFolderPlus }
             onClick={ onClickCurrentShelf }
         >{ props.shelf.name }</Tile>

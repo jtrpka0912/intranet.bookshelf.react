@@ -49,7 +49,7 @@ const FolderItem: React.FunctionComponent<FolderItemProps> = (props) => {
     }
 
     return (
-        <Item baseClass="shelf-tile-folder" 
+        <Item baseClass="shelf-folderitem" 
             icon={ props.opened ? faFolderOpen : faFolder }    
             onClick={ onClickCurrentDirectory }
         >{ props.directory.name }</Item>

@@ -1,7 +1,10 @@
-// TODO: Restructure the styling
-.shelf-tile-shelf {
-    .common-tile-icon {
-        background-color: #cdcdcd;
-        border-color: #333;
+.shelf-shelfitem {
+    .common {
+        &-item {
+            &--icon {
+                background-color: #cdcdcd;
+                border-color: #333;
+            }
+        }
     }
 }

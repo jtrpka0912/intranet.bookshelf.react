@@ -34,15 +34,14 @@ import './Item.scss';
   * @returns { React.ReactNode }
   */
  const Item: React.FunctionComponent<ItemProps> = (props) => {
-    // TODO: Restructure the styling with BEM convention
     // TODO: Should this be refactored to show as a list item?
     return (
-        <div className={ `common-tile-wrapper ${props.baseClass}` }>
-            <div className="common-tile-icon" onClick={ props.onClick }>
+        <div className={ `common-item ${props.baseClass}` }>
+            <div className="common-item--icon" onClick={ props.onClick }>
                 <FontAwesomeIcon icon={ props.icon } />
             </div>
 
-            <h3 className="common-tile-name">{ props.children }</h3>
+            <h3 className="common-item--name">{ props.children }</h3>
         </div>
     );
  };

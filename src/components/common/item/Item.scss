@@ -1,17 +1,16 @@
 .common {
-    &-tile {
-        &-wrapper {
-            display: inline-block;
-            margin: 18px 20px;
-        }
+    &-item {
+        display: inline-block;
+        margin: 18px 20px;
 
-        &-icon {
+        &--icon {
             cursor: pointer;
             border: 1px solid;
             box-shadow: 5px 4px 10px 1px #333;
         }
 
-        &-name {
+        &--name {
+            // NOTE: This is for tiles
             // Long names will get truncated with overflow, text-overflow, and white-space
             overflow: hidden;
             font-size: 0.9em;
@@ -32,12 +31,12 @@
     $font-size: 3em
 ) {
     .common {
-        &-tile {
-            &-wrapper {
-                max-width: $width-constraint;
-            }
+        &-item {
+            // NOTE: This is good for tiles only
+            max-width: $width-constraint;
 
-            &-icon {
+            &--icon {
+                // NOTE: This is good for tiles only
                 max-width: $width-constraint;
                 max-height: $height-constraint;
                 padding: $padding;
