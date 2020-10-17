@@ -9,7 +9,7 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 import DirectoryType from '../../../types/Directory';
 
 // Components
-import FolderTile from '../folder-tile/FolderTile';
+import FolderItem from '../folder-item/FolderItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
 // Styles
@@ -60,7 +60,7 @@ const Directories: React.FunctionComponent = () => {
                         directories.map((directory: DirectoryType) => {
                             if(directoryView === ListViews.Tile) {
                                 return (
-                                    <FolderTile key={ directory._id } directory={ directory} opened={ false } />
+                                    <FolderItem key={ directory._id } directory={ directory} opened={ false } />
                                 )
                             } else if(directoryView === ListViews.List) {
                                 // TODO: Construct the List Item component

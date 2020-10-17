@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Components
-import Tile from '../../common/tile/Tile';
+import Item from '../../common/item/Item';
 
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
@@ -14,28 +14,28 @@ import DirectoryType from '../../../types/Directory';
 import { faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
-import './FolderTile.scss';
+import './FolderItem.scss';
 
 /**
- * @interface FolderTileProps
- * @description The acceptable props for the FolderTile component
+ * @interface FolderItemProps
+ * @description The acceptable props for the Folder Item component
  * @author J.T.
  * @property { DirectoryType } directory
  * @property { boolean } opened 
  */
-interface FolderTileProps {
+interface FolderItemProps {
     directory: DirectoryType,
     opened: boolean
 }
 
 /**
- * @function FolderTile
- * @summary Folder Tile Component
- * @description A folder tile represents a directory in the shelf.
+ * @function FolderItem
+ * @summary Folder Item Component
+ * @description A folder item represents a directory in the shelf.
  * @author J.T.
  * @return { React.ReactNode }
  */
-const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
+const FolderItem: React.FunctionComponent<FolderItemProps> = (props) => {
     const { setToActiveDirectory } = useContext(ShelfContext);
 
     /**
@@ -49,11 +49,11 @@ const FolderTile: React.FunctionComponent<FolderTileProps> = (props) => {
     }
 
     return (
-        <Tile baseClass="shelf-tile-folder" 
+        <Item baseClass="shelf-tile-folder" 
             icon={ props.opened ? faFolderOpen : faFolder }    
             onClick={ onClickCurrentDirectory }
-        >{ props.directory.name }</Tile>
+        >{ props.directory.name }</Item>
     )
 };
 
-export default FolderTile;
+export default FolderItem;

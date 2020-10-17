@@ -6,19 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
-import './Tile.scss';
+import './Item.scss';
 
 /**
- * @interface TileProps
- * @summary Tile Props
- * @description The acceptable props for the Tile component
+ * @interface ItemProps
+ * @summary Item Props
+ * @description The acceptable props for the Item component
  * @author J.T.
  * @property { React.ReactNode } children
  * @property { IconDefinition } icon
  * @property { string } baseClass
  * @property { any } onClick
  */
- interface TileProps {
+ interface ItemProps {
     children: React.ReactNode,
     icon: IconDefinition,
     baseClass: string,
@@ -26,14 +26,16 @@ import './Tile.scss';
  };
 
  /**
-  * @function Tile
-  * @summary Common Tile Component
-  * @description A common tile component with a (font awesome) icon.
+  * @function Item
+  * @summary Common Item Component
+  * @description A common item component.
   * @author: J.T.
-  * @param { TileProps } props 
+  * @param { ItemProps } props 
   * @returns { React.ReactNode }
   */
- const Tile: React.FunctionComponent<TileProps> = (props) => {
+ const Item: React.FunctionComponent<ItemProps> = (props) => {
+    // TODO: Restructure the styling with BEM convention
+    // TODO: Should this be refactored to show as a list item?
     return (
         <div className={ `common-tile-wrapper ${props.baseClass}` }>
             <div className="common-tile-icon" onClick={ props.onClick }>
@@ -42,7 +44,7 @@ import './Tile.scss';
 
             <h3 className="common-tile-name">{ props.children }</h3>
         </div>
-    )
+    );
  };
 
- export default Tile;
+ export default Item;

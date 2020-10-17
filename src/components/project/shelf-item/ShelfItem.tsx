@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Components
-import Tile from '../../common/tile/Tile';
+import Tile from '../../common/item/Item';
 
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
@@ -15,27 +15,27 @@ import ShelfType from '../../../types/Shelf';
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 
 // Styles
-import './ShelfTile.scss';
+import './ShelfItem.scss';
 
 /**
- * @interface ShelfTileProps
+ * @interface ShelfItemProps
  * @description The acceptable props for the ShelfTile component
  * @author J.T.
  * @property { ShelfType } shelf
  * @property { boolean } opened 
  */
-interface ShelfTileProps {
+interface ShelfItemProps {
     shelf: ShelfType,
 }
 
 /**
- * @function ShelfTile
- * @summary Shelf Tile Component
- * @description A shelf tile represents the root of the shelf.
+ * @function ShelfItem
+ * @summary Shelf Item Component
+ * @description A shelf item represents the root of a shelf.
  * @author J.T.
  * @return { React.ReactNode }
  */
-const ShelfTile: React.FunctionComponent<ShelfTileProps> = (props) => {
+const ShelfItem: React.FunctionComponent<ShelfItemProps> = (props) => {
     const { setToActiveShelf } = useContext(ShelfContext);
 
     /**
@@ -56,4 +56,4 @@ const ShelfTile: React.FunctionComponent<ShelfTileProps> = (props) => {
     )
 };
 
-export default ShelfTile;
+export default ShelfItem;

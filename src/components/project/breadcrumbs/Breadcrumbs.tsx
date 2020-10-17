@@ -9,8 +9,8 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 import DirectoryType from '../../../types/Directory';
 
 // Components
-import FolderTile from '../folder-tile/FolderTile';
-import ShelfTile from '../shelf-tile/ShelfTile';
+import FolderItem from '../folder-item/FolderItem';
+import ShelfItem from '../shelf-item/ShelfItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
 // Styles
@@ -56,7 +56,7 @@ const Breadcrumbs: React.FunctionComponent = () => {
         // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
         if(activeShelf !== null && breadcrumbs.length > 0 ) {
             if(breadcrumbView === ListViews.Tile) {
-                return <ShelfTile shelf={ activeShelf } />
+                return <ShelfItem shelf={ activeShelf } />
             } else if(breadcrumbView === ListViews.Breadcrumb) {
                 // TODO: Create the breadcrumb item for shelf
                 return <div>{ activeShelf.name }</div>
@@ -84,7 +84,7 @@ const Breadcrumbs: React.FunctionComponent = () => {
                         if(index > 0) {
                             if(breadcrumbView === ListViews.Tile) {
                                 return (
-                                    <FolderTile key={ directory._id } directory={ directory} opened={ true } />
+                                    <FolderItem key={ directory._id } directory={ directory} opened={ true } />
                                 )
                             } else if(breadcrumbView === ListViews.Breadcrumb) {
                                 // TODO: Might have to do something different on how to display tile versus breadcrumbs
