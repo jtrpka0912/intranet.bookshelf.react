@@ -39,7 +39,7 @@ interface ListDisplayProps {
  * @returns { React.ReactNode }
  */
 const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
-    // TODO: Change the color of the icon buttons if they are
+    // TODO: Change the color of the icon buttons if they are active
     return (
         <div className="common-listdisplay">
             <div className="common-listdisplay__buttons">
