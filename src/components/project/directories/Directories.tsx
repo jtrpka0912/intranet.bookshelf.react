@@ -23,25 +23,53 @@ import './Directories.scss';
  * @returns { React.ReactNode }
  */
 const Directories: React.FunctionComponent = () => {
-    // TODO: Use directoryView to toggle the directories map function
-    // TODO: Figure out how to add the ListViews enum inside the toggleDirectoryView (and the other two)
     const { directoryView, toggleDirectoryView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
     
     // TODO: Make sure this does not get displayed if no items in directories.
 
+    /**
+     * @function directoryClasses
+     * @description Print out the classes for the directories wrapper element
+     * @author J.T.
+     * @returns { string }
+     */
+    const directoryClasses = (): string => {
+        let classArray = ['shelf-directories'];
+
+        if(directoryView === ListViews.Tile) {
+            classArray.push('tile');
+        } else if(directoryView === ListViews.List) {
+            classArray.push('list');
+        }
+
+        return classArray.join(' ');
+    }
+
     return (
-        <div className="shelf-directories">
+        <div className={ directoryClasses() }>
             <div className="shelf-directories-listdisplay">
-                <ListDisplay tile list />
+                <ListDisplay tile list 
+                    onClickTile={ () => toggleDirectoryView(ListViews.Tile) } 
+                    onClickList={ () => toggleDirectoryView(ListViews.List) }
+                />
             </div>
             
             <div className="shelf-directories-items">
                 { 
                     directories.map((directory: DirectoryType) => {
-                        return (
-                            <FolderTile key={ directory._id } directory={ directory} opened={ false } />
-                        )
+                        if(directoryView === ListViews.Tile) {
+                            return (
+                                <FolderTile key={ directory._id } directory={ directory} opened={ false } />
+                            )
+                        } else if(directoryView === ListViews.List) {
+                            // TODO: Construct the List Item component
+                            return  <div key={ directory._id } className="placeholder">{ directory.name }</div>
+                        } else {
+                            // Return nothing
+                            return null;
+                        }
+                        
                     }) 
                 }
             </div>
