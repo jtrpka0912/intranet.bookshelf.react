@@ -46,9 +46,9 @@ const defaultState: AppContextType = {
     directoryView: ListViews.Tile,
     fileView: ListViews.Tile,
     toggleSideNav: toggleSideNav => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
-    toggleBreadcrumbView: toggleSideNav => console.warn('toggleBreadcrumbView is not available (check context provider in heirarchy)'),
-    toggleDirectoryView: toggleSideNav => console.warn('toggleDirectoryView is not available (check context provider in heirarchy)'),
-    toggleFileView: toggleSideNav => console.warn('toggleFileView is not available (check context provider in heirarchy)')
+    toggleBreadcrumbView: toggleBreadcrumbView => console.warn('toggleBreadcrumbView is not available (check context provider in heirarchy)'),
+    toggleDirectoryView: toggleDirectoryView => console.warn('toggleDirectoryView is not available (check context provider in heirarchy)'),
+    toggleFileView: toggleFileView => console.warn('toggleFileView is not available (check context provider in heirarchy)')
 };
 
 export const AppContext: React.Context<AppContextType> = createContext<AppContextType>(defaultState);

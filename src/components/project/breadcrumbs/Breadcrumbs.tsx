@@ -48,20 +48,38 @@ const Breadcrumbs: React.FunctionComponent = () => {
         return classArray.join(' ');
     }
 
+    /**
+     * @function renderActiveShelf
+     * @description Render the active shelf as the first breadcrumb item if any
+     * @author J.T.
+     * @returns { React.ReactNode }
+     */
+    const renderActiveShelf = (): React.ReactNode => {
+        // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
+        if(activeShelf !== null && breadcrumbs.length > 0 ) {
+            if(breadcrumbView === ListViews.Tile) {
+                return <ShelfTile shelf={ activeShelf } />
+            } else if(breadcrumbView === ListViews.Breadcrumb) {
+                // TODO: Create the breadcrumb item for shelf
+                return <div>{ activeShelf.name }</div>
+            }
+        }
+
+        return null;
+    }
+
     return (
         <div className="shelf-breadcrumbs">
+            
             <div className="shelf-breadcrumbs__list-display">
                 <ListDisplay tile breadcrumb 
-                    onClickTile={ toggleBreadcrumbView(ListViews.Tile) }
-                    onClickBreadcrumb={ toggleBreadcrumbView(ListViews.Breadcrumb) }
+                    onClickTile={ () => toggleBreadcrumbView(ListViews.Tile) }
+                    onClickBreadcrumb={ () => toggleBreadcrumbView(ListViews.Breadcrumb) }
                 />
             </div>
 
             <div className={ breadcrumbsItemsClass() }>
-                { // TODO: Make sure to swap the listview for shelf item
-                // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
-                    activeShelf !== null && breadcrumbs.length > 0 ? ( <ShelfTile shelf={ activeShelf } /> ) : null 
-                }
+                { renderActiveShelf() }
                 
                 { breadcrumbs.map((directory: DirectoryType, index: number) => {
                     if(index > 0) {

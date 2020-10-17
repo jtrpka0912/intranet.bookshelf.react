@@ -5,12 +5,12 @@ import React, { useContext } from 'react';
 import { AppContext, ListViews } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
+// Types
+import DirectoryType from '../../../types/Directory';
+
 // Components
 import FolderTile from '../folder-tile/FolderTile';
 import ListDisplay from '../../common/list-display/ListDisplay';
-
-// Types
-import DirectoryType from '../../../types/Directory';
 
 // Styles
 import './Directories.scss';

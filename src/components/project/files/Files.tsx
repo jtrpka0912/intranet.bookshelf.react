@@ -25,7 +25,7 @@ const Files: React.FunctionComponent = () => {
             {
                 files.map((file: FileType) => {
                     return (
-                        <div className="shelf-files-placeholder">{ file.name }</div>
+                        <div key={ file._id } className="shelf-files-placeholder">{ file.name }</div>
                     );
                 })    
             }
