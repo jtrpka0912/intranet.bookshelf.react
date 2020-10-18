@@ -26,25 +26,7 @@ const Directories: React.FunctionComponent = () => {
     const { directoryView, switchListView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
 
-    /**
-     * @function directoryItemsClass
-     * @description Print out the classes for the directories items element
-     * @author J.T.
-     * @returns { string }
-     */
-    const directoryItemsClass = (): string => {
-        const baseClass: string = 'shelf-directories__items';
-        let classArray: string[] = [baseClass];
-
-        if(directoryView === ListViews.Tile) {
-            classArray.push(baseClass + '--tile')
-        } else if(directoryView === ListViews.List) {
-            classArray.push(baseClass + '--list')
-        }
-
-        return classArray.join(' ');
-    }
-
+    // Only show when there are directories to display
     if(directories.length > 0) {
         return (
             <div className='shelf-directories'>
@@ -55,7 +37,7 @@ const Directories: React.FunctionComponent = () => {
                     />
                 </div>
                 
-                <div className={ directoryItemsClass() }>
+                <div className="shelf-directories__items">
                     { 
                         directories.map((directory: DirectoryType) => {
                             let listViewClass: string = '';
