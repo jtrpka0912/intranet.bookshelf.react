@@ -14,7 +14,7 @@ import ShelfItem from '../shelf-item/ShelfItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
 // Styles
-import './Breadcrumbs.scss';
+import './ListSection.scss';
 
 /**
  * @function Breadcrumbs
@@ -26,6 +26,25 @@ import './Breadcrumbs.scss';
 const Breadcrumbs: React.FunctionComponent = () => {
     const { breadcrumbView, switchListView } = useContext(AppContext);
     const { activeShelf, breadcrumbs } = useContext(ShelfContext);
+
+    /**
+     * @function viewTypesItemsClass
+     * @description Set the view type classes for the group of items
+     * @author J.T.
+     * @returns { string }
+     */
+    const viewTypesItemsClass = () => {
+        switch(breadcrumbView) {
+            case ListViews.Breadcrumb: 
+                return 'shelf-listsections__items shelf-listsections__items--breadcrumb';
+            case ListViews.List: 
+                return 'shelf-listsections__items shelf-listsections__items--list';
+            case ListViews.Tile: 
+                return 'shelf-listsections__items shelf-listsections__items--tile';
+            default:
+                return '';
+        };
+    }
 
     /**
      * @function renderActiveShelf
@@ -55,16 +74,16 @@ const Breadcrumbs: React.FunctionComponent = () => {
 
     if(breadcrumbs.length > 0) {
         return (
-            <div className="shelf-breadcrumbs">
+            <div className="shelf-listsections">
                 
-                <div className="shelf-breadcrumbs__list-display">
+                <div className="shelf-listsections__list-display">
                     <ListDisplay tile breadcrumb 
                         onClickTile={ () => switchListView(ListSections.Breadcrumb, ListViews.Tile) }
                         onClickBreadcrumb={ () => switchListView(ListSections.Breadcrumb, ListViews.Breadcrumb) }
                     />
                 </div>
     
-                <div className="shelf-breadcrumbs__items">
+                <div className={ viewTypesItemsClass() }>
                     { renderActiveShelf() }
                     
                     { breadcrumbs.map((directory: DirectoryType, index: number) => {
@@ -73,13 +92,8 @@ const Breadcrumbs: React.FunctionComponent = () => {
 
                             if(breadcrumbView === ListViews.Tile) {
                                 listViewClass = 'common-item--tile';
-                                /*
-                                
-                                */
                             } else if(breadcrumbView === ListViews.Breadcrumb) {
                                 listViewClass = 'common-item--breadcrumb';
-                                // TODO: Might have to do something different on how to display tile versus breadcrumbs
-                                // return null;
                             }
 
                             return (

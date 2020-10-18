@@ -2,8 +2,8 @@
 // https://github.com/adobe/aem-core-wcm-components/wiki/css-coding-conventions
 
 .shelf {
-    &-directories {
-        $shelfDirectories: &;
+    &-listsections {
+        $shelfListSections: &;
 
         @mixin listDisplayOpenPosition() {
             top: 9px;
@@ -16,10 +16,10 @@
         // TODO: width for now is temporary
         width: 90vw;
         margin: 9px auto 0;
-        background-color: red;
+        background-color: yellow;
 
         &:hover {
-            & #{$shelfDirectories}__list-display {
+            & #{$shelfListSections}__list-display {
                 @include listDisplayOpenPosition();
             }
         }
@@ -50,6 +50,10 @@
             }
 
             &--list {
+                display: block;
+            }
+
+            &--breadcrumb {
                 display: block;
             }
         }

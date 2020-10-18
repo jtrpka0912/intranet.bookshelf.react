@@ -13,7 +13,7 @@ import ListDisplay from '../../common/list-display/ListDisplay';
 import FileItem from '../file-item/FileItem';
 
 // Styles
-import './Files.scss';
+import './ListSection.scss';
 
 /**
  * @function Files
@@ -26,18 +26,37 @@ const Files: React.FunctionComponent = () => {
     const { switchListView, fileView } = useContext(AppContext);
     const { files } = useContext(ShelfContext);
 
+    /**
+     * @function viewTypesItemsClass
+     * @description Set the view type classes for the group of items
+     * @author J.T.
+     * @returns { string }
+     */
+    const viewTypesItemsClass = () => {
+        switch(fileView) {
+            case ListViews.Breadcrumb: 
+                return 'shelf-listsections__items shelf-listsections__items--breadcrumb';
+            case ListViews.List: 
+                return 'shelf-listsections__items shelf-listsections__items--list';
+            case ListViews.Tile: 
+                return 'shelf-listsections__items shelf-listsections__items--tile';
+            default:
+                return '';
+        };
+    }
+
     // Only show when there are files to display
     if(files.length > 0) {
         return (
-            <div className="shelf-files">
-                <div className="shelf-files__list-display">
+            <div className="shelf-listsections">
+                <div className="shelf-listsections__list-display">
                     <ListDisplay tile list 
                         onClickTile={ () => switchListView(ListSections.File, ListViews.Tile) } 
                         onClickList={ () => switchListView(ListSections.File, ListViews.List) }
                     />
                 </div>
 
-                <div className="shelf-files__items">
+                <div className={ viewTypesItemsClass() }>
                     {
                         files.map((file: FileType) => {
                             console.info('File', file);

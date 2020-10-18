@@ -13,7 +13,7 @@ import FolderItem from '../folder-item/FolderItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
 // Styles
-import './Directories.scss';
+import '../list-section/ListSection.scss';
 
 /**
  * @function Directories
@@ -26,18 +26,37 @@ const Directories: React.FunctionComponent = () => {
     const { directoryView, switchListView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
 
+    /**
+     * @function viewTypesItemsClass
+     * @description Set the view type classes for the group of items
+     * @author J.T.
+     * @returns { string }
+     */
+    const viewTypesItemsClass = () => {
+        switch(directoryView) {
+            case ListViews.Breadcrumb: 
+                return 'shelf-listsections__items shelf-listsections__items--breadcrumb';
+            case ListViews.List: 
+                return 'shelf-listsections__items shelf-listsections__items--list';
+            case ListViews.Tile: 
+                return 'shelf-listsections__items shelf-listsections__items--tile';
+            default:
+                return '';
+        };
+    }
+
     // Only show when there are directories to display
     if(directories.length > 0) {
         return (
-            <div className='shelf-directories'>
-                <div className="shelf-directories__list-display">
+            <div className='shelf-listsections'>
+                <div className="shelf-listsections__list-display">
                     <ListDisplay tile list 
                         onClickTile={ () => switchListView(ListSections.Directory, ListViews.Tile) } 
                         onClickList={ () => switchListView(ListSections.Directory, ListViews.List) }
                     />
                 </div>
                 
-                <div className="shelf-directories__items">
+                <div className={ viewTypesItemsClass() }>
                     { 
                         directories.map((directory: DirectoryType) => {
                             let listViewClass: string = '';
