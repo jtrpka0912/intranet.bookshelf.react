@@ -1,8 +1,9 @@
 .common {
     &-modal {
-        $modalClass: &;
+        $commonModal: &;
 
-        &-overlay {
+        &__overlay {
+            $commonModalOverlay: &;
             position: fixed;
             top: 0; bottom: 0;
             left: 0; right: 0;
@@ -10,46 +11,46 @@
             height: 100%;
             background-color: rgba(0,0,0,0.5);
 
-            &.closed {
+            &--closed {
                 display: none;
             }
 
-            &.opened {
+            &--opened {
                 display: block;
             }
 
             $animationTime: 1s;
 
-            &.is-opening {
-                &.fade {
-                    #{$modalClass} {
-                        &-container {
+            &#{$commonModalOverlay}--is-opening {
+                &#{$commonModalOverlay}--fade {
+                    #{$commonModal} {
+                        &__container {
                             animation: fadeIn $animationTime forwards;
                         }
                     }
                 }
 
-                &.slide {
-                    #{$modalClass} {
-                        &-container {
+                &#{$commonModalOverlay}--slide {
+                    #{$commonModal} {
+                        &__container {
                             animation: slideUp $animationTime forwards;
                         }
                     }
                 }
             }
 
-            &.is-closing {
-                &.fade {
-                    #{$modalClass} {
-                        &-container {
+            &#{$commonModalOverlay}--is-closing {
+                &#{$commonModalOverlay}--fade {
+                    #{$commonModal} {
+                        &__container {
                             animation: fadeOut $animationTime forwards;
                         }
                     }
                 }
 
-                &.slide {
-                    #{$modalClass} {
-                        &-container {
+                &#{$commonModalOverlay}--slide {
+                    #{$commonModal} {
+                        &__container {
                             animation: slideDown $animationTime forwards;
                         }
                     }
@@ -57,7 +58,7 @@
             }
         }
 
-        &-container {
+        &__container {
             position: absolute;
             top: 0; bottom: 0;
             left: 0; right: 0;
@@ -71,15 +72,15 @@
             background-color: #fff;
             box-shadow: 10px 9px 5px 4px rgba(0,0,0,0.3);
 
-            &.small {
+            &--small {
                 width: 360px;
             }
 
-            &.medium {
+            &--medium {
                 width: 480px;
             }
 
-            &.large {
+            &--large {
                 width: 600px;
             }
 
@@ -88,34 +89,34 @@
                 height: 100%;
 
                 // Needs to override these classes
-                &.small, &.medium, &.large {
+                &--small, &--medium, &--large {
                     width: 100%;    
                 }
             }
         }
 
-        &-header {
+        &__header {
             position: relative;
             margin-bottom: 9px;
             padding: 0 35px 9px 0;
             border-bottom: 1px solid #333;
 
-            &-title {
+            &__title {
                 margin: 0;
             }
 
-            &-close {
+            &__close {
                 position: absolute;
                 top: 2px; right: 10px;
                 font-size: 1.5em;
             }
         }
 
-        &-body {
+        &__body {
             margin-bottom: 9px;
         }
 
-        &-footer {
+        &__footer {
             display: flex;
             justify-content: flex-end;
             padding-top: 9px;
@@ -124,8 +125,9 @@
     }
 }
 
+// Animation Keyframes
 
-
+// Fade Animation
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -146,6 +148,7 @@
     }
 }
 
+// Slide Animation
 @keyframes slideDown {
     from {
         transform: translateY(0);

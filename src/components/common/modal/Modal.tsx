@@ -67,23 +67,24 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @returns string
      */
     const overlayClasses = (props: ModalProps): string => {
-        let classArray: string[] = ['common-modal-overlay'];
+        const baseSelector: string = 'common-modal__overlay';
+        let classArray: string[] = [baseSelector];
 
         // Is the modal animating (going to open or close)
         if(isAnimating) {
-            classArray.push(isOpened ? 'is-closing' : 'is-opening');
+            classArray.push(isOpened ? `${baseSelector}--is-closing` : `${baseSelector}--is-opening`);
         }
 
         // Is the modal opened or closed
-        classArray.push(isOpened ? 'opened' : 'closed');
+        classArray.push(isOpened ? `${baseSelector}--opened` : `${baseSelector}--closed`);
 
         // Need to check if fade and slide are not disabled
         const fade = props.fade;
         const slide = props.slide;
 
-        if(!fade && !slide) classArray.push('no-effects');
-        if(fade) classArray.push('fade');
-        if(slide) classArray.push('slide');
+        if(!fade && !slide) classArray.push(`${baseSelector}--no-effects`);
+        if(fade) classArray.push(`${baseSelector}--fade`);
+        if(slide) classArray.push(`${baseSelector}--slide`);
 
         return classArray.join(' ');
     }
@@ -97,13 +98,14 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @returns string
      */
     const containerClasses = (props: ModalProps): string => {
-        let classArray: string[] = ['common-modal-container'];
+        const baseSelector: string = 'common-modal__container';
+        let classArray: string[] = [baseSelector];
 
         // If no size defined then assign it medium
         if(!props.size) {
-            classArray.push(Size.Medium);
+            classArray.push(`${baseSelector}--${Size.Medium}`);
         } else {
-            classArray.push(props.size);
+            classArray.push(`${baseSelector}--${props.size}`);
         }
 
         return classArray.join(' ');
@@ -141,21 +143,21 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
             <div className={ containerClasses(props) } 
                 onClick={ (e) => e.stopPropagation() }
             >
-                <header className="common-modal-header">
-                    <h2 className="common-modal-header-title">
+                <header className="common-modal__header">
+                    <h2 className="common-modal__header__title">
                         { props.title ? props.title : 'Modal Title Here' }
                     </h2>
                     <FontAwesomeIcon icon={ faWindowClose } 
-                        className="common-modal-header-close"
+                        className="common-modal__header__close"
                         onClick={ () => onClickAnimateModal() }
                     />
                 </header>
                 
-                <div className="common-modal-body">
+                <div className="common-modal__body">
                     { props.children }
                 </div>
 
-                <div className="common-modal-footer">
+                <div className="common-modal__footer">
                     <Button>Button Here</Button>
                 </div>
             </div>
