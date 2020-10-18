@@ -31,6 +31,7 @@ export enum Size {
  * @description The acceptable props for the Modal component
  * @author J.T.
  * @property { React.ReactNode } children
+ * @property { boolean } opened
  * @property { string } title
  * @property { boolean } fade
  * @property { boolean } slide
@@ -38,6 +39,7 @@ export enum Size {
  */
 interface ModalProps {
     children: React.ReactNode,
+    opened: boolean,
     title?: string
     fade?: boolean
     slide?: boolean
@@ -53,7 +55,7 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(false);
+    const [isOpened, toggleModal] = useState(props.opened);
     const [isAnimating, animateModal] = useState(false);
 
     /**

@@ -12,9 +12,7 @@ import ShelfContextProvider from '../../contexts/ShelfContext';
 import Breadcrumbs from '../project/list-section/Breadcrumbs';
 import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
-
-// Temporary Components
-import Modal, { Size } from '../../components/common/modal/Modal';
+import FileModal from '../project/file-modal/FileModal';
 
 
 const App = () => {
@@ -27,7 +25,7 @@ const App = () => {
                     <Files />
                 </PageWrapper>
                 
-                <Modal size={ Size.Large } slide={true}>Hello There</Modal>
+                <FileModal />
             </ShelfContextProvider>
         </AppContextProvider>
     );
