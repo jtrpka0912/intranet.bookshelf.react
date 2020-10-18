@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Context
-import { AppContext, ListViews } from '../../../contexts/AppContext';
+import { AppContext, ListViews, ListSections } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
@@ -24,7 +24,7 @@ import './Breadcrumbs.scss';
  * @returns { React.ReactNode }
  */
 const Breadcrumbs: React.FunctionComponent = () => {
-    const { breadcrumbView, toggleBreadcrumbView } = useContext(AppContext);
+    const { breadcrumbView, switchListView } = useContext(AppContext);
     const { activeShelf, breadcrumbs } = useContext(ShelfContext);
 
     /**
@@ -59,8 +59,8 @@ const Breadcrumbs: React.FunctionComponent = () => {
                 
                 <div className="shelf-breadcrumbs__list-display">
                     <ListDisplay tile breadcrumb 
-                        onClickTile={ () => toggleBreadcrumbView(ListViews.Tile) }
-                        onClickBreadcrumb={ () => toggleBreadcrumbView(ListViews.Breadcrumb) }
+                        onClickTile={ () => switchListView(ListSections.Breadcrumb, ListViews.Tile) }
+                        onClickBreadcrumb={ () => switchListView(ListSections.Breadcrumb, ListViews.Breadcrumb) }
                     />
                 </div>
     

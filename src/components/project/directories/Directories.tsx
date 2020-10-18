@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Context
-import { AppContext, ListViews } from '../../../contexts/AppContext';
+import { AppContext, ListViews, ListSections } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
@@ -23,7 +23,7 @@ import './Directories.scss';
  * @returns { React.ReactNode }
  */
 const Directories: React.FunctionComponent = () => {
-    const { directoryView, toggleDirectoryView } = useContext(AppContext);
+    const { directoryView, switchListView } = useContext(AppContext);
     const { directories } = useContext(ShelfContext);
 
     /**
@@ -50,8 +50,8 @@ const Directories: React.FunctionComponent = () => {
             <div className='shelf-directories'>
                 <div className="shelf-directories__list-display">
                     <ListDisplay tile list 
-                        onClickTile={ () => toggleDirectoryView(ListViews.Tile) } 
-                        onClickList={ () => toggleDirectoryView(ListViews.List) }
+                        onClickTile={ () => switchListView(ListSections.Directory, ListViews.Tile) } 
+                        onClickList={ () => switchListView(ListSections.Directory, ListViews.List) }
                     />
                 </div>
                 

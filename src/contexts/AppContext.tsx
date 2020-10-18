@@ -1,5 +1,5 @@
 // React
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 /**
  * @exports
@@ -17,6 +17,21 @@ export enum ListViews {
 };
 
 /**
+ * @exports
+ * @enum ListSections
+ * @description The list sections for the SHELF
+ * @author J.T.
+ * @property { string } Breadcrumb
+ * @property { string } Directory
+ * @property { string } File
+ */
+export enum ListSections {
+    Breadcrumb = 'breadcrumb',
+    Directory = 'directory',
+    File = 'file'
+};
+
+/**
  * @type AppContextType
  * @summary Application Context Type
  * @description Definition of the application context type
@@ -26,6 +41,9 @@ export enum ListViews {
  * @property { ListView } directoryView
  * @property { ListView } fileView
  * @property { function } toggleSideNav
+ * @property { function } switchBreadcrumbView
+ * @property { function } switchDirectoryView
+ * @property { function } switchFileView
  */
 type AppContextType = {
     // State
@@ -35,9 +53,7 @@ type AppContextType = {
     fileView: ListViews
     // Actions
     toggleSideNav: (state: boolean) => void,
-    toggleBreadcrumbView: (state: ListViews) => void,
-    toggleDirectoryView: (state: ListViews) => void,
-    toggleFileView: (state: ListViews) => void
+    switchListView: (listSection: ListSections, listView: ListViews) => void
 };
 
 const defaultState: AppContextType = {
@@ -46,9 +62,7 @@ const defaultState: AppContextType = {
     directoryView: ListViews.Tile,
     fileView: ListViews.Tile,
     toggleSideNav: toggleSideNav => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
-    toggleBreadcrumbView: toggleBreadcrumbView => console.warn('toggleBreadcrumbView is not available (check context provider in heirarchy)'),
-    toggleDirectoryView: toggleDirectoryView => console.warn('toggleDirectoryView is not available (check context provider in heirarchy)'),
-    toggleFileView: toggleFileView => console.warn('toggleFileView is not available (check context provider in heirarchy)')
+    switchListView: switchListView => console.warn('switchListView is not available (check context provider in heirarchy)')
 };
 
 export const AppContext: React.Context<AppContextType> = createContext<AppContextType>(defaultState);
@@ -73,12 +87,64 @@ type AppContextProps = {
  * @returns { React.ReactNode }
  */
 const AppContextProvider = (props: AppContextProps) => {
+    // Local Storage Keys
+    const localStorageBreadcrumbListView: string = 'breadcrumbListView';
+    const localStorageDirectoryListView: string = 'directoryListView';
+    const localStorageFileListView: string = 'fileListView';
+
     // States
     // TODO: Need to figure out how to toggle when clicking ANYWHERE outside of side navigation.
     const [isSideNavOpen, toggleSideNav] = useState(defaultState.isSideNavOpen);
     const [breadcrumbView, toggleBreadcrumbView] = useState(defaultState.breadcrumbView);
     const [directoryView, toggleDirectoryView] = useState(defaultState.directoryView);
     const [fileView, toggleFileView] = useState(defaultState.fileView);
+
+    useEffect(() => {
+        /**
+         * @function retrieveListViewStates
+         * @description Retrieve the list view states from local storage to state
+         * @author J.T.
+         */
+        const retrieveListViewStates = () => {
+            // Retrieve the list view states from local storage, but converted to ListViews enum
+            const retrieveBreadcrumbState: ListViews | null = localStorage.getItem(localStorageBreadcrumbListView) as ListViews;
+            const retrieveDirectoryState: ListViews | null = localStorage.getItem(localStorageDirectoryListView) as ListViews;
+            const retrieveFileState: ListViews | null = localStorage.getItem(localStorageFileListView) as ListViews;
+
+            // Assign the list view states to ... state
+            toggleBreadcrumbView(retrieveBreadcrumbState);
+            toggleDirectoryView(retrieveDirectoryState);
+            toggleFileView(retrieveFileState);
+        };
+
+        retrieveListViewStates();
+    }, []);
+
+    /**
+     * @function switchViewType
+     * @description Toggle the list view for any of the list sections
+     * @author J.T.
+     * @param { ListSections } listSection
+     * @param { ListViews } listView 
+     */
+    const switchListView = (listSection: ListSections, listView: ListViews) => {
+        switch(listSection) {
+            case ListSections.Breadcrumb:
+                toggleBreadcrumbView(listView);
+                localStorage.setItem(localStorageBreadcrumbListView, listView);
+                break;
+            case ListSections.Directory:
+                toggleDirectoryView(listView);
+                localStorage.setItem(localStorageDirectoryListView, listView);
+                break;
+            case ListSections.File:
+                toggleFileView(listView);
+                localStorage.setItem(localStorageFileListView, listView);
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <AppContext.Provider value={{
@@ -87,9 +153,7 @@ const AppContextProvider = (props: AppContextProps) => {
             directoryView,
             fileView,
             toggleSideNav,
-            toggleBreadcrumbView,
-            toggleDirectoryView,
-            toggleFileView
+            switchListView
         }}>
             { props.children }
         </AppContext.Provider>

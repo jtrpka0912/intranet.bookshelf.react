@@ -88,9 +88,11 @@ type ShelfContextProps = {
  * @returns { React.ReactNode }
  */
 const ShelfContextProvider = (props: ShelfContextProps) => {
-    const localStorageActiveShelfName = 'activeShelf';
-    const localStorageActiveDirectoryName = 'activeDirectory';
+    // Local Storage Keys
+    const localStorageActiveShelfName: string = 'activeShelf';
+    const localStorageActiveDirectoryName: string = 'activeDirectory';
 
+    // States
     const [shelves, setShelves] = useState(defaultState.shelves);
     const [breadcrumbs, setBreadcrumbs] = useState(defaultState.breadcrumbs);
     const [directories, setDirectories] = useState(defaultState.directories);
@@ -161,7 +163,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { DirectoryType } directory 
      */
     const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
-        console.info('Retrieving shelf contents', shelf, directory);
         try{
             let api: string = `http://localhost:3001/api/v1/ebooks/shelf/${shelf._id}`;
 
