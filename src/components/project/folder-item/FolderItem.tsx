@@ -33,27 +33,17 @@ interface FolderItemProps {
 /**
  * @function FolderItem
  * @summary Folder Item Component
- * @description A folder item represents a directory in the shelf.
+ * @description A folder item that represents a directory in the shelf.
  * @author J.T.
  * @return { React.ReactNode }
  */
 const FolderItem: React.FunctionComponent<FolderItemProps> = (props) => {
     const { setToActiveDirectory } = useContext(ShelfContext);
 
-    /**
-     * @function onClickCurrentDirectory
-     * @event onClick
-     * @description Set the current directory in state
-     * @author J.T.
-     */
-    const onClickCurrentDirectory = () => {
-        setToActiveDirectory(props.directory);
-    }
-
     return (
         <Item className={ `shelf-folderitem ${ props.className }` }
             icon={ props.opened ? faFolderOpen : faFolder }    
-            onClick={ onClickCurrentDirectory }
+            onClick={ () => setToActiveDirectory(props.directory) }
         >{ props.directory.name }</Item>
     )
 };

@@ -28,7 +28,7 @@ interface FileItemProps {
 /**
  * @function FileItem
  * @summary File Item Component
- * @description A folder item represents a directory in the shelf.
+ * @description A file item that represents a book in the shelf.
  * @author J.T.
  * @return { React.ReactNode }
  */

@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,14 +36,16 @@ export enum Size {
  * @property { boolean } fade
  * @property { boolean } slide
  * @property { Size } size
+ * @property { any } onClose
  */
 interface ModalProps {
     children: React.ReactNode,
-    opened: boolean,
+    open: boolean,
     title?: string
     fade?: boolean
     slide?: boolean
-    size?: Size
+    size?: Size,
+    onClose?: any // TODO: any
 }
 
 /**
@@ -55,7 +57,7 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(props.opened);
+    const [isOpened, toggleModal] = useState(false);
     const [isAnimating, animateModal] = useState(false);
 
     /**
@@ -112,33 +114,41 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
     }
 
     /**
-     * @function onClickAnimateModal
+     * @function onClickClosingModal
      * @event onClick
-     * @description Animate the container and then toggle the overlay of the modal
+     * @description Close the modal.
      * @note Lot of the magic happen in the overlayClasses function
      * @author J.T.
      */
-    const onClickAnimateModal = () => {
+    const onClickClosingModal = () => {
+        closeAnimation();
+        props.onClose(); // Allow other modal types to do any closing actions
+    }
+
+    /**
+     * @function closeAnimation
+     * @description Set up the closing animation for the modal
+     * @author J.T.
+     */
+    const closeAnimation = () => {
         const animationTime: number = 900; // Little less than one second
 
         // Lets close or open the modal with two steps
         animateModal(true); // Mark the animation as started
         
-        if(isOpened) { // Close the modal
+        // Check if the modal is open
+        if(isOpened) {
             // Wait for animation time to end then change modal status
             setTimeout(() => {
                 animateModal(false); // No longer animating
                 toggleModal(false); // Modal is finally closed
             }, animationTime);
-        } else { // Open the modal
-            toggleModal(true); // Open it immeditately
-            animateModal(false); // Mark it done animating
         }
     }
 
     return (
         <div className={ overlayClasses(props) }
-            onClick={ () => onClickAnimateModal() }
+            onClick={ () => onClickClosingModal() }
         >
             <div className={ containerClasses(props) } 
                 onClick={ (e) => e.stopPropagation() }
@@ -149,7 +159,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                     </h2>
                     <FontAwesomeIcon icon={ faWindowClose } 
                         className="common-modal__header__close"
-                        onClick={ () => onClickAnimateModal() }
+                        onClick={ () => onClickClosingModal() }
                     />
                 </header>
                 

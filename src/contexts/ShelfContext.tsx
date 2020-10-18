@@ -46,8 +46,6 @@ type ShelfContextType = {
     activeShelf: ShelfType | null,
     activeDirectory: DirectoryType | null,
     activeFile: FileType | null,
-    // Other
-    isFileModalOpen: boolean,
     // Actions
     addOneToShelves: (shelf: ShelfType) => void,
     setToActiveShelf: (shelf: ShelfType) => void,
@@ -65,8 +63,6 @@ const defaultState: ShelfContextType = {
     activeShelf: null,
     activeDirectory: null,
     activeFile: null,
-    // Other
-    isFileModalOpen: false,
     // Actions
     addOneToShelves: addOneToShelves => console.warn('addOneToShelves is not available (check context provider in heirarchy)'),
     setToActiveShelf: setToActiveShelf => console.warn('setToActiveShelf is not available (check context provider in heirarchy)'),
@@ -108,15 +104,12 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const [activeShelf, setActiveShelf] = useState(defaultState.activeShelf);
     const [activeDirectory, setActiveDirectory] = useState(defaultState.activeDirectory);
     const [activeFile, setActiveFile] = useState(defaultState.activeFile);
-
-    // Other
-    const [isFileModalOpen, toggleFileModal] = useState(false);
     
     /**
      * @function addOneToShelves
      * @description Add a shelf to the shelves state.
      * @author J.T.
-     * @param {  } shelf 
+     * @param { ShelfType } shelf 
      */
     const addOneToShelves = (shelf: ShelfType) => {
         setShelves([...shelves, shelf]);
@@ -173,11 +166,8 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @param { FileType } file 
      */
     const setToActiveFile = (file: FileType) => {
-        // Set the active file to be displayed on the modal
+        // Set the active file
         setActiveFile(file);
-        
-        // Open the file modal
-        toggleFileModal(true);
     };
 
     /**
@@ -319,7 +309,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             activeShelf,
             activeDirectory,
             activeFile,
-            isFileModalOpen,
             addOneToShelves,
             setToActiveShelf,
             setToActiveDirectory,
