@@ -52,7 +52,11 @@ const Directories: React.FunctionComponent = () => {
                             }
 
                             return (
-                                <FolderItem key={ directory._id } className={ listViewClass } directory={ directory} opened={ false } />
+                                <FolderItem key={ directory._id } 
+                                    className={ listViewClass } 
+                                    directory={ directory} 
+                                    opened={ false } 
+                                />
                             );
                         })
                     }

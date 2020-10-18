@@ -23,7 +23,7 @@ import './Files.scss';
  * @returns { React.ReactNode }
  */
 const Files: React.FunctionComponent = () => {
-    const { switchListView } = useContext(AppContext);
+    const { switchListView, fileView } = useContext(AppContext);
     const { files } = useContext(ShelfContext);
 
     // Only show when there are files to display
@@ -32,17 +32,35 @@ const Files: React.FunctionComponent = () => {
             <div className="shelf-files">
                 <div className="shelf-files__list-display">
                     <ListDisplay tile list 
-                        onClickTile={ () => switchListView(ListSections.Directory, ListViews.Tile) } 
-                        onClickList={ () => switchListView(ListSections.Directory, ListViews.List) }
+                        onClickTile={ () => switchListView(ListSections.File, ListViews.Tile) } 
+                        onClickList={ () => switchListView(ListSections.File, ListViews.List) }
                     />
                 </div>
-                {
-                    files.map((file: FileType) => {
-                        return (
-                            <div key={ file._id } className="shelf-files-placeholder">{ file.name }</div>
-                        );
-                    })    
-                }
+
+                <div className="shelf-files__items">
+                    {
+                        files.map((file: FileType) => {
+                            console.info('File', file);
+                            let listViewClass: string = '';
+
+                            if(fileView === ListViews.Tile) {
+                                listViewClass = 'common-item--tile';
+                            } else if(fileView === ListViews.List) {
+                                listViewClass = 'common-item--list';
+                            } else {
+                                // Return nothing
+                                return null;
+                            }
+
+                            return (
+                                <FileItem key={ file._id }
+                                    className={ listViewClass }
+                                    file={ file }
+                                />
+                            );
+                        })    
+                    }
+                </div>
             </div>
         );
     } else {

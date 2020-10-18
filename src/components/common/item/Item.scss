@@ -78,11 +78,15 @@
         }
 
         &--tile {
-            display: inline-block;
-
             #{$commonItem} {
                 &__icon {
-                    box-shadow: 5px 4px 10px 1px #333;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    align-items: center;
+
+                    width: 100%;
+                    box-shadow: 5px 4px 10px 1px rgba(0,0,0,0.5);
                 }
 
                 &__name {
@@ -102,7 +106,7 @@
 // Size the tiles based on size of the device
 @mixin sizing-tiles(
     $padding, 
-    $width-constraint: 100%, 
+    $width-constraint: 100%,
     $height-constraint: 100%, 
     $font-size: 3em
 ) {
@@ -115,6 +119,7 @@
 
                 #{$commonItem} {
                     &__icon {
+                        height: $height-constraint;
                         max-width: $width-constraint;
                         max-height: $height-constraint;
                         padding: $padding;
