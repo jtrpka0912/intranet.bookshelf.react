@@ -35,8 +35,8 @@ import './Item.scss';
   */
  const Item: React.FunctionComponent<ItemProps> = (props) => {
     return (
-        <div className={ `common-item ${props.className}` }>
-            <div className="common-item__icon" onClick={ props.onClick }>
+        <div className={ `common-item ${props.className}` } onClick={ props.onClick }>
+            <div className="common-item__icon">
                 <FontAwesomeIcon icon={ props.icon } />
             </div>
 

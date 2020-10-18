@@ -36,12 +36,18 @@ const Breadcrumbs: React.FunctionComponent = () => {
     const renderActiveShelf = (): React.ReactNode => {
         // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
         if(activeShelf !== null && breadcrumbs.length > 0 ) {
+            let listViewClass: string = '';
+
             if(breadcrumbView === ListViews.Tile) {
-                return <ShelfItem className="common-item--tile" shelf={ activeShelf } />
+                listViewClass = 'common-item--tile';
+                
             } else if(breadcrumbView === ListViews.Breadcrumb) {
+                listViewClass = 'common-item--breadcrumb';
                 // TODO: Might have to do something different for breadcrumbs
-                return <div>{ activeShelf.name }</div>
+                // return <div>{ activeShelf.name }</div>
             }
+
+            return <ShelfItem className={ listViewClass } shelf={ activeShelf } />
         }
 
         return null;
@@ -63,18 +69,26 @@ const Breadcrumbs: React.FunctionComponent = () => {
                     
                     { breadcrumbs.map((directory: DirectoryType, index: number) => {
                         if(index > 0) {
+                            let listViewClass: string = '';
+
                             if(breadcrumbView === ListViews.Tile) {
-                                return (
-                                    <FolderItem key={ directory._id } 
-                                        className="common-item--tile"
-                                        directory={ directory} 
-                                        opened={ true } 
-                                    />
-                                )
+                                listViewClass = 'common-item--tile';
+                                /*
+                                
+                                */
                             } else if(breadcrumbView === ListViews.Breadcrumb) {
+                                listViewClass = 'common-item--breadcrumb';
                                 // TODO: Might have to do something different on how to display tile versus breadcrumbs
-                                return null;
+                                // return null;
                             }
+
+                            return (
+                                <FolderItem key={ directory._id } 
+                                    className={ listViewClass }
+                                    directory={ directory} 
+                                    opened={ true } 
+                                />
+                            );
                         }
     
                         return null; // Only there to let the map function not complain

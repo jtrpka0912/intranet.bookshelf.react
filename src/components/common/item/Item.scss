@@ -1,6 +1,8 @@
 .common {
     &-item {
         $commonItem: &;
+
+        cursor: pointer;
         margin: 18px 20px;
 
         &__icon {
@@ -11,12 +13,21 @@
             font-size: 0.9em;
         }
 
-        &--list {
-            cursor: pointer;
-            display: flex;
+        &--list,
+        &--breadcrumb {
             flex-flow: row nowrap;
             justify-content: flex-start;
             align-items: center;
+
+            #{$commonItem} {
+                &__name {
+                    margin: 0; // Resetting
+                }
+            }
+        }
+
+        &--list {
+            display: flex;
 
             #{$commonItem} {
                 &__icon {
@@ -24,8 +35,44 @@
                 }
 
                 &__name {
-                    margin: 0; // Resetting
                     padding-left: 10px;
+                }
+            }
+        }
+
+        &--breadcrumb {
+            display: inline-flex;
+            margin: 0 0 0 5px;
+            vertical-align: middle;
+
+            // Add a / after each item
+            &:after {
+                content: '/';
+                margin-left: 10px;
+            }
+
+            // Remove any left indent for the first item
+            &:first-child {
+                margin-left: 0;
+            }
+            
+            &:last-child {
+                // Do not add a slash after the last item
+                &:after {
+                    content: '';
+                    margin-left: 0;
+                }
+            }
+            
+            #{$commonItem} {
+                // Do not show the icon
+                &__icon {
+                    display: none;
+                }
+
+                &__name {
+                    padding-left: 5px;
+                    font-size: 1.2em;
                 }
             }
         }
@@ -35,7 +82,6 @@
 
             #{$commonItem} {
                 &__icon {
-                    cursor: pointer;
                     box-shadow: 5px 4px 10px 1px #333;
                 }
 
