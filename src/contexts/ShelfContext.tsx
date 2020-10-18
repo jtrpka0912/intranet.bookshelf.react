@@ -45,10 +45,14 @@ type ShelfContextType = {
     // Status
     activeShelf: ShelfType | null,
     activeDirectory: DirectoryType | null,
+    activeFile: FileType | null,
+    // Other
+    isFileModalOpen: boolean,
     // Actions
     addOneToShelves: (shelf: ShelfType) => void,
     setToActiveShelf: (shelf: ShelfType) => void,
-    setToActiveDirectory: (directory: DirectoryType) => void
+    setToActiveDirectory: (directory: DirectoryType) => void,
+    setToActiveFile: (file: FileType) => void
 };
 
 const defaultState: ShelfContextType = {
@@ -60,10 +64,14 @@ const defaultState: ShelfContextType = {
     // Status
     activeShelf: null,
     activeDirectory: null,
+    activeFile: null,
+    // Other
+    isFileModalOpen: false,
     // Actions
     addOneToShelves: addOneToShelves => console.warn('addOneToShelves is not available (check context provider in heirarchy)'),
     setToActiveShelf: setToActiveShelf => console.warn('setToActiveShelf is not available (check context provider in heirarchy)'),
-    setToActiveDirectory: setToActiveDirectory => console.warn('setToActiveDirectory is not available (check context provider in heirarchy)')
+    setToActiveDirectory: setToActiveDirectory => console.warn('setToActiveDirectory is not available (check context provider in heirarchy)'),
+    setToActiveFile: setToActiveFile => console.warn('setToActiveDirectory is not available (check context provider in heirarchy)')
 };
 
 export const ShelfContext: React.Context<ShelfContextType> = createContext<ShelfContextType>(defaultState);
@@ -99,6 +107,10 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
     const [files, setFiles] = useState(defaultState.files);
     const [activeShelf, setActiveShelf] = useState(defaultState.activeShelf);
     const [activeDirectory, setActiveDirectory] = useState(defaultState.activeDirectory);
+    const [activeFile, setActiveFile] = useState(defaultState.activeFile);
+
+    // Other
+    const [isFileModalOpen, toggleFileModal] = useState(false);
     
     /**
      * @function addOneToShelves
@@ -153,6 +165,20 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             console.error('ShelfContext - setToActiveDirectory()', error);
         }
     }
+
+    /**
+     * @function setToActiveFile
+     * @description Set the file to active for the file modal
+     * @author J.T.
+     * @param { FileType } file 
+     */
+    const setToActiveFile = (file: FileType) => {
+        // Set the active file to be displayed on the modal
+        setActiveFile(file);
+        
+        // Open the file modal
+        toggleFileModal(true);
+    };
 
     /**
      * @async
@@ -292,9 +318,12 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             files,
             activeShelf,
             activeDirectory,
+            activeFile,
+            isFileModalOpen,
             addOneToShelves,
             setToActiveShelf,
-            setToActiveDirectory
+            setToActiveDirectory,
+            setToActiveFile
         }}>
             { props.children }
         </ShelfContext.Provider>
