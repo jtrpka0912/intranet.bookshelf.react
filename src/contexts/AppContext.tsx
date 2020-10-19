@@ -58,9 +58,9 @@ type AppContextType = {
 
 const defaultState: AppContextType = {
     isSideNavOpen: false,
-    breadcrumbView: ListViews.Tile,
+    breadcrumbView: ListViews.Breadcrumb,
     directoryView: ListViews.Tile,
-    fileView: ListViews.Tile,
+    fileView: ListViews.List,
     toggleSideNav: toggleSideNav => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
     switchListView: switchListView => console.warn('switchListView is not available (check context provider in heirarchy)')
 };
@@ -111,12 +111,10 @@ const AppContextProvider = (props: AppContextProps) => {
             const retrieveDirectoryState: ListViews | null = localStorage.getItem(localStorageDirectoryListView) as ListViews;
             const retrieveFileState: ListViews | null = localStorage.getItem(localStorageFileListView) as ListViews;
 
-            // TODO: Set defaults if null inside.
-
             // Assign the list view states to ... state
-            toggleBreadcrumbView(retrieveBreadcrumbState);
-            toggleDirectoryView(retrieveDirectoryState);
-            toggleFileView(retrieveFileState);
+            toggleBreadcrumbView(retrieveBreadcrumbState ? retrieveBreadcrumbState : defaultState.breadcrumbView);
+            toggleDirectoryView(retrieveDirectoryState ? retrieveDirectoryState : defaultState.directoryView);
+            toggleFileView(retrieveFileState ? retrieveFileState : defaultState.fileView);
         };
 
         retrieveListViewStates();
