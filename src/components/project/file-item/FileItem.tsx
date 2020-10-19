@@ -1,5 +1,8 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Contexts
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import FileType from '../../../types/File';
@@ -33,10 +36,12 @@ interface FileItemProps {
  * @return { React.ReactNode }
  */
 const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
+    const { setToActiveFile } = useContext(ShelfContext);
+
     return (
         <Item className={ `shelf-fileitem ${ props.className }` }
             icon={ faBook }    
-            onClick={ () => console.log('Clicked file item') }
+            onClick={ () => setToActiveFile(props.file) }
         >{ props.file.name }</Item>
     )
 };

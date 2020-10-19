@@ -50,7 +50,7 @@ type ShelfContextType = {
     addOneToShelves: (shelf: ShelfType) => void,
     setToActiveShelf: (shelf: ShelfType) => void,
     setToActiveDirectory: (directory: DirectoryType) => void,
-    setToActiveFile: (file: FileType) => void
+    setToActiveFile: (file: FileType | null) => void
 };
 
 const defaultState: ShelfContextType = {
@@ -165,7 +165,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      * @author J.T.
      * @param { FileType } file 
      */
-    const setToActiveFile = (file: FileType) => {
+    const setToActiveFile = (file: FileType | null) => {
         // Set the active file
         setActiveFile(file);
     };

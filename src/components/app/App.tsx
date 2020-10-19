@@ -12,6 +12,7 @@ import ShelfContextProvider from '../../contexts/ShelfContext';
 import Breadcrumbs from '../project/list-section/Breadcrumbs';
 import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
+import FileModal from '../project/file-modal/FileModal';
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                     <Breadcrumbs />
                     <Directories />
                     <Files />
+                    <FileModal />
                 </PageWrapper>
             </ShelfContextProvider>
         </AppContextProvider>

@@ -59,7 +59,6 @@ const Files: React.FunctionComponent = () => {
                 <div className={ viewTypesItemsClass() }>
                     {
                         files.map((file: FileType) => {
-                            console.info('File', file);
                             let listViewClass: string = '';
 
                             if(fileView === ListViews.Tile) {

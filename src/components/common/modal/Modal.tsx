@@ -60,6 +60,12 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
     const [isOpened, toggleModal] = useState(false);
     const [isAnimating, animateModal] = useState(false);
 
+    useEffect(() => {
+        // Switch the modal open or close
+        // TODO: Get this to animate.
+        toggleModal(props.open);
+    }, [props.open]);
+
     /**
      * @function overlayClasses
      * @summary Overlay Element Classes
@@ -167,9 +173,9 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                     { props.children }
                 </div>
 
-                <div className="common-modal__footer">
+                <footer className="common-modal__footer">
                     <Button>Button Here</Button>
-                </div>
+                </footer>
             </div>
         </div>
     )

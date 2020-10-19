@@ -111,6 +111,8 @@ const AppContextProvider = (props: AppContextProps) => {
             const retrieveDirectoryState: ListViews | null = localStorage.getItem(localStorageDirectoryListView) as ListViews;
             const retrieveFileState: ListViews | null = localStorage.getItem(localStorageFileListView) as ListViews;
 
+            // TODO: Set defaults if null inside.
+
             // Assign the list view states to ... state
             toggleBreadcrumbView(retrieveBreadcrumbState);
             toggleDirectoryView(retrieveDirectoryState);

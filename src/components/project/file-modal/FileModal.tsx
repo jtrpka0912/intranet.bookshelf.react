@@ -1,5 +1,8 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Context
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Components
 import Modal, { Size } from '../../common/modal/Modal';
@@ -12,11 +15,28 @@ import Modal, { Size } from '../../common/modal/Modal';
  * @returns { React.ReactNode }
  */
 const FileModal: React.FunctionComponent = () => {
+    const { activeFile, setToActiveFile } = useContext(ShelfContext);
+    let isModalOpen = false;
+
+    if(activeFile) {
+        isModalOpen = true;
+    } else {
+        isModalOpen = false;
+    }
+
+    /**
+     * @function onCloseFileModal
+     * @description Close the file modal by unset the active file.
+     */
+    const onCloseFileModal = () => {
+        setToActiveFile(null);
+    }
+
     return (
-        <Modal open={ false } 
+        <Modal open={ isModalOpen } 
             size={ Size.Large } 
             slide={true} 
-            onClose={ () => console.log('To close') }
+            onClose={ () => onCloseFileModal() }
         >
             Hello World
         </Modal>
