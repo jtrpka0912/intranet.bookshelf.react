@@ -5,9 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
-// Components
-import Button from '../button/Button';
-
 // Styles
 import './Modal.scss';
 
@@ -31,6 +28,7 @@ export enum Size {
  * @description The acceptable props for the Modal component
  * @author J.T.
  * @property { React.ReactNode } children
+ * @property { React.ReactNode } footer
  * @property { boolean } opened
  * @property { string } title
  * @property { boolean } fade
@@ -40,6 +38,7 @@ export enum Size {
  */
 interface ModalProps {
     children: React.ReactNode,
+    footer?: React.ReactNode,
     open: boolean,
     title?: string
     fade?: boolean
@@ -174,7 +173,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                 </div>
 
                 <footer className="common-modal__footer">
-                    <Button>Button Here</Button>
+                    { props.footer ? props.footer : null }
                 </footer>
             </div>
         </div>
