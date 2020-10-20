@@ -10,6 +10,7 @@ import ShelfType from '../../../types/Shelf';
 // Components
 import Button from '../../common/button/Button';
 import TextField from '../../common/textfield/TextField';
+import CheckRadio from '../../common/check-radio/CheckRadio';
 
 // Styles
 import './ShelfForm.scss';
@@ -200,6 +201,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                     checked={ multiFile } 
                     onChange={ () => onChangeMultiFile() } /> Multi-File
             </label>
+
+            <CheckRadio />
 
             <Button type="submit" block={ true } rounded={ true }>
                 { props.buttonLabel ? props.buttonLabel : 'Submit' }
