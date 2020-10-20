@@ -17,16 +17,16 @@ import './ListDisplay.scss';
  * @property { boolean } tile
  * @property { boolean } list
  * @property { boolean } breadcrumb
- * @property { any } onClickTile
- * @property { any } onClickList
- * @property { any } onClickBreadcrumb
+ * @property { function } onClickTile
+ * @property { function } onClickList
+ * @property { function } onClickBreadcrumb
  */
 interface ListDisplayProps {
     tile?: boolean,
     list?: boolean,
     breadcrumb?: boolean,
-    // TODO: onClick: any
-    onClickTile?: any,
+    // FIXME: onClickTile?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined,
+    onClickTile: any,
     onClickList?: any,
     onClickBreadcrumb?: any
 };

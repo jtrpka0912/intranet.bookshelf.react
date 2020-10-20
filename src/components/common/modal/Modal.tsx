@@ -34,7 +34,7 @@ export enum Size {
  * @property { boolean } fade
  * @property { boolean } slide
  * @property { Size } size
- * @property { any } onClose
+ * @property { function } onClose
  */
 interface ModalProps {
     children: React.ReactNode,
@@ -44,7 +44,8 @@ interface ModalProps {
     fade?: boolean
     slide?: boolean
     size?: Size,
-    onClose?: any // TODO: any
+    // FIXME: onClose?: () => void
+    onClose?: any
 }
 
 /**

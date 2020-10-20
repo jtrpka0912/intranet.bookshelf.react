@@ -12,14 +12,14 @@ import './Button.scss';
  * @property { any } type // TODO: type: any
  * @property { boolean } boolean
  * @property { boolean } boolean
- * @property { any } onClick // TODO: type: any
+ * @property { function } onClick
  */
 interface ButtonProps {
     children: React.ReactNode,
     type?: any,
     block?: boolean,
     rounded?: boolean,
-    onClick?: any
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 /**

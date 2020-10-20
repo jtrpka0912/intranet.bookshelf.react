@@ -13,14 +13,14 @@ import './IconButton.scss';
  * @description The acceptable props for the Icon Button component
  * @author J.T.
  * @property { IconButtonProps } icon
- * @property { any } onClick // TODO: type: any
  * @property { string } title
+ * @property { function } onClick
  */
 interface IconButtonProps {
     icon: IconDefinition,
-    onClick: any,
-    title?: string
+    title?: string,
     // TODO: Add different sizes for icon button
+    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 };
 
 /**
