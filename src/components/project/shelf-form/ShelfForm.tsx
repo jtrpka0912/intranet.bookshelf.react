@@ -171,24 +171,20 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
 
             <h3>{ props.title ? props.title : 'Shelf Title' }</h3>
 
-            <label>
-                <input type="text"
-                    placeholder="Name of Shelf *" 
-                    required 
-                    onChange={ (e) => setNameOfShelf(e.target.value) }
-                    value={ nameOfShelf } 
-                />
-            </label>
+            <TextField type="text"
+                placeholder="Name of Shelf *"
+                required
+                value={ nameOfShelf }
+                onChange={ (e) => setNameOfShelf(e.target.value) }
+            />
 
             { /* TODO: Need to figure out how to get a path prompt */ }
-            <label>
-                <input type="text" 
-                    placeholder="Path to Shelf Root *" 
-                    required 
-                    onChange={ (e) => setPathOfShelf(e.target.value) }
-                    value={ pathOfShelf }
-                />
-            </label>
+            <TextField type="text" 
+                placeholder="Path to Shelf Root *"
+                required
+                onChange={ (e) => setPathOfShelf(e.target.value) }
+                value={ pathOfShelf }
+            />
 
             <label title={ isShowDirectoriesReadOnly ? 'If multifile is enabled then show directories must be enabled as well.' : undefined }>
                 <input type="checkbox"
@@ -204,8 +200,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                     checked={ multiFile } 
                     onChange={ () => onChangeMultiFile() } /> Multi-File
             </label>
-
-            <TextField onChange={ () => console.log('HALP!') } />
 
             <Button type="submit" block={ true } rounded={ true }>
                 { props.buttonLabel ? props.buttonLabel : 'Submit' }

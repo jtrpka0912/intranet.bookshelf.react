@@ -40,8 +40,11 @@ const TextField: React.FunctionComponent<TextFieldProps> = (props) => {
         <label className="common-textfield">
             <input className="common-textfield__input" 
                 type={ props.type } 
+                name={ props.name }
+                placeholder={ props.placeholder }
                 required={ props.required }
                 readOnly={ props.readOnly }
+                disabled={ props.disabled }
                 value={ props.value }
                 onChange={ props.onChange }
             />
