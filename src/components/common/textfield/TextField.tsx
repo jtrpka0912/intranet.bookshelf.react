@@ -8,6 +8,7 @@ import './TextField.scss';
  * @interface TextFieldProps
  * @description The acceptable props for the text field component.
  * @author J.T.
+ * @property { string } title
  * @property { string } type
  * @property { string } name
  * @property { string } placeholder
@@ -15,9 +16,11 @@ import './TextField.scss';
  * @property { boolean } readOnly
  * @property { boolean } disabled
  * @property { string } value
+ * @property { function } onChange
  */
 interface TextFieldProps {
-    type?: string,
+    title?: string,
+    type?: string, // TODO: Force only the input type fields (sans submit)
     name?: string,
     placeholder?: string,
     required?: boolean,
@@ -37,7 +40,7 @@ interface TextFieldProps {
  */
 const TextField: React.FunctionComponent<TextFieldProps> = (props) => {
     return (
-        <label className="common-textfield">
+        <label className="common-textfield" title={ props.title }>
             <input className="common-textfield__input" 
                 type={ props.type } 
                 name={ props.name }

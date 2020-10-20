@@ -187,22 +187,20 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 value={ pathOfShelf }
             />
 
-            <label title={ isShowDirectoriesReadOnly ? 'If multifile is enabled then show directories must be enabled as well.' : undefined }>
-                <input type="checkbox"
-                    checked={ showDirectories } 
-                    readOnly={ isShowDirectoriesReadOnly }
-                    disabled={ isShowDirectoriesReadOnly }
-                    onChange={ () => toggleShowDirectories(!showDirectories) }
-                /> Show Directories
-            </label>
+            <CheckRadio type="checkbox" 
+                title={ isShowDirectoriesReadOnly ? 'If multifile is enabled then show directories must be enabled as well.' : undefined }
+                label="Show Directories"
+                checked={ showDirectories } 
+                readOnly={ isShowDirectoriesReadOnly }
+                disabled={ isShowDirectoriesReadOnly }
+                onChange={ () => toggleShowDirectories(!showDirectories) }
+            />
 
-            <label>
-                <input type="checkbox" 
-                    checked={ multiFile } 
-                    onChange={ () => onChangeMultiFile() } /> Multi-File
-            </label>
-
-            <CheckRadio />
+            <CheckRadio type="checkbox" 
+                label="Multi-File"
+                checked={ multiFile } 
+                onChange={ () => onChangeMultiFile() }
+            />
 
             <Button type="submit" block={ true } rounded={ true }>
                 { props.buttonLabel ? props.buttonLabel : 'Submit' }
