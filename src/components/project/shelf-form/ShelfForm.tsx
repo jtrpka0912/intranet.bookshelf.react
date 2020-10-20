@@ -1,14 +1,15 @@
 // React
 import React, { useState, useContext } from 'react';
 
-// Components
-import Button from '../../common/button/Button';
-
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../types/Shelf';
+
+// Components
+import Button from '../../common/button/Button';
+import TextField from '../../common/textfield/TextField';
 
 // Styles
 import './ShelfForm.scss';
@@ -203,6 +204,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                     checked={ multiFile } 
                     onChange={ () => onChangeMultiFile() } /> Multi-File
             </label>
+
+            <TextField onChange={ () => console.log('HALP!') } />
 
             <Button type="submit" block={ true } rounded={ true }>
                 { props.buttonLabel ? props.buttonLabel : 'Submit' }
