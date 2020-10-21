@@ -32,7 +32,7 @@ const PageWrapper: React.FunctionComponent = (props) => {
                 { props.children }
             </div>
 
-            <Button onClick={ () => toggleToastMessage('Hello World') }>Toggle</Button>
+            <Button onClick={ () => toggleToastMessage('Hello World') }>Toggle Toast</Button>
             <PageFooter />
             <Toast />
         </main>
