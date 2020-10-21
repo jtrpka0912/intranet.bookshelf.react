@@ -42,10 +42,10 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
      * @returns { string }
      */
     const printClasses = (props: ButtonProps) => {
-        let classArray = ['btn'];
+        let classArray = ['common-button'];
 
-        if(props.block) classArray.push('btn-block');
-        if(props.rounded) classArray.push('btn-rounded');
+        if(props.block) classArray.push('common-button--block');
+        if(props.rounded) classArray.push('common-button--rounded');
 
         // Return as a string
         return classArray.join(' ');
