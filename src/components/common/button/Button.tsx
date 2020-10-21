@@ -9,14 +9,14 @@ import './Button.scss';
  * @description The acceptable props for the Button component
  * @author J.T.
  * @property { React.ReactNode } children
- * @property { any } type // TODO: type: any
+ * @property { string } 
  * @property { boolean } boolean
  * @property { boolean } boolean
  * @property { function } onClick
  */
 interface ButtonProps {
     children: React.ReactNode,
-    type?: any,
+    type?: 'button' | 'reset' | 'submit',
     block?: boolean,
     rounded?: boolean,
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -31,6 +31,7 @@ interface ButtonProps {
  * @returns { React.ReactNode }
  */
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
+
     /**
      * @function printClasses
      * @summary Print button classes
@@ -52,8 +53,15 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
     }
 
     return (
-        <button onClick={ props.onClick } type={ props.type } className={ printClasses(props) }>{ props.children }</button>
+        <button type={ props.type ? props.type : 'button' }
+            onClick={ props.onClick } 
+            className={ printClasses(props) }
+        >{ props.children }</button>
     )
+};
+
+Button.defaultProps = {
+    type: 'button'
 };
 
 export default Button;
