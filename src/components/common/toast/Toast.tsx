@@ -13,7 +13,11 @@ import './Toast.scss';
  */
 const Toast: React.FunctionComponent = () => {
     return (
-        <div className="common-toast"></div>
+        <div className="common-toast">
+            <div className="common-toast__content">
+                Hello World
+            </div>
+        </div>
     );
 };
 

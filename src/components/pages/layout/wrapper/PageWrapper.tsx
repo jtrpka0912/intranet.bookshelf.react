@@ -5,6 +5,7 @@ import React from 'react';
 import PageHeader from '../header/PageHeader';
 import PageSideNav from '../sidenav/PageSideNav';
 import PageFooter from '../footer/PageFooter';
+import Toast from '../../../common/toast/Toast';
 
 // Styles
 import './PageWrapper.scss';
@@ -26,6 +27,7 @@ const PageWrapper: React.FunctionComponent = (props) => {
                 { props.children }
             </div>
             <PageFooter />
+            <Toast />
         </main>
     );
 };
