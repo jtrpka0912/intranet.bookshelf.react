@@ -13,6 +13,9 @@ import './TextField.scss';
  * @property { string } name
  * @property { string } placeholder
  * @property { boolean } required
+ * @property { number } maxLength
+ * @property { string } min
+ * @property { string } max
  * @property { boolean } readOnly
  * @property { boolean } disabled
  * @property { string } value
@@ -20,10 +23,13 @@ import './TextField.scss';
  */
 interface TextFieldProps {
     title?: string,
-    type?: string, // TODO: Force only the input type fields (sans submit)
+    type?: 'text' | 'number' | 'tel' | 'email' | 'search' | 'url',
     name?: string,
     placeholder?: string,
     required?: boolean,
+    maxLength?: number,
+    min?: string,
+    max?: string,
     readOnly?: boolean,
     disabled?: boolean,
     value?: string,
@@ -46,6 +52,9 @@ const TextField: React.FunctionComponent<TextFieldProps> = (props) => {
                 name={ props.name }
                 placeholder={ props.placeholder }
                 required={ props.required }
+                maxLength={ props.maxLength }
+                min={ props.min }
+                max= { props.max }
                 readOnly={ props.readOnly }
                 disabled={ props.disabled }
                 value={ props.value }

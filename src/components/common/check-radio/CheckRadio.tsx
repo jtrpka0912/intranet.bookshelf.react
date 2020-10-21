@@ -20,7 +20,7 @@ import './CheckRadio.scss';
 interface CheckRadioProps {
     label?: string,
     title?: string,
-    type?: string, // TODO: Force only checkbox or radio values
+    type?: 'checkbox' | 'radio',
     name?: string,
     checked?: boolean,
     readOnly?: boolean,
@@ -50,5 +50,9 @@ const CheckRadio: React.FunctionComponent<CheckRadioProps> = (props) => {
         </label>
     )
 };
+
+CheckRadio.defaultProps = {
+    type: 'checkbox'
+}
 
 export default CheckRadio;
