@@ -43,7 +43,7 @@ interface ModalProps {
     title?: string
     fade?: boolean
     slide?: boolean
-    size?: Size,
+    size?: Size, // TODO: Just use strict string values like button and textfield
     onClose?: () => void
 }
 
