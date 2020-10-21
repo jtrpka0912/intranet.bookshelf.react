@@ -37,6 +37,8 @@ export enum ListSections {
  * @description Definition of the application context type
  * @author J.T.
  * @property { boolean } isSideNavOpen
+ * @property { string } toastMessage
+ * @property { boolean } isToastOpen
  * @property { ListView } breadcrumbView
  * @property { ListView } directoryView
  * @property { ListView } fileView
@@ -48,20 +50,26 @@ export enum ListSections {
 type AppContextType = {
     // State
     isSideNavOpen: boolean,
+    toastMessage: string,
+    isToastOpen: boolean,
     breadcrumbView: ListViews,
     directoryView: ListViews,
     fileView: ListViews
     // Actions
     toggleSideNav: (state: boolean) => void,
-    switchListView: (listSection: ListSections, listView: ListViews) => void
+    toggleToastMessage: (message: string) => void,
+    switchListView: (listSection: ListSections, listView: ListViews) => void,
 };
 
 const defaultState: AppContextType = {
     isSideNavOpen: false,
+    toastMessage: '',
+    isToastOpen: false,
     breadcrumbView: ListViews.Breadcrumb,
     directoryView: ListViews.Tile,
     fileView: ListViews.List,
     toggleSideNav: toggleSideNav => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
+    toggleToastMessage: toggleToastMessage => console.warn('toggleToastMessage is not available (check context provider in heirarchy)'),
     switchListView: switchListView => console.warn('switchListView is not available (check context provider in heirarchy)')
 };
 
@@ -92,12 +100,33 @@ const AppContextProvider = (props: AppContextProps) => {
     const localStorageDirectoryListView: string = 'directoryListView';
     const localStorageFileListView: string = 'fileListView';
 
-    // States
+    // State Components
     // TODO: Need to figure out how to toggle when clicking ANYWHERE outside of side navigation.
     const [isSideNavOpen, toggleSideNav] = useState(defaultState.isSideNavOpen);
+    const [toastMessage, setToastMessage] = useState(defaultState.toastMessage);
+    const [isToastOpen, toggleToast] = useState(defaultState.isToastOpen);
+
+    // State List Sections
     const [breadcrumbView, toggleBreadcrumbView] = useState(defaultState.breadcrumbView);
     const [directoryView, toggleDirectoryView] = useState(defaultState.directoryView);
     const [fileView, toggleFileView] = useState(defaultState.fileView);
+
+    /**
+     * @function toggleToastMessage
+     * @description Set the toast message and then toggle it open
+     * @author J.T.
+     * @param { string } message
+     */
+    const toggleToastMessage = (message: string) => {
+        // Open with a message
+        setToastMessage(message);
+        toggleToast(true);
+
+        // Then close it in 5 seconds.
+        setTimeout(() => {
+            toggleToast(false);
+        }, 5000);
+    };
 
     useEffect(() => {
         /**
@@ -149,11 +178,14 @@ const AppContextProvider = (props: AppContextProps) => {
     return (
         <AppContext.Provider value={{
             isSideNavOpen,
+            toastMessage,
+            isToastOpen,
             breadcrumbView,
             directoryView,
             fileView,
             toggleSideNav,
-            switchListView
+            switchListView,
+            toggleToastMessage,
         }}>
             { props.children }
         </AppContext.Provider>

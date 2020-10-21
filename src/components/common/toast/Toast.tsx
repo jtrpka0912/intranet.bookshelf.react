@@ -1,5 +1,8 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Contexts 
+import { AppContext } from '../../../contexts/AppContext';
 
 // Styles
 import './Toast.scss';
@@ -12,10 +15,12 @@ import './Toast.scss';
  * @returns { React.ReactNode }
  */
 const Toast: React.FunctionComponent = () => {
+    const { toastMessage, isToastOpen } = useContext(AppContext);
+
     return (
-        <div className="common-toast">
+        <div className={ `common-toast ${ isToastOpen ? 'common-toast--opened' : 'common-toast--closed' }` }>
             <div className="common-toast__content">
-                Hello World
+                { toastMessage }
             </div>
         </div>
     );
