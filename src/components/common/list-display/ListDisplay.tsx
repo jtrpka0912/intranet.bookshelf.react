@@ -25,10 +25,9 @@ interface ListDisplayProps {
     tile?: boolean,
     list?: boolean,
     breadcrumb?: boolean,
-    // FIXME: onClickTile?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined,
-    onClickTile: any,
-    onClickList?: any,
-    onClickBreadcrumb?: any
+    onClickTile?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    onClickList?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    onClickBreadcrumb?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 };
 
 /**
@@ -46,21 +45,21 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.tile ? 
                     <IconButton title="Tile View" 
                         icon={ faGripHorizontal } 
-                        onClick={ props.onClickTile } 
+                        onClick={ props.onClickTile ? props.onClickTile : () => null }
                     /> : null 
                 }
 
                 { props.list ? 
                     <IconButton title="List View" 
                         icon={ faList } 
-                        onClick={ props.onClickList } 
+                        onClick={ props.onClickList ? props.onClickList : () => null }
                     /> : null 
                 }
                 
                 { props.breadcrumb ? 
                     <IconButton title="Breadcrumbs View" 
                         icon={ faBreadSlice } 
-                        onClick={ props.onClickBreadcrumb } 
+                        onClick={ props.onClickBreadcrumb ? props.onClickBreadcrumb : () => null }
                     /> : null 
                 }
             </div>

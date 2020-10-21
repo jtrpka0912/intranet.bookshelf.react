@@ -44,8 +44,7 @@ interface ModalProps {
     fade?: boolean
     slide?: boolean
     size?: Size,
-    // FIXME: onClose?: () => void
-    onClose?: any
+    onClose?: () => void
 }
 
 /**
@@ -128,7 +127,8 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      */
     const onClickClosingModal = () => {
         closeAnimation();
-        props.onClose(); // Allow other modal types to do any closing actions
+
+        if(props.onClose) props.onClose(); // Allow other modal types to do any closing actions
     }
 
     /**
