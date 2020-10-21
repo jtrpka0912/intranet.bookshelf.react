@@ -9,7 +9,7 @@ import './Button.scss';
  * @description The acceptable props for the Button component
  * @author J.T.
  * @property { React.ReactNode } children
- * @property { string } 
+ * @property { string } type
  * @property { boolean } boolean
  * @property { boolean } boolean
  * @property { function } onClick
