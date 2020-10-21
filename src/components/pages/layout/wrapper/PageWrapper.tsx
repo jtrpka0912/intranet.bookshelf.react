@@ -19,10 +19,10 @@ import './PageWrapper.scss';
  */
 const PageWrapper: React.FunctionComponent = (props) => {
     return (
-        <main className="shelf-page-wrapper">
+        <main className="shelf-page__wrapper">
             <PageSideNav />
             <PageHeader />
-            <div className="shelf-page-content">
+            <div className="shelf-page__content">
                 { props.children }
             </div>
             <PageFooter />
