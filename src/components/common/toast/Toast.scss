@@ -1,7 +1,6 @@
 .common {
     &-toast {
         position: absolute;
-        top: 18px;
         right: 20px;
         
         width: 300px;
@@ -12,12 +11,16 @@
         box-shadow: 5px 4px 10px 1px rgba(0,0,0,0.5);
         text-align: left;
 
+        transition: 1s ease-in;
+
         &--opened {
-            display: block;
+            top: 18px;
+            opacity: 1;
         }
 
         &--closed {
-            display: none;
+            top: -45px;
+            opacity: 0;
         }
     }
 }

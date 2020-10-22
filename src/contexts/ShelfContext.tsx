@@ -1,10 +1,13 @@
 // React
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 // Types
 import ShelfType from '../types/Shelf';
 import DirectoryType from '../types/Directory';
 import FileType from '../types/File';
+
+// Contexts
+import { AppContext } from '../contexts/AppContext';
 
 /**
  * @type EbookResponse
@@ -92,6 +95,9 @@ type ShelfContextProps = {
  * @returns { React.ReactNode }
  */
 const ShelfContextProvider = (props: ShelfContextProps) => {
+    // Contexts
+    const { toggleToastMessage } = useContext(AppContext);
+
     // Local Storage Keys
     const localStorageActiveShelfName: string = 'activeShelf';
     const localStorageActiveDirectoryName: string = 'activeDirectory';
@@ -154,8 +160,8 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
                 throw Error('No active shelf was set');
             }
         } catch(error) {
-            // TODO: Display a more friendlier error message for toast prompts
             console.error('ShelfContext - setToActiveDirectory()', error);
+            toggleToastMessage(error);
         }
     }
 
@@ -190,7 +196,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             const response: Response = await fetch(api);
 
             if(response.status !== 200 && !response.ok) {
-                throw Error('Unable to get response.');
+                throw Error('Unable to get response to retrieve contents.');
             }
 
             // Retrieve the data
@@ -214,9 +220,9 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
                 setDirectories(directories);
                 setFiles(files);
             }
-        } catch (err) {
-            // TODO: Display a more friendlier error message for toast prompts
-            console.error('ShelfContext - retrieveShelfContents()', err);
+        } catch (error) {
+            console.error('ShelfContext - retrieveShelfContents()', error);
+            toggleToastMessage(error.message);
         }
     };
 
@@ -294,9 +300,9 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
             if(currentShelf) {
                 retrieveShelfContents(currentShelf, currentDirectory);
             }
-        } catch(err) {
-            // TODO: Display a more friendlier error message for toast prompts
-            console.error('AppContext useEffect', err);
+        } catch(error) {
+            console.error('AppContext useEffect', error.message);
+            toggleToastMessage(error.message);
         }
     }, []); // Pass any variables that useEffect should check each time the component gets re-rendered.
 

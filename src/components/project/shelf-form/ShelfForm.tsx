@@ -14,6 +14,7 @@ import CheckRadio from '../../common/check-radio/CheckRadio';
 
 // Styles
 import './ShelfForm.scss';
+import { AppContext } from '../../../contexts/AppContext';
 
 /**
  * @interface ShelfFormProps
@@ -45,6 +46,7 @@ interface ShelfRequestBody {
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
+    const { toggleToastMessage } = useContext(AppContext);
     const { addOneToShelves, setToActiveShelf } = useContext(ShelfContext);
 
     // States
@@ -107,9 +109,9 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 setToActiveShelf(shelf);
             }
             
-        } catch(err) {
-            // TODO: Display a more friendlier error message for toast prompts
-            console.error('onSubmitForm Error: ', e);
+        } catch(error) {
+            console.error('ShelfForm - onSubmitForm(): ', error);
+            toggleToastMessage(error.message);
         }
     }
 

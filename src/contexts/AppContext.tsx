@@ -115,6 +115,7 @@ const AppContextProvider = (props: AppContextProps) => {
      * @function toggleToastMessage
      * @description Set the toast message and then toggle it open
      * @author J.T.
+     * @todo: Should this be self contained in the toast component?
      * @param { string } message
      */
     const toggleToastMessage = (message: string) => {

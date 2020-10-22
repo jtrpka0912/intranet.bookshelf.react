@@ -22,7 +22,7 @@ import './Item.scss';
     children: React.ReactNode,
     className: string,
     icon: IconDefinition,
-    onClick: any // TODO: Figure out what should be onClick
+    onClick: any // TODO: onClick: any
  };
 
  /**
