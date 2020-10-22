@@ -17,6 +17,9 @@ import './ListDisplay.scss';
  * @property { boolean } tile
  * @property { boolean } list
  * @property { boolean } breadcrumb
+ * @property { boolean } isTileActive
+ * @property { boolean } isListActive
+ * @property { boolean } isBreadcrumbActive
  * @property { function } onClickTile
  * @property { function } onClickList
  * @property { function } onClickBreadcrumb
@@ -25,6 +28,9 @@ interface ListDisplayProps {
     tile?: boolean,
     list?: boolean,
     breadcrumb?: boolean,
+    isTileActive?: boolean,
+    isListActive?: boolean,
+    isBreadcrumbActive?: boolean,
     onClickTile?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
     onClickList?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
     onClickBreadcrumb?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -38,13 +44,13 @@ interface ListDisplayProps {
  * @returns { React.ReactNode }
  */
 const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
-    // TODO: Change the color of the icon buttons if they are active
     return (
         <div className="common-listdisplay">
             <div className="common-listdisplay__buttons">
                 { props.tile ? 
                     <IconButton title="Tile View" 
                         icon={ faGripHorizontal } 
+                        active={ props.isTileActive }
                         onClick={ props.onClickTile ? props.onClickTile : () => null }
                     /> : null 
                 }
@@ -52,6 +58,7 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.list ? 
                     <IconButton title="List View" 
                         icon={ faList } 
+                        active={ props.isListActive }
                         onClick={ props.onClickList ? props.onClickList : () => null }
                     /> : null 
                 }
@@ -59,6 +66,7 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.breadcrumb ? 
                     <IconButton title="Breadcrumbs View" 
                         icon={ faBreadSlice } 
+                        active={ props.isBreadcrumbActive }
                         onClick={ props.onClickBreadcrumb ? props.onClickBreadcrumb : () => null }
                     /> : null 
                 }
@@ -66,5 +74,14 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
         </div>
     );
 };
+
+ListDisplay.defaultProps = {
+    tile: false,
+    list: false,
+    breadcrumb: false,
+    isTileActive: false,
+    isListActive: false,
+    isBreadcrumbActive: false
+}
 
 export default ListDisplay;

@@ -8,5 +8,9 @@
         svg {
             font-size: 1em;
         }
+
+        &--active {
+            background-color: #cdcdcd;
+        }
     }
 }

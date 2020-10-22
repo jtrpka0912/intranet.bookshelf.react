@@ -51,6 +51,8 @@ const Files: React.FunctionComponent = () => {
             <div className="shelf-listsections">
                 <div className="shelf-listsections__list-display">
                     <ListDisplay tile list 
+                        isTileActive={ fileView === ListViews.Tile ? true : false }
+                        isListActive={ fileView === ListViews.List ? true : false }
                         onClickTile={ () => switchListView(ListSections.File, ListViews.Tile) } 
                         onClickList={ () => switchListView(ListSections.File, ListViews.List) }
                     />

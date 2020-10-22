@@ -78,6 +78,8 @@ const Breadcrumbs: React.FunctionComponent = () => {
                 
                 <div className="shelf-listsections__list-display">
                     <ListDisplay tile breadcrumb 
+                        isTileActive={ breadcrumbView === ListViews.Tile ? true : false }
+                        isBreadcrumbActive={ breadcrumbView === ListViews.Breadcrumb ? true : false }
                         onClickTile={ () => switchListView(ListSections.Breadcrumb, ListViews.Tile) }
                         onClickBreadcrumb={ () => switchListView(ListSections.Breadcrumb, ListViews.Breadcrumb) }
                     />

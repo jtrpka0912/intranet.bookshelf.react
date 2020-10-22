@@ -14,11 +14,13 @@ import './IconButton.scss';
  * @author J.T.
  * @property { IconButtonProps } icon
  * @property { string } title
+ * @property { boolean } active
  * @property { function } onClick
  */
 interface IconButtonProps {
     icon: IconDefinition,
     title?: string,
+    active?: boolean,
     // TODO: Add different sizes for icon button
     onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 };
@@ -31,14 +33,35 @@ interface IconButtonProps {
  * @returns { React.ReactNode }
  */
 const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
+    
+    /**
+     * @function iconButtonClasses
+     * @description Modifier classes for the icon button wrapper
+     * @author J.T.
+     * @returns { string }
+     */
+    const iconButtonClasses = () => {
+        const baseClass = 'common-iconbutton';
+        let classArray = [baseClass];
+
+        if(props.active) classArray.push(`${baseClass}--active`);
+
+        return classArray.join(' ');
+    }
+
     return (
-        <button className="common-iconbutton" 
+        <button className={ iconButtonClasses() } 
             title={ props.title } 
             onClick={ props.onClick }
         >
-            <FontAwesomeIcon icon={ props.icon ? props.icon : faSmile } />
+            <FontAwesomeIcon icon={ props.icon } />
         </button>
     );
+};
+
+IconButton.defaultProps = {
+    active: false,
+    icon: faSmile
 };
 
 export default IconButton;

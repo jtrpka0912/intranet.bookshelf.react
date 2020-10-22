@@ -51,6 +51,8 @@ const Directories: React.FunctionComponent = () => {
             <div className='shelf-listsections'>
                 <div className="shelf-listsections__list-display">
                     <ListDisplay tile list 
+                        isTileActive={ directoryView === ListViews.Tile ? true : false }
+                        isListActive={ directoryView === ListViews.List ? true : false }
                         onClickTile={ () => switchListView(ListSections.Directory, ListViews.Tile) } 
                         onClickList={ () => switchListView(ListSections.Directory, ListViews.List) }
                     />
