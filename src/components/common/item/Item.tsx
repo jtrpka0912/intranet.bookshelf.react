@@ -16,13 +16,13 @@ import './Item.scss';
  * @property { React.ReactNode } children
  * @property { string } baseClass
  * @property { IconDefinition } icon
- * @property { any } onClick
+ * @property { function } onClick
  */
  interface ItemProps {
     children: React.ReactNode,
     className: string,
     icon: IconDefinition,
-    onClick: any // TODO: onClick: any
+    onClick: () => void
  };
 
  /**
