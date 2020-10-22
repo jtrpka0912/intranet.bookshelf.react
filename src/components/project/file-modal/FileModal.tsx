@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Components
-import Modal, { Size } from '../../common/modal/Modal';
+import Modal from '../../common/modal/Modal';
 import Button from '../../common/button/Button';
 
 // Styles
@@ -61,7 +61,7 @@ const FileModal: React.FunctionComponent = () => {
             <Modal open={ isModalOpen }
                 footer={ renderFooter() }
                 title={ activeFile.name }
-                size={ Size.Large } 
+                size="large"
                 slide={true} 
                 onClose={ () => onCloseFileModal() }
             >

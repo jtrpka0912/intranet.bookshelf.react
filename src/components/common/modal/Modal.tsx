@@ -9,21 +9,6 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import './Modal.scss';
 
 /**
- * @exports
- * @enum Size
- * @description: The defined sizes for the modal;
- * @author J.T.
- * @property { string } Small
- * @property { string } Medium
- * @property { string } Large
- */
-export enum Size {
-    Small = 'small',
-    Medium = 'medium',
-    Large = 'large'
-};
-
-/**
  * @interface ModalProps
  * @description The acceptable props for the Modal component
  * @author J.T.
@@ -33,7 +18,7 @@ export enum Size {
  * @property { string } title
  * @property { boolean } fade
  * @property { boolean } slide
- * @property { Size } size
+ * @property { string } size
  * @property { function } onClose
  */
 interface ModalProps {
@@ -43,7 +28,7 @@ interface ModalProps {
     title?: string
     fade?: boolean
     slide?: boolean
-    size?: Size, // TODO: Just use strict string values like button and textfield
+    size?: 'small' | 'medium' | 'large',
     onClose?: () => void
 }
 
@@ -110,7 +95,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
 
         // If no size defined then assign it medium
         if(!props.size) {
-            classArray.push(`${baseSelector}--${Size.Medium}`);
+            classArray.push(`${baseSelector}--medium`);
         } else {
             classArray.push(`${baseSelector}--${props.size}`);
         }
