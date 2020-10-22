@@ -116,6 +116,7 @@
             $commonItem: &;
 
             &--tile {
+                width: 100%;
                 max-width: $width-constraint;
 
                 #{$commonItem} {
