@@ -41,13 +41,13 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isOpened, toggleModal] = useState(false);
+    const [isModalOpened, toggleModal] = useState(false);
     const [isAnimating, animateModal] = useState(false);
 
     useEffect(() => {
         // Switch the modal open or close
         // TODO: Get this to animate.
-        toggleModal(props.open);
+         toggleModal(props.open);
     }, [props.open]);
 
     /**
@@ -64,11 +64,11 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
 
         // Is the modal animating (going to open or close)
         if(isAnimating) {
-            classArray.push(isOpened ? `${baseSelector}--is-closing` : `${baseSelector}--is-opening`);
+            classArray.push(isModalOpened ? `${baseSelector}--is-closing` : `${baseSelector}--is-opening`);
         }
 
         // Is the modal opened or closed
-        classArray.push(isOpened ? `${baseSelector}--opened` : `${baseSelector}--closed`);
+        classArray.push(isModalOpened ? `${baseSelector}--opened` : `${baseSelector}--closed`);
 
         // Need to check if fade and slide are not disabled
         const fade = props.fade;
@@ -111,6 +111,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @author J.T.
      */
     const onClickClosingModal = () => {
+        console.log('Closing the modal');
         closeAnimation();
 
         if(props.onClose) props.onClose(); // Allow other modal types to do any closing actions
@@ -122,15 +123,17 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @author J.T.
      */
     const closeAnimation = () => {
+        console.log('Animating');
         const animationTime: number = 900; // Little less than one second
 
         // Lets close or open the modal with two steps
         animateModal(true); // Mark the animation as started
         
         // Check if the modal is open
-        if(isOpened) {
+        if(isModalOpened) {
             // Wait for animation time to end then change modal status
             setTimeout(() => {
+                console.log('Done animating');
                 animateModal(false); // No longer animating
                 toggleModal(false); // Modal is finally closed
             }, animationTime);

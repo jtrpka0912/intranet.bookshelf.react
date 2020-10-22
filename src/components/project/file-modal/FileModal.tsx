@@ -1,5 +1,5 @@
 // React
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 // Context
 import { ShelfContext } from '../../../contexts/ShelfContext';
@@ -24,14 +24,15 @@ const FileModal: React.FunctionComponent = () => {
 
     // State
     const [didRead, toggleDidRead] = useState(activeFile?.didRead);
+    const [isFileModalOpen, toggleFileModal] = useState(false);
     
-    // If there is an active file; open the modal.
-    let isModalOpen = false;
-    if(activeFile) {
-        isModalOpen = true;
-    } else {
-        isModalOpen = false;
-    }
+    useEffect(() => {
+        if(activeFile) {
+            toggleFileModal(true);
+        } else {
+            toggleFileModal(false);
+        }
+    }, [activeFile]);
 
     /**
      * @function onCloseFileModal
@@ -58,7 +59,7 @@ const FileModal: React.FunctionComponent = () => {
 
     if(activeFile) {
         return (
-            <Modal open={ isModalOpen }
+            <Modal open={ isFileModalOpen }
                 footer={ renderFooter() }
                 title={ activeFile.name }
                 size="large"
@@ -67,6 +68,7 @@ const FileModal: React.FunctionComponent = () => {
             >
                 <div className="shelf-filemodal__content">
                     <div className="shelf-filemodal__cover">
+                        { /* TODO: Make a responsive media component (images, videos, iframes, etc...) */ }
                         <img src="https://via.placeholder.com/595x842" alt="Placeholder" title={ activeFile.name } />
                     </div>
 
