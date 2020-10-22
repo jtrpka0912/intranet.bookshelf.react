@@ -15,13 +15,14 @@ import './IconButton.scss';
  * @property { IconButtonProps } icon
  * @property { string } title
  * @property { boolean } active
+ * @property { string } size
  * @property { function } onClick
  */
 interface IconButtonProps {
     icon: IconDefinition,
     title?: string,
     active?: boolean,
-    // TODO: Add different sizes for icon button
+    size?: 'small' | 'medium' | 'large',
     onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 };
 
@@ -44,6 +45,7 @@ const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
         const baseClass = 'common-iconbutton';
         let classArray = [baseClass];
 
+        classArray.push(`${baseClass}--${props.size}`);
         if(props.active) classArray.push(`${baseClass}--active`);
 
         return classArray.join(' ');
@@ -60,8 +62,9 @@ const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
 };
 
 IconButton.defaultProps = {
+    icon: faSmile,
     active: false,
-    icon: faSmile
+    size: 'medium'
 };
 
 export default IconButton;

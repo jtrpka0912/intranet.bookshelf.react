@@ -5,8 +5,22 @@
         background-color: #fff;
         border: 1px solid #333;
 
-        svg {
-            font-size: 1em;
+        &--small {
+            svg {
+                font-size: 1em;
+            }
+        }
+
+        &--medium {
+            svg {
+                font-size: 2em;
+            }
+        }
+
+        &--large {
+            svg {
+                font-size: 3em;
+            }
         }
 
         &--active {
