@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .common {
     &-item {
         $commonItem: &;
@@ -86,8 +88,7 @@
                     align-items: center;
 
                     width: 100%;
-                    // TODO: Make a variable for a consistent shadow effect
-                    box-shadow: 5px 4px 10px 1px rgba(0,0,0,0.5);
+                    box-shadow: $boxShadows;
                 }
 
                 &__name {
@@ -136,29 +137,27 @@
     }
 }
 
-// TODO: Refer to the index.scss to utilize the media query mixins.
-
 // Phones
-@media (max-width: 480px) {
+@include phoneDevice() {
     @include sizing-tiles(9px 10px, 76px, 68px, 1.0em);
 }
 
 // Tablets
-@media (min-width: 481px) and (max-width: 768px) {
+@include tabletDevice() {
     @include sizing-tiles(18px 20px, 96px, 86px, 1.5em);
 }
 
 // Laptops
-@media (min-width: 769px) and (max-width: 1024px) {
+@include laptopDevice() {
     @include sizing-tiles(27px 30px, 116px, 104px, 2.0em);
 }
 
 // Desktops
-@media (min-width: 1025px) and (max-width: 1200px) {
+@include desktopDevice() {
     @include sizing-tiles(36px 40px, 136px, 122px, 2.5em);
 }
 
 // TVs
-@media (min-width: 1201px) {
+@include tvDevice() {
     @include sizing-tiles(45px 50px, 156px, 140px, 3.0em);
 }

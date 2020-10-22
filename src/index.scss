@@ -2,6 +2,10 @@
 
 // TODO: This may all need to be moved to a single SCSS file to get use working. Need to figure out how to do that with a React project.
 
+// Style Variables
+$boxShadows: 5px 4px 10px 1px rgba(0,0,0,0.5);
+
+// Media Query Sizes
 $phoneWidth: 480px;
 $tabletWidth: 768px;
 $laptopWidth: 1024px;

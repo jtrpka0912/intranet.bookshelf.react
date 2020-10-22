@@ -1,3 +1,5 @@
+@import '../../../../index.scss';
+
 .shelf {
     &-page {
         &-sidebar {
@@ -18,8 +20,7 @@
             @media(min-width: 576px) {
                 width: 300px;
                 border-right: 1px solid #333;
-                // TODO: Make a variable for a consistent shadow effect
-                box-shadow: 5px 4px 10px 1px rgba(0,0,0,0.5);
+                box-shadow: $boxShadows;
             }
 
             // Let it take up the whole screen

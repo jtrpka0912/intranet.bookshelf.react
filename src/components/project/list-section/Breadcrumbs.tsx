@@ -62,8 +62,6 @@ const Breadcrumbs: React.FunctionComponent = () => {
                 
             } else if(breadcrumbView === ListViews.Breadcrumb) {
                 listViewClass = 'common-item--breadcrumb';
-                // TODO: Might have to do something different for breadcrumbs
-                // return <div>{ activeShelf.name }</div>
             }
 
             return <ShelfItem className={ listViewClass } shelf={ activeShelf } />

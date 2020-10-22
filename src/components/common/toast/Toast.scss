@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .common {
     &-toast {
         position: absolute;
@@ -7,8 +9,7 @@
         padding: 9px 10px;
         background: #fefefe;
         border: 2px solid #333;
-        // TODO: Make a variable for a consistent shadow effect
-        box-shadow: 5px 4px 10px 1px rgba(0,0,0,0.5);
+        box-shadow: $boxShadows;
         text-align: left;
 
         transition: 1s ease-in;
