@@ -14,6 +14,9 @@ import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
 import FileModal from '../project/file-modal/FileModal';
 
+// temp
+import Media from '../common/media/Media';
+
 const App = () => {
     return (
         <AppContextProvider>

@@ -49,8 +49,19 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
     };
 
     const renderInlineFrame = () => {
+        const styles = {
+            width: props.width,
+            height: props.height
+        };
+
+        // TODO: Inline styles not showing let alone working.
+
         return (
-            <div className="common-media common-media--iframe"></div>
+            <div className="common-media common-media--iframe" style={ styles }>
+                <div className="common-media__container">
+                    <iframe src={ props.src } title={ props.title } width={ props.width } height={ props.height } />
+                </div>
+            </div>
         );
     };
 
@@ -75,9 +86,7 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
 Media.defaultProps = {
     type: 'image',
     src: DefaultPlaceHolder,
-    alt: 'Placeholder',
-    width: '150',
-    height: '150'
+    alt: 'Placeholder'
 };
 
 export default Media;
