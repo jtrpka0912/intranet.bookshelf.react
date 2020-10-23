@@ -41,6 +41,8 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
             <figure className="common-media common-media--image">
                 <img src={ props.src } alt={ props.alt } width={ props.width } height={ props.height } />
 
+                <hr />
+
                 { props.title ? (<figcaption>{ props.title }</figcaption>) : null }
             </figure>
         );
