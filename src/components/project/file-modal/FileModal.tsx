@@ -7,6 +7,7 @@ import { ShelfContext } from '../../../contexts/ShelfContext';
 // Components
 import Modal from '../../common/modal/Modal';
 import Button from '../../common/button/Button';
+import Media from '../../common/media/Media';
 
 // Styles
 import './FileModal.scss';
@@ -70,6 +71,7 @@ const FileModal: React.FunctionComponent = () => {
                     <div className="shelf-filemodal__cover">
                         { /* TODO: Make a responsive media component (images, videos, iframes, etc...) */ }
                         <img src="https://via.placeholder.com/595x842" alt="Placeholder" title={ activeFile.name } />
+                        <Media />
                     </div>
 
                     <div className="shelf-filemodal__details">
