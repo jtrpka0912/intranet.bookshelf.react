@@ -11,6 +11,7 @@ import Media from '../../common/media/Media';
 
 // Styles
 import './FileModal.scss';
+import { isPropertySignature } from 'typescript';
 
 /**
  * @function FileModal
@@ -69,9 +70,7 @@ const FileModal: React.FunctionComponent = () => {
             >
                 <div className="shelf-filemodal__content">
                     <div className="shelf-filemodal__cover">
-                        { /* TODO: Make a responsive media component (images, videos, iframes, etc...) */ }
-                        <img src="https://via.placeholder.com/595x842" alt="Placeholder" title={ activeFile.name } />
-                        <Media />
+                        <Media src="https://via.placeholder.com/595x842" alt="Placeholder" title={ activeFile.name } />
                     </div>
 
                     <div className="shelf-filemodal__details">
