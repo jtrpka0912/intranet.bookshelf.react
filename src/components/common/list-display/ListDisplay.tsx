@@ -7,9 +7,6 @@ import IconButton from '../../common/icon-button/IconButton';
 // Font Awesome
 import { faGripHorizontal, faList, faBreadSlice } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './ListDisplay.scss';
-
 /**
  * @interface ListDisplayProps
  * @description The acceptable props for the list display component

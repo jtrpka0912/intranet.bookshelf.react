@@ -13,9 +13,6 @@ import FolderItem from '../folder-item/FolderItem';
 import ShelfItem from '../shelf-item/ShelfItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
-// Styles
-import './ListSection.scss';
-
 /**
  * @function Breadcrumbs
  * @summary Breadcrumb Component

@@ -2,6 +2,7 @@
 import React, { useState, useContext } from 'react';
 
 // Context
+import { AppContext } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
@@ -11,10 +12,6 @@ import ShelfType from '../../../types/Shelf';
 import Button from '../../common/button/Button';
 import TextField from '../../common/textfield/TextField';
 import CheckRadio from '../../common/check-radio/CheckRadio';
-
-// Styles
-import './ShelfForm.scss';
-import { AppContext } from '../../../contexts/AppContext';
 
 /**
  * @interface ShelfFormProps

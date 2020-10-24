@@ -13,9 +13,6 @@ import Item from '../../common/item/Item';
 // Font Awesome
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './FileItem.scss';
-
 /**
  * @interface FileItemProps
  * @description The acceptable props for the File Item component

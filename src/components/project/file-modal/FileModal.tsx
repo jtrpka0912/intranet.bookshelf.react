@@ -9,10 +9,6 @@ import Modal from '../../common/modal/Modal';
 import Button from '../../common/button/Button';
 import Media from '../../common/media/Media';
 
-// Styles
-import './FileModal.scss';
-import { isPropertySignature } from 'typescript';
-
 /**
  * @function FileModal
  * @summary File Modal Component

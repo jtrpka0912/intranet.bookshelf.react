@@ -1,9 +1,6 @@
 // React
 import React from 'react';
 
-// Styles
-import './PageFooter.scss';
-
 /**
  * @function PageFooter
  * @summary Page Footer Layout

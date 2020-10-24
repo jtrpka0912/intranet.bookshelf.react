@@ -8,9 +8,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 // Context
 import { AppContext } from '../../../../contexts/AppContext';
 
-// Styles
-import './PageHeader.scss';
-
 /**
  * @function PageHeader
  * @summary Page Header Layout

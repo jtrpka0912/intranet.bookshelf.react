@@ -12,9 +12,6 @@ import DirectoryType from '../../../types/Directory';
 import FolderItem from '../folder-item/FolderItem';
 import ListDisplay from '../../common/list-display/ListDisplay';
 
-// Styles
-import '../list-section/ListSection.scss';
-
 /**
  * @function Directories
  * @summary Directories Component

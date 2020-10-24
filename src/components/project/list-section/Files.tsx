@@ -12,9 +12,6 @@ import FileType from '../../../types/File';
 import ListDisplay from '../../common/list-display/ListDisplay';
 import FileItem from '../file-item/FileItem';
 
-// Styles
-import './ListSection.scss';
-
 /**
  * @function Files
  * @summary Files Component

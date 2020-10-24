@@ -5,9 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './Modal.scss';
-
 /**
  * @interface ModalProps
  * @description The acceptable props for the Modal component

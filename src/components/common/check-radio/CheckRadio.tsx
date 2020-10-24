@@ -1,9 +1,6 @@
 // React
 import React from 'react';
 
-// Styles
-import './CheckRadio.scss';
-
 /**
  * @interface CheckRadioProps
  * @description The acceptable props for the checkbox and radio button component

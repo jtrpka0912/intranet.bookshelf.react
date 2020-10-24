@@ -14,9 +14,6 @@ import ShelfType from '../../../types/Shelf';
 // TODO: Not a fan with this icon; lets pick another to represent a shelf.
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './ShelfItem.scss';
-
 /**
  * @interface ShelfItemProps
  * @description The acceptable props for the ShelfTile component

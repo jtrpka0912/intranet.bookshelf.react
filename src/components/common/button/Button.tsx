@@ -1,9 +1,6 @@
 // React
 import React from 'react';
 
-// Style
-import './Button.scss';
-
 /**
  * @interface ButtonProps
  * @description The acceptable props for the Button component

@@ -7,9 +7,6 @@ import PageSideNav from '../sidenav/PageSideNav';
 import PageFooter from '../footer/PageFooter';
 import Toast from '../../../common/toast/Toast';
 
-// Styles
-import './PageWrapper.scss';
-
 /**
  * @function PageWrapper
  * @summary Page Layout Wrapper

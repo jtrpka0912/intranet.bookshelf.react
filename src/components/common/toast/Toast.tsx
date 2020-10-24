@@ -4,9 +4,6 @@ import React, { useContext } from 'react';
 // Contexts 
 import { AppContext } from '../../../contexts/AppContext';
 
-// Styles
-import './Toast.scss';
-
 /**
  * @function Toast
  * @summary Toast Component

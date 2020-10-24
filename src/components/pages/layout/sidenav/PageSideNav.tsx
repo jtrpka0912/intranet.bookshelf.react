@@ -5,9 +5,6 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose, faClone, faFolder, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './PageSideNav.scss';
-
 // Components
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 

@@ -13,9 +13,6 @@ import DirectoryType from '../../../types/Directory';
 // Font Awesome
 import { faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
-// Styles
-import './FolderItem.scss';
-
 /**
  * @interface FolderItemProps
  * @description The acceptable props for the Folder Item component

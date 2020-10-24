@@ -1,9 +1,6 @@
 // React
 import React from 'react';
 
-// Styles
-import './Media.scss';
-
 // Assets
 import DefaultPlaceHolder from './media-placeholder.png';
 

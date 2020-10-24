@@ -1,9 +1,6 @@
 // React
 import React from 'react';
 
-// Styles
-import './TextField.scss';
-
 /**
  * @interface TextFieldProps
  * @description The acceptable props for the text field component.
