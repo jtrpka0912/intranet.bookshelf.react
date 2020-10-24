@@ -2,8 +2,8 @@
 import React, { useContext } from 'react';
 
 // Contexts
-import { AppContext, ListSections, ListViews } from '../../../contexts/AppContext';
-import { ShelfContext } from '../../../contexts/ShelfContext';
+import { AppContext, ListSections, ListViews } from '../../contexts/AppContext';
+import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Types
 import FileType from '../../../types/File';

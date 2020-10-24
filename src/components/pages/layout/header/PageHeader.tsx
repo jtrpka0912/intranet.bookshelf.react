@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 // Context
-import { AppContext } from '../../../../contexts/AppContext';
+import { AppContext } from '../../../contexts/AppContext';
 
 /**
  * @function PageHeader

@@ -9,8 +9,8 @@ import { faWindowClose, faClone, faFolder, faEdit } from '@fortawesome/free-soli
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
-import { AppContext } from '../../../../contexts/AppContext';
-import { ShelfContext } from '../../../../contexts/ShelfContext';
+import { AppContext } from '../../../contexts/AppContext';
+import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../../types/Shelf';

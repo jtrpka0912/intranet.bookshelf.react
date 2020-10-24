@@ -2,12 +2,12 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
 // Types
-import ShelfType from '../types/Shelf';
-import DirectoryType from '../types/Directory';
-import FileType from '../types/File';
+import ShelfType from '../../types/Shelf';
+import DirectoryType from '../../types/Directory';
+import FileType from '../../types/File';
 
 // Contexts
-import { AppContext } from '../contexts/AppContext';
+import { AppContext } from './AppContext';
 
 /**
  * @type EbookResponse

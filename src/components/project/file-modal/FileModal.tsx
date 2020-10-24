@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 // Context
-import { ShelfContext } from '../../../contexts/ShelfContext';
+import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Components
 import Modal from '../../common/modal/Modal';

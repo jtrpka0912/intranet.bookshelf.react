@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Contexts
-import { ShelfContext } from '../../../contexts/ShelfContext';
+import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Types
 import FileType from '../../../types/File';

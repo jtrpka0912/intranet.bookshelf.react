@@ -2,8 +2,8 @@
 import React, { useState, useContext } from 'react';
 
 // Context
-import { AppContext } from '../../../contexts/AppContext';
-import { ShelfContext } from '../../../contexts/ShelfContext';
+import { AppContext } from '../../contexts/AppContext';
+import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../types/Shelf';

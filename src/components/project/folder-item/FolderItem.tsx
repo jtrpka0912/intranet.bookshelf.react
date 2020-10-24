@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import Item from '../../common/item/Item';
 
 // Context
-import { ShelfContext } from '../../../contexts/ShelfContext';
+import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Types
 import DirectoryType from '../../../types/Directory';

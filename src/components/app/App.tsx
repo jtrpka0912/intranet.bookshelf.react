@@ -5,8 +5,8 @@ import React from 'react';
 import PageWrapper from '../pages/layout/wrapper/PageWrapper';
 
 // Contexts
-import AppContextProvider from '../../contexts/AppContext';
-import ShelfContextProvider from '../../contexts/ShelfContext';
+import AppContextProvider from '../contexts/AppContext';
+import ShelfContextProvider from '../contexts/ShelfContext';
 
 // Components
 import Breadcrumbs from '../project/list-section/Breadcrumbs';

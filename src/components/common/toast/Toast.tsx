@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 
 // Contexts 
-import { AppContext } from '../../../contexts/AppContext';
+import { AppContext } from '../../contexts/AppContext';
 
 /**
  * @function Toast
