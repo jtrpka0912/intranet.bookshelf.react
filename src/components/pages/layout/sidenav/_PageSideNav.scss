@@ -1,8 +1,7 @@
-@import '../../../../index.scss';
-
 .shelf {
-    &-page {
-        &-sidebar {
+    &-layout {
+        &__sidebar {
+            $shelfLayoutSidebar: &;
             position: fixed;
             z-index: 10;
 
@@ -17,27 +16,27 @@
             transition: 0.5s ease-out;
 
             // Only take up some width;
-            @media(min-width: 576px) {
+            @media(min-width: $phoneWidth) {
                 width: 300px;
                 border-right: 1px solid #333;
                 box-shadow: $boxShadows;
             }
 
             // Let it take up the whole screen
-            @media(max-width: 576px) {
+            @media(max-width: $phoneWidth) {
                 width: 100vw;
             }
 
-            &.opened {
+            &#{$shelfLayoutSidebar}--opened {
                 left: 0; top: 0;
             }
 
-            &.closed {
-                @media(min-width: 576px) {
+            &#{$shelfLayoutSidebar}--closed {
+                @media(min-width: $phoneWidth) {
                     left: -300px;
                 }
     
-                @media(max-width: 576px) {
+                @media(max-width: $phoneWidth) {
                     left: -100vw;
                 }
             }
@@ -49,7 +48,7 @@
                 border-bottom: 1px solid #333;
             }
 
-            &-closebutton {
+            &__closebutton {
                 cursor: pointer;
                 position: absolute;
                 top: 10px;
@@ -58,43 +57,44 @@
             }
         }
     }
-}
 
-// NOTE: This might be in a separate component. Not sure...
-// NOTE: If separate component, going to need separate styles for list and grid
-.shelves {
-    &-item {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        margin-bottom: 9px;
+    // NOTE: Could be made as separate component
+    &-shelves {
+        &__item {
+            $shelfShelvesItem: &;
 
-        &.active {
-            .shelves-item {
-                &-name {
-                    font-weight: 700;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            margin-bottom: 9px;
+
+            &--active {
+                #{$shelfShelvesItem} {
+                    &__name {
+                        font-weight: 700;
+                    }
                 }
             }
-        }
 
-        &-name {
-            flex: 3;
-            cursor: pointer;
-        }
-
-        &-icons {
-            flex: 1;
-            display: inline-flex;
-            flex-flow: row nowrap;
-            justify-content: flex-end;
-            font-size: 0.9rem;
-
-            span {
-                padding-left: 5px;
+            &__name {
+                flex: 3;
+                cursor: pointer;
             }
 
-            &-info {
-                cursor: pointer;
+            &__icons {
+                flex: 1;
+                display: inline-flex;
+                flex-flow: row nowrap;
+                justify-content: flex-end;
+                font-size: 0.9rem;
+
+                span {
+                    padding-left: 5px;
+                }
+
+                &--info {
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -43,35 +43,34 @@ const PageSideNav: React.FunctionComponent = () => {
     };
     
     return (
-        <aside className={ `shelf-page-sidebar ${ isSideNavOpen ? 'opened' : 'closed' }`}>
-            <section className="shelf-page-sidebar-shelves">
-                <FontAwesomeIcon className="shelf-page-sidebar-closebutton" 
+        <aside className={ `shelf-layout__sidebar ${ isSideNavOpen ? 'shelf-layout__sidebar--opened' : 'shelf-layout__sidebar--closed' }`}>
+            <section className="shelf-layout__sidebar__shelves">
+                <FontAwesomeIcon className="shelf-layout__sidebar__closebutton" 
                     icon={ faWindowClose } 
                     onClick={ () => toggleSideNav(!isSideNavOpen) }
                 />
                 <h3>Shelves</h3>
 
-                <ul className="shelves-listing no-bullets">
+                <ul className="shelf-shelves no-bullets">
                     { shelves.length === 0 ? <li>Currently no shelves available</li> : null }
                     { shelves.map((item) => {
-                        // NOTE: This might be in a separate component. Not sure...
                         return (
-                            <li key={item._id} className={`shelves-item ${ activeShelf?._id === item._id ? 'active' : '' }`}>
-                                <div className="shelves-item-name" onClick={ () => onClickShelfItem(item) }>
+                            <li key={item._id} className={`shelf-shelves__item ${ activeShelf?._id === item._id ? 'shelf-shelves__item--active' : '' }`}>
+                                <div className="shelf-shelves__item__name" onClick={ () => onClickShelfItem(item) }>
                                     {item.name}
                                 </div>
                                 
-                                <div className="shelves-item-icons">
+                                <div className="shelf-shelves__item__icons">
                                     { item.multiFile ? <span title="Multi-File"
-                                    className="shelves-item-icons-multifile">
+                                    className="shelf-shelves__item__icons--multifile">
                                         <FontAwesomeIcon icon={ faClone } />
                                     </span> : null }
                                     
-                                    { item.showDirectories ? <span title="Shows Directories" className="shelves-item-icons-showdirectories">
+                                    { item.showDirectories ? <span title="Shows Directories" className="shelf-shelves__item__icons--showdirectories">
                                         <FontAwesomeIcon icon={ faFolder } />
                                     </span> : null }
                                     
-                                    <span className="shelves-item-icons-info" title={ `Edit ${item.name}` }>
+                                    <span className="shelf-shelves__item__icons--info" title={ `Edit ${item.name}` }>
                                         <FontAwesomeIcon icon={ faEdit } />
                                     </span>
                                 </div>

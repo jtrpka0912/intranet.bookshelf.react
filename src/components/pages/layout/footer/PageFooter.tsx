@@ -10,7 +10,7 @@ import React from 'react';
  */
 const PageFooter: React.FunctionComponent = () => {
     return (
-        <footer className="shelf-page-footer">
+        <footer className="shelf-layout__footer">
             <p><strong>SHELF</strong> was created by J. Trpka</p>
         </footer>
     );

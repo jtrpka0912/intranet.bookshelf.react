@@ -19,16 +19,16 @@ const PageHeader: React.FunctionComponent = () => {
     // Context
     const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
     return (
-        <header className="shelf-page-header">
-            <div className="shelf-page-header-sidebutton">
+        <header className="shelf-layout__header">
+            <div className="shelf-layout__header__sidebutton">
                 <FontAwesomeIcon onClick={ () => toggleSideNav(!isSideNavOpen) } icon={ faBars } />
             </div>
 
-            <div className="shelf-page-header-title">
+            <div className="shelf-layout__header__title">
                 <h1>SHELF</h1>
             </div>
 
-            <nav className="shelf-page-header-links">
+            <nav className="shelf-layout__header__links">
                 <ul className="no-bullets">
                     <li>Dark Mode</li>
                     <li>Login</li>

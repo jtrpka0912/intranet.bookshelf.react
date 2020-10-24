@@ -1,26 +1,27 @@
 .shelf {
-    &-page {
-        &-header {
+    &-layout {
+        &__header {
             display: inline-grid;
             grid-template-columns: [header-button]auto [header-title]1fr [header-links]auto;
             grid-column-gap: 10px;
             align-items: center;
             padding: 18px 20px;
             background-color: pink;
-        
-            &-title {
+
+            &__title {
                 padding-left: 10px;
+
                 h1 {
                     margin: 0;
                 }
             }
 
-            &-sidebutton {
+            &__sidebutton {
                 cursor: pointer;
-                font-size: 2rem;
+                font-size: 2em;
             }
-        
-            &-links {
+
+            &__links {
                 ul {
                     display: inline-block;
         

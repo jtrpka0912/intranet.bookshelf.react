@@ -17,10 +17,10 @@ import Toast from '../../../common/toast/Toast';
  */
 const PageWrapper: React.FunctionComponent = (props) => {
     return (
-        <main className="shelf-page__wrapper">
+        <main className="shelf-layout__wrapper">
             <PageSideNav />
             <PageHeader />
-            <div className="shelf-page__content">
+            <div className="shelf-layout__content">
                 { props.children }
             </div>
             <PageFooter />
