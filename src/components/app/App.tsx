@@ -14,11 +14,15 @@ import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
 import FileModal from '../project/file-modal/FileModal';
 
+// Temp
+import Media from '../common/media/Media';
+
 const App = () => {
     return (
         <AppContextProvider>
             <ShelfContextProvider>
                 <PageWrapper>
+                    <Media type="iframe" width="300" src="https://www.youtube.com/embed/PqxQ9EOrehI" />
                     <Breadcrumbs />
                     <Directories />
                     <Files />

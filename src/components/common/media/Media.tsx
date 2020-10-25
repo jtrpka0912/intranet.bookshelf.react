@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 // Assets
 import DefaultPlaceHolder from './media-placeholder.png';
@@ -46,9 +46,9 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
     };
 
     const renderInlineFrame = () => {
-        const styles = {
-            width: props.width,
-            height: props.height
+        const styles: CSSProperties = {
+            width: props.width + 'px' as string,
+            height: props.height + 'px' as string
         };
 
         // FIXME: Inline styles not showing let alone working.
