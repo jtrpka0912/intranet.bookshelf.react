@@ -51,8 +51,6 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
             height: props.height + 'px' as string
         };
 
-        // FIXME: Inline styles not showing let alone working.
-
         return (
             <div className="common-media common-media--iframe" style={ styles }>
                 <div className="common-media__container">
@@ -63,9 +61,8 @@ const Media: React.FunctionComponent<MediaProps> = (props) => {
     };
 
     const renderVideo = () => {
-        // FIXME: Video not showing at all.
         return (
-            <video className="common-media common-media--video">
+            <video className="common-media common-media--video" controls>
                 <source src={ props.src } />
             </video>
         );
