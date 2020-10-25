@@ -48,10 +48,9 @@ const FileModal: React.FunctionComponent = () => {
      */
     const renderFooter = () => {
         return (
-            <>
+            <React.Fragment>
                 <Button>Download</Button>
-                <Button>Read</Button>
-            </>
+            </React.Fragment>
         )
     }
 
@@ -66,7 +65,7 @@ const FileModal: React.FunctionComponent = () => {
             >
                 <div className="shelf-filemodal__content">
                     <div className="shelf-filemodal__cover">
-                        <Media src="https://via.placeholder.com/595x842" alt="Placeholder" title={ activeFile.name } />
+                        <Media src="https://via.placeholder.com/595x842" width="300" alt="Placeholder" title={ activeFile.name } />
                     </div>
 
                     <div className="shelf-filemodal__details">

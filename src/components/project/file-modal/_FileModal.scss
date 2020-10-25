@@ -1,7 +1,51 @@
 .shelf {
     &-filemodal {
         &__content {
-            display: block;
+            display: flex;
+
+            @media (max-width: $tabletWidth) {
+                flex-flow: column nowrap;
+                padding-right: 10px; // Space it away from the scrollbar.
+            }
+
+            @media (min-width: $tabletWidth) {
+                flex-flow: row nowrap;
+            }
+        }
+
+        &__cover {
+            flex: 1;
+            text-align: center;
+
+            @media (max-width: $tabletWidth) {
+                padding-bottom: 4.5px;
+            }
+
+            @media (min-width: $tabletWidth) {
+                padding-right: 5px;
+            }
+        }
+
+        &__details {
+            flex: 1;
+
+            @media (max-width: $tabletWidth) {
+                padding-top: 4.5px;
+            }
+
+            @media (min-width: $tabletWidth) {
+                padding-left: 5px;
+            }
+        }
+    }
+}
+
+.common {
+    &-modal {
+        &__footer {
+            & > * {
+                margin-left: 10px;
+            }
         }
     }
 }
