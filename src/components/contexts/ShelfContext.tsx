@@ -134,6 +134,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
 
         // Then set to state
         setActiveShelf(shelf);
+        setActiveDirectory(null); // Clear the active directory
 
         // Then retrieve the breadcrumbs, directories, and files
         retrieveShelfContents(shelf);

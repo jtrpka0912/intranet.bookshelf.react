@@ -22,7 +22,7 @@ import ListDisplay from '../../common/list-display/ListDisplay';
  */
 const Breadcrumbs: React.FunctionComponent = () => {
     const { breadcrumbView, switchListView } = useContext(AppContext);
-    const { activeShelf, breadcrumbs } = useContext(ShelfContext);
+    const { activeShelf, activeDirectory, breadcrumbs } = useContext(ShelfContext);
 
     /**
      * @function viewTypesItemsClass
@@ -50,8 +50,8 @@ const Breadcrumbs: React.FunctionComponent = () => {
      * @returns { React.ReactNode }
      */
     const renderActiveShelf = (): React.ReactNode => {
-        // Make sure active shelf is not null, and there is at least one item in the breadcrumbs
-        if(activeShelf !== null && breadcrumbs.length > 0 ) {
+        // Make sure active shelf and active directory is not null
+        if(activeShelf !== null && !activeDirectory !== null) {
             let listViewClass: string = '';
 
             if(breadcrumbView === ListViews.Tile) {
@@ -67,7 +67,7 @@ const Breadcrumbs: React.FunctionComponent = () => {
         return null;
     }
 
-    if(breadcrumbs.length > 0) {
+    if(activeDirectory !== null) {
         return (
             <div className="shelf-listsections">
                 
@@ -83,26 +83,22 @@ const Breadcrumbs: React.FunctionComponent = () => {
                 <div className={ viewTypesItemsClass() }>
                     { renderActiveShelf() }
                     
-                    { breadcrumbs.map((directory: DirectoryType, index: number) => {
-                        if(index > 0) {
-                            let listViewClass: string = '';
+                    { breadcrumbs.map((directory: DirectoryType) => {
+                        let listViewClass: string = '';
 
-                            if(breadcrumbView === ListViews.Tile) {
-                                listViewClass = 'common-item--tile';
-                            } else if(breadcrumbView === ListViews.Breadcrumb) {
-                                listViewClass = 'common-item--breadcrumb';
-                            }
-
-                            return (
-                                <FolderItem key={ directory._id } 
-                                    className={ listViewClass }
-                                    directory={ directory} 
-                                    opened={ true } 
-                                />
-                            );
+                        if(breadcrumbView === ListViews.Tile) {
+                            listViewClass = 'common-item--tile';
+                        } else if(breadcrumbView === ListViews.Breadcrumb) {
+                            listViewClass = 'common-item--breadcrumb';
                         }
-    
-                        return null; // Only there to let the map function not complain
+
+                        return (
+                            <FolderItem key={ directory._id } 
+                                className={ listViewClass }
+                                directory={ directory} 
+                                opened={ true } 
+                            />
+                        );
                     }) }
                 </div>
             </div>
