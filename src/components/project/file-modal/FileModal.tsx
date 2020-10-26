@@ -35,9 +35,22 @@ const FileModal: React.FunctionComponent = () => {
     /**
      * @function onCloseFileModal
      * @description Close the file modal by unset the active file.
+     * @author J.T.
      */
     const onCloseFileModal = () => {
         setToActiveFile(null);
+    }
+
+    /**
+     * @function onClickDownloadFile
+     * @event onClick
+     * @description Download the active file
+     * @author J.T
+     */
+    const onClickDownloadFile = async () => {
+        if(activeFile) {
+            window.open(activeFile.path, 'Download');
+        }
     }
 
     /**
@@ -49,7 +62,7 @@ const FileModal: React.FunctionComponent = () => {
     const renderFooter = () => {
         return (
             <React.Fragment>
-                <Button>Download</Button>
+                <Button onClick={ () => onClickDownloadFile() }>Download</Button>
             </React.Fragment>
         )
     }

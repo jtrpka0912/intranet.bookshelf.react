@@ -108,9 +108,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @author J.T.
      */
     const onClickClosingModal = () => {
-        console.log('Closing the modal');
         closeAnimation();
-
         if(props.onClose) props.onClose(); // Allow other modal types to do any closing actions
     }
 
@@ -120,7 +118,6 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @author J.T.
      */
     const closeAnimation = () => {
-        console.log('Animating');
         const animationTime: number = 900; // Little less than one second
 
         // Lets close or open the modal with two steps
@@ -130,7 +127,6 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         if(isModalOpened) {
             // Wait for animation time to end then change modal status
             setTimeout(() => {
-                console.log('Done animating');
                 animateModal(false); // No longer animating
                 toggleModal(false); // Modal is finally closed
             }, animationTime);
