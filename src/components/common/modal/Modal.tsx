@@ -10,16 +10,18 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
  * @description The acceptable props for the Modal component
  * @author J.T.
  * @property { React.ReactNode } children
- * @property { React.ReactNode } footer
- * @property { boolean } opened
- * @property { string } title
- * @property { boolean } fade
- * @property { boolean } slide
- * @property { string } size
- * @property { function } onClose
+ * @property { string } baseClass - The base class for the body element
+ * @property { React.ReactNode } footer - Footer content
+ * @property { boolean } opened - Is the modal open
+ * @property { string } title - Title of the modal
+ * @property { boolean } fade - Fade Animation
+ * @property { boolean } slide - Slide Animation
+ * @property { string } size - Small, Medium, or Large
+ * @property { function } onClose - Additional Closing Function
  */
 interface ModalProps {
     children: React.ReactNode,
+    baseClass?: string,
     footer?: React.ReactNode,
     open: boolean,
     title?: string
@@ -150,7 +152,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
                     />
                 </header>
                 
-                <div className="common-modal__body">
+                <div className={ `common-modal__body ${ props.baseClass }` }>
                     { props.children }
                 </div>
 

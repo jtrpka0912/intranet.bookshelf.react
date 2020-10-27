@@ -1,5 +1,7 @@
 .shelf {
     &-filemodal {
+        overflow-y: scroll;
+        
         &__content {
             display: flex;
 

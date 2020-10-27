@@ -18,11 +18,9 @@ import CheckRadio from '../../common/check-radio/CheckRadio';
  * @summary Shelf Form Props
  * @description The props for the shelf form component
  * @author J.T.
- * @property { string } title - Label of the form
  * @property { string } buttonLabel - Button label
  */
 interface ShelfFormProps {
-    title?: string,
     buttonLabel?: string
 };
 
@@ -168,8 +166,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     return (
         <form className="shelf-form" onSubmit={ onSubmitForm }>
             <input type="hidden" name="id" value={ id } />
-
-            <h3>{ props.title ? props.title : 'Shelf Title' }</h3>
 
             <TextField type="text"
                 placeholder="Name of Shelf *"

@@ -70,6 +70,7 @@ const FileModal: React.FunctionComponent = () => {
     if(activeFile) {
         return (
             <Modal open={ isFileModalOpen }
+                baseClass="shelf-filemodal"
                 footer={ renderFooter() }
                 title={ activeFile.name }
                 size="large"

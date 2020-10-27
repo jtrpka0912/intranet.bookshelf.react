@@ -1,20 +1,21 @@
 // React
 import React, { useContext } from 'react';
 
-// Font Awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose, faClone, faFolder } from '@fortawesome/free-solid-svg-icons';
-
-// Components
-import Button from '../../../common/button/Button';
-import ShelfForm from '../../../project/shelf-form/ShelfForm';
-
 // Contexts
 import { AppContext } from '../../../contexts/AppContext';
 import { ShelfContext } from '../../../contexts/ShelfContext';
 
 // Types
 import ShelfType from '../../../../types/Shelf';
+
+// Components
+import Button from '../../../common/button/Button';
+import ShelfForm from '../../../project/shelf-form/ShelfForm';
+import ShelfModal from '../../../project/shelf-modal/ShelfModal';
+
+// Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWindowClose, faClone, faFolder } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @function PageSideNav
@@ -83,8 +84,11 @@ const PageSideNav: React.FunctionComponent = () => {
             </section>
 
             <section className="shelf-page-sidebar-form">
-                <ShelfForm buttonLabel="Create New Shelf" title="Create Shelf" />
+                <h3>Create Shelf</h3>
+                <ShelfForm buttonLabel="Create New Shelf" />
             </section>
+
+            <ShelfModal />
         </aside>
     );
 };

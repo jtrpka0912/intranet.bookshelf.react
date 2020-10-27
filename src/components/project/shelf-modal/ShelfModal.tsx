@@ -26,7 +26,7 @@ const ShelfModal: React.FunctionComponent = () => {
                 fade
                 onClose={ () => console.log('Goodbye form') }
             >
-                <ShelfForm title="Edit Shelf" buttonLabel="Edit Shelf" />
+                <ShelfForm buttonLabel="Edit Shelf" />
             </Modal>
         );
     } else {

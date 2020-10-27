@@ -15,7 +15,6 @@ import Files from '../project/list-section/Files';
 
 // Modals
 import FileModal from '../project/file-modal/FileModal';
-import ShelfModal from '../project/shelf-modal/ShelfModal';
 
 const App = () => {
     return (
@@ -26,7 +25,6 @@ const App = () => {
                     <Directories />
                     <Files />
                     <FileModal />
-                    <ShelfModal />
                 </PageWrapper>
             </ShelfContextProvider>
         </AppContextProvider>
