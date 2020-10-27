@@ -1,5 +1,5 @@
 // React
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 // Contexts
 import { AppContext } from '../../../contexts/AppContext';
@@ -28,6 +28,9 @@ const PageSideNav: React.FunctionComponent = () => {
     // Context
     const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
     const { shelves, activeShelf, setToActiveShelf } = useContext(ShelfContext);
+
+    // States
+    const [shelfModalOpen, toggleShelfModal] = useState(false);
 
     /**
      * @function onClickShelfItem
@@ -80,7 +83,7 @@ const PageSideNav: React.FunctionComponent = () => {
                     }) }
                 </ul>
                     
-                { activeShelf ? <Button rounded block onClick={ () => console.log('Edit Me') }>Edit { activeShelf.name }</Button> : null}
+                { activeShelf ? <Button rounded block onClick={ () => toggleShelfModal(true) }>Edit { activeShelf.name }</Button> : null}
             </section>
 
             <section className="shelf-page-sidebar-form">
@@ -88,7 +91,7 @@ const PageSideNav: React.FunctionComponent = () => {
                 <ShelfForm buttonLabel="Create New Shelf" />
             </section>
 
-            <ShelfModal />
+            <ShelfModal onClickToggle={ () => toggleShelfModal(!shelfModalOpen) } open={ shelfModalOpen } />
         </aside>
     );
 };
