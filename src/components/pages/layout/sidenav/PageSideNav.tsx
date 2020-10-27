@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindowClose, faClone, faFolder, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose, faClone, faFolder } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
@@ -55,8 +55,11 @@ const PageSideNav: React.FunctionComponent = () => {
                     { shelves.length === 0 ? <li>Currently no shelves available</li> : null }
                     { shelves.map((item) => {
                         return (
-                            <li key={item._id} className={`shelf-shelves__item ${ activeShelf?._id === item._id ? 'shelf-shelves__item--active' : '' }`}>
-                                <div className="shelf-shelves__item__name" onClick={ () => onClickShelfItem(item) }>
+                            <li key={item._id} 
+                                className={`shelf-shelves__item ${ activeShelf?._id === item._id ? 'shelf-shelves__item--active' : '' }`}
+                                onClick={ () => onClickShelfItem(item) }
+                            >
+                                <div className="shelf-shelves__item__name">
                                     {item.name}
                                 </div>
                                 
@@ -69,10 +72,6 @@ const PageSideNav: React.FunctionComponent = () => {
                                     { item.showDirectories ? <span title="Shows Directories" className="shelf-shelves__item__icons--showdirectories">
                                         <FontAwesomeIcon icon={ faFolder } />
                                     </span> : null }
-                                    
-                                    <span className="shelf-shelves__item__icons--info" title={ `Edit ${item.name}` }>
-                                        <FontAwesomeIcon icon={ faEdit } />
-                                    </span>
                                 </div>
                             </li>  
                         ); 

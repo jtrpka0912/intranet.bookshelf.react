@@ -1,3 +1,15 @@
+@mixin minPhoneDevice {
+    @media(min-width: $phoneWidth) {
+        @content;
+    }
+}
+
+@mixin maxPhoneDevice {
+    @media(max-width: $phoneWidth) {
+        @content;
+    }
+}
+
 .shelf {
     &-layout {
         &__sidebar {
@@ -16,14 +28,14 @@
             transition: 0.5s ease-out;
 
             // Only take up some width;
-            @media(min-width: $phoneWidth) {
+            @include minPhoneDevice() {
                 width: 300px;
                 border-right: 1px solid #333;
                 box-shadow: $boxShadows;
             }
 
             // Let it take up the whole screen
-            @media(max-width: $phoneWidth) {
+            @include maxPhoneDevice() {
                 width: 100vw;
             }
 
@@ -32,11 +44,11 @@
             }
 
             &#{$shelfLayoutSidebar}--closed {
-                @media(min-width: $phoneWidth) {
+                @include minPhoneDevice() {
                     left: -300px;
                 }
-    
-                @media(max-width: $phoneWidth) {
+
+                @include maxPhoneDevice() {
                     left: -100vw;
                 }
             }
@@ -58,15 +70,23 @@
         }
     }
 
-    // NOTE: Could be made as separate component
     &-shelves {
         &__item {
             $shelfShelvesItem: &;
-
+            cursor: pointer;
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
-            margin-bottom: 9px;
+
+            @include minPhoneDevice() {
+                margin-bottom: 9px;
+            }
+
+            @include maxPhoneDevice() {
+                margin-bottom: 18px;
+                padding: 18px 20px;
+                border: 1px solid #333;
+            }
 
             &--active {
                 #{$shelfShelvesItem} {
@@ -78,7 +98,6 @@
 
             &__name {
                 flex: 3;
-                cursor: pointer;
             }
 
             &__icons {
