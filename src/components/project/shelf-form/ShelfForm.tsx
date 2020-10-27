@@ -18,14 +18,16 @@ import CheckRadio from '../../common/check-radio/CheckRadio';
  * @summary Shelf Form Props
  * @description The props for the shelf form component
  * @author J.T.
+ * @property { ShelfType } shelf - The shelf to edit
  * @property { string } buttonLabel - Button label
  */
 interface ShelfFormProps {
+    shelf?: ShelfType,
     buttonLabel?: string
 };
 
 interface ShelfRequestBody {
-    id?: number,
+    id?: string,
     name: string,
     root: string,
     showDirectories?: boolean,
@@ -44,13 +46,22 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     const { toggleToastMessage } = useContext(AppContext);
     const { addOneToShelves, setToActiveShelf } = useContext(ShelfContext);
 
+    const defaultProps = {
+        id: props.shelf ? props.shelf._id : '',
+        name: props.shelf ? props.shelf.name : '',
+        path: props.shelf ? props.shelf.root : '',
+        showDirectories: props.shelf ? props.shelf.showDirectories : false,
+        multiFile: props.shelf ? props.shelf.multiFile : false,
+        showDirectoriesReadOnly: props.shelf && props.shelf.multiFile ? true : false
+    }
+
     // States
-    const [id, setId] = useState(0);
-    const [nameOfShelf, setNameOfShelf] = useState('');
-    const [pathOfShelf, setPathOfShelf] = useState('');
-    const [showDirectories, toggleShowDirectories] = useState(false);
-    const [multiFile, toggleMultiFile] = useState(false);
-    const [isShowDirectoriesReadOnly, toggleShowDirectoriesReadOnly] = useState(false);
+    const [id, setId] = useState(defaultProps.id);
+    const [nameOfShelf, setNameOfShelf] = useState(defaultProps.name);
+    const [pathOfShelf, setPathOfShelf] = useState(defaultProps.path);
+    const [showDirectories, toggleShowDirectories] = useState(defaultProps.showDirectories);
+    const [multiFile, toggleMultiFile] = useState(defaultProps.multiFile);
+    const [isShowDirectoriesReadOnly, toggleShowDirectoriesReadOnly] = useState(defaultProps.showDirectoriesReadOnly);
 
     /**
      * @function onSubmitForm
@@ -63,6 +74,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         e.preventDefault();
 
         try {
+            const modifyShelf: boolean = id !== '' ? true : false;
+
             // Replace back slashes with forward slashes on the path, but make it discreet with the revisedPathOfShelf variable
             const revisedPathOfShelf = pathOfShelf.replace(/\\/g, '/'); // /\\/ looks for forward slashes, g means all instances
 
@@ -79,30 +92,36 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             };
 
             // If ID greater than 0 then we are modifying the shelf
-            if(id > 0) {
+            if(modifyShelf) {
                 requestBody.id = id;
             }
 
+            // Set this at POST at start
+            let method = 'POST';
+
+            // Unless id is set above 0 then set method to PUT
+            if(requestBody.id !== undefined && modifyShelf) { // Need to check if id is also undefined
+                method = 'PUT';
+            }
+
             // Submit and retrieve the newly created shelf from the backend
-            const response = await sendShelfRequest(requestBody);
+            const response = await sendShelfRequest(requestBody, method);
             const shelf: ShelfType = response;
 
             // Clear the form data
+            setId('');
             setNameOfShelf('');
             setPathOfShelf('');
             toggleShowDirectories(false);
             toggleMultiFile(false);
             toggleShowDirectoriesReadOnly(false);
 
-            // Do actions depending on type of action for shelf
-            if(id > 0) {
-                // Modifying the shelf
-                // NOTE: Not sure what to do after modifying a shelf
-            } else {
-                // Creating a shelf
+            // If new shelf then add to current listing.
+            if(!modifyShelf) {
                 addOneToShelves(shelf);
-                setToActiveShelf(shelf);
             }
+
+            setToActiveShelf(shelf);
             
         } catch(error) {
             console.error('ShelfForm - onSubmitForm(): ', error);
@@ -115,20 +134,15 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
      * @function sendShelfRequest
      * @description Send a request to the server to either create or update a shelf.
      * @author J.T.
-     * @param { ShelfRequestBody } requestBody
+     * @param { ShelfRequestBody } requestBody - Request body object
+     * @param { string } method - Type of request to server
      * @returns { JSON }
      */
-    const sendShelfRequest = async (requestBody: ShelfRequestBody) => {
-        // Set this at POST at start
-        let method = 'POST';
-
-        // Unless id is set above 0 then set method to PUT
-        if(requestBody.id !== undefined && requestBody.id > 0) { // Need to check if id is also undefined
-            method = 'PUT';
-        }
+    const sendShelfRequest = async (requestBody: ShelfRequestBody, method: string) => {
+        const apiEndPoint: string = `http://localhost:3001/api/v1/shelves/${ method === 'PUT' ? requestBody.id : '' }`;
 
         // TODO: Figure out how to be secured (https)
-        const shelfFormResponse = await fetch('http://localhost:3001/api/v1/shelves/', {
+        const shelfFormResponse = await fetch(apiEndPoint, {
             body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json'

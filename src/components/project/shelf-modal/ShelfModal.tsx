@@ -18,6 +18,8 @@ import ShelfForm from '../../project/shelf-form/ShelfForm';
 const ShelfModal: React.FunctionComponent = () => {
     const { activeShelf } = useContext(ShelfContext);
 
+    // TODO: Close the modal after form submission
+
     if(activeShelf) {
         return (
             <Modal open={ true }
@@ -26,7 +28,7 @@ const ShelfModal: React.FunctionComponent = () => {
                 fade
                 onClose={ () => console.log('Goodbye form') }
             >
-                <ShelfForm buttonLabel="Edit Shelf" />
+                <ShelfForm shelf={ activeShelf } buttonLabel="Edit Shelf" />
             </Modal>
         );
     } else {
