@@ -67,12 +67,19 @@
                 right: 9px;
                 font-size: 1.5rem;
             }
+
+            &__shelves {
+                .common-button {
+                    margin-top: 18px;
+                }
+            }
         }
     }
 
     &-shelves {
         &__item {
             $shelfShelvesItem: &;
+            
             cursor: pointer;
             display: flex;
             flex-flow: row nowrap;
@@ -86,6 +93,11 @@
                 margin-bottom: 18px;
                 padding: 18px 20px;
                 border: 1px solid #333;
+            }
+
+            &:last-child {
+                // Allow the edit button to space away from the listing items
+                margin-bottom: 0;
             }
 
             &--active {

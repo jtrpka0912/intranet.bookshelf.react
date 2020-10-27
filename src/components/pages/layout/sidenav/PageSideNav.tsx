@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose, faClone, faFolder } from '@fortawesome/free-solid-svg-icons';
 
 // Components
+import Button from '../../../common/button/Button';
 import ShelfForm from '../../../project/shelf-form/ShelfForm';
 
 // Contexts
@@ -77,6 +78,8 @@ const PageSideNav: React.FunctionComponent = () => {
                         ); 
                     }) }
                 </ul>
+                    
+                { activeShelf ? <Button rounded block onClick={ () => console.log('Edit Me') }>Edit { activeShelf.name }</Button> : null}
             </section>
 
             <section className="shelf-page-sidebar-form">
