@@ -73,7 +73,7 @@ const FileModal: React.FunctionComponent = () => {
                 footer={ renderFooter() }
                 title={ activeFile.name }
                 size="large"
-                slide={true} 
+                slide
                 onClose={ () => onCloseFileModal() }
             >
                 <div className="shelf-filemodal__content">
