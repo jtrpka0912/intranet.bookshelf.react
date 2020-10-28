@@ -13,9 +13,6 @@ import Breadcrumbs from '../project/list-section/Breadcrumbs';
 import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
 
-// Modals
-import FileModal from '../project/file-modal/FileModal';
-
 const App = () => {
     return (
         <AppContextProvider>
@@ -24,7 +21,7 @@ const App = () => {
                     <Breadcrumbs />
                     <Directories />
                     <Files />
-                    <FileModal />
+                    
                 </PageWrapper>
             </ShelfContextProvider>
         </AppContextProvider>

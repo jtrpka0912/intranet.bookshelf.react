@@ -12,7 +12,7 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
  * @property { React.ReactNode } children
  * @property { string } baseClass - The base class for the body element
  * @property { React.ReactNode } footer - Footer content
- * @property { boolean } opened - Is the modal open
+ * @property { boolean } open - Is the modal open
  * @property { string } title - Title of the modal
  * @property { boolean } fade - Fade Animation
  * @property { boolean } slide - Slide Animation
@@ -40,14 +40,7 @@ interface ModalProps {
  * @returns { React.ReactNode }
  */
 const Modal: React.FunctionComponent<ModalProps> = (props) => {
-    const [isModalOpened, toggleModal] = useState(false);
-    const [isAnimating, animateModal] = useState(false);
-
-    useEffect(() => {
-        // Switch the modal open or close
-        // TODO: Get this to animate.
-         toggleModal(props.open);
-    }, [props.open]);
+    // const [isAnimating, animateModal] = useState(false);
 
     /**
      * @function overlayClasses
@@ -62,12 +55,11 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         let classArray: string[] = [baseSelector];
 
         // Is the modal animating (going to open or close)
-        if(isAnimating) {
-            classArray.push(isModalOpened ? `${baseSelector}--is-closing` : `${baseSelector}--is-opening`);
-        }
+        // TODO: Animate the modal
+        // classArray.push(props.open ? `${baseSelector}--is-closing` : `${baseSelector}--is-opening`);
 
         // Is the modal opened or closed
-        classArray.push(isModalOpened ? `${baseSelector}--opened` : `${baseSelector}--closed`);
+        classArray.push(props.open ? `${baseSelector}--opened` : `${baseSelector}--closed`);
 
         // Need to check if fade and slide are not disabled
         const fade = props.fade;
@@ -110,7 +102,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @author J.T.
      */
     const onClickClosingModal = () => {
-        closeAnimation();
+        // closeAnimation();
         if(props.onClose) props.onClose(); // Allow other modal types to do any closing actions
     }
 
@@ -119,6 +111,8 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
      * @description Set up the closing animation for the modal
      * @author J.T.
      */
+    
+    /* 
     const closeAnimation = () => {
         const animationTime: number = 900; // Little less than one second
 
@@ -126,7 +120,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
         animateModal(true); // Mark the animation as started
         
         // Check if the modal is open
-        if(isModalOpened) {
+        if(props.open) {
             // Wait for animation time to end then change modal status
             setTimeout(() => {
                 animateModal(false); // No longer animating
@@ -134,6 +128,7 @@ const Modal: React.FunctionComponent<ModalProps> = (props) => {
             }, animationTime);
         }
     }
+    */
 
     return (
         <div className={ overlayClasses(props) }

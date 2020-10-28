@@ -1,5 +1,5 @@
 // React
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 // Contexts
 import { AppContext, ListSections, ListViews } from '../../contexts/AppContext';
@@ -11,6 +11,7 @@ import FileType from '../../../types/File';
 // Components
 import ListDisplay from '../../common/list-display/ListDisplay';
 import FileItem from '../file-item/FileItem';
+import FileModal from '../file-modal/FileModal';
 
 /**
  * @function Files
@@ -20,8 +21,31 @@ import FileItem from '../file-item/FileItem';
  * @returns { React.ReactNode }
  */
 const Files: React.FunctionComponent = () => {
+    // Context
     const { switchListView, fileView } = useContext(AppContext);
-    const { files } = useContext(ShelfContext);
+    const { files, activeFile } = useContext(ShelfContext);
+
+    // States
+    const [fileModalOpen, toggleFileModal] = useState(false);
+
+    useEffect(() => {
+        if(activeFile) {
+            toggleFileModal(true);
+        } else {
+            toggleFileModal(false);
+        }
+    }, [activeFile]);
+
+    /**
+     * @function onClickToggle
+     * @event onClick
+     * @description Toggle the modal open or close
+     * @author J.T.
+     * @param { boolean } isOpened
+     */
+    const onClickToggle = (isOpened: boolean) => {
+        toggleFileModal(isOpened);
+    }
 
     /**
      * @function viewTypesItemsClass
@@ -78,6 +102,10 @@ const Files: React.FunctionComponent = () => {
                         })    
                     }
                 </div>
+            
+                <FileModal open={ fileModalOpen }
+                    onClickToggle={ (isOpened: boolean) => onClickToggle(isOpened) }
+                />
             </div>
         );
     } else {

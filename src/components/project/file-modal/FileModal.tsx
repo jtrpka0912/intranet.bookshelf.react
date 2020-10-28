@@ -10,27 +10,31 @@ import Button from '../../common/button/Button';
 import Media from '../../common/media/Media';
 
 /**
+ * @interface FileModalProps
+ * @summary File Modal Props
+ * @description The props for the File Modal component
+ * @author J.T.
+ * @property { boolean } open - Is the modal open
+ * @property { function } onClickToggle - Toggle the modal open or close
+ */
+interface FileModalProps {
+    open: boolean,
+    onClickToggle: (isOpened: boolean) => void
+}
+
+/**
  * @function FileModal
  * @summary File Modal Component
  * @description A modal to show the details, and actions for a file item.
  * @author J.T.
  * @returns { React.ReactNode }
  */
-const FileModal: React.FunctionComponent = () => {
+const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
     // Context
     const { activeFile, setToActiveFile } = useContext(ShelfContext);
 
     // State
     const [didRead, toggleDidRead] = useState(activeFile?.didRead);
-    const [isFileModalOpen, toggleFileModal] = useState(false);
-    
-    useEffect(() => {
-        if(activeFile) {
-            toggleFileModal(true);
-        } else {
-            toggleFileModal(false);
-        }
-    }, [activeFile]);
 
     /**
      * @function onCloseFileModal
@@ -39,6 +43,7 @@ const FileModal: React.FunctionComponent = () => {
      */
     const onCloseFileModal = () => {
         setToActiveFile(null);
+        props.onClickToggle(false);
     }
 
     /**
@@ -69,7 +74,7 @@ const FileModal: React.FunctionComponent = () => {
 
     if(activeFile) {
         return (
-            <Modal open={ isFileModalOpen }
+            <Modal open={ props.open }
                 baseClass="shelf-filemodal"
                 footer={ renderFooter() }
                 title={ activeFile.name }

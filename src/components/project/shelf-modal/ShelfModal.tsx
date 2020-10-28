@@ -12,14 +12,14 @@ import ShelfForm from '../../project/shelf-form/ShelfForm';
 /**
  * @interface ShelfModalProps
  * @summary Shelf Modal Props
- * @description The props for the Shelf Modal components
+ * @description The props for the Shelf Modal component
  * @author J.T.
  * @property { boolean } open - Is the modal open
  * @property { function } onClickToggle - Toggle the modal open or close
  */
 interface ShelfModalProps {
     open: boolean,
-    onClickToggle: (state: boolean) => void
+    onClickToggle: (isOpened: boolean) => void
 }
 
 /**
@@ -48,9 +48,8 @@ const ShelfModal: React.FunctionComponent<ShelfModalProps> = (props) => {
         const onClickRefreshShelf = async () => {
             if(activeShelf) {
                 await fetch(`http://localhost:3001/api/v1/shelves/${ activeShelf._id }/refresh`);
-                setToActiveShelf(activeShelf);
-                // FIXME: Get it to animate the shelf modal
-                props.onClickToggle(!props.open);
+                setToActiveShelf(activeShelf); // Refresh the contents
+                props.onClickToggle(false);
             }
         };
 
@@ -69,7 +68,7 @@ const ShelfModal: React.FunctionComponent<ShelfModalProps> = (props) => {
                 footer={ renderModalFooter() }
                 size="small"
                 fade
-                onClose={ () => console.log('Goodbye form') }
+                onClose={ () => props.onClickToggle(false) }
             >
                 <ShelfForm shelf={ activeShelf } buttonLabel="Edit Shelf" />
             </Modal>

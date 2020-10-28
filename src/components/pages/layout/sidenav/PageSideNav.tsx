@@ -26,6 +26,7 @@ import { faWindowClose, faClone, faFolder } from '@fortawesome/free-solid-svg-ic
  */
 const PageSideNav: React.FunctionComponent = () => {
     // Context
+    // TODO: Does side navigation need to be context?
     const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
     const { shelves, activeShelf, setToActiveShelf } = useContext(ShelfContext);
 
@@ -46,6 +47,17 @@ const PageSideNav: React.FunctionComponent = () => {
         // Then set the active shelf
         setToActiveShelf(shelf);
     };
+
+    /**
+     * @function onClickToggle
+     * @event onClick
+     * @description Toggle the modal open or close
+     * @author J.T.
+     * @param { boolean } isOpened
+     */
+    const onClickToggle = (isOpened: boolean) => {
+        toggleShelfModal(isOpened);
+    }
     
     return (
         <aside className={ `shelf-layout__sidebar ${ isSideNavOpen ? 'shelf-layout__sidebar--opened' : 'shelf-layout__sidebar--closed' }`}>
@@ -91,7 +103,9 @@ const PageSideNav: React.FunctionComponent = () => {
                 <ShelfForm buttonLabel="Create New Shelf" />
             </section>
 
-            <ShelfModal onClickToggle={ () => toggleShelfModal(!shelfModalOpen) } open={ shelfModalOpen } />
+            <ShelfModal open={ shelfModalOpen } 
+                onClickToggle={ (isOpened: boolean) => onClickToggle(isOpened) } 
+            />
         </aside>
     );
 };
