@@ -1,5 +1,5 @@
 // React
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 // Context
 import { ShelfContext } from '../../contexts/ShelfContext';
@@ -84,7 +84,7 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
             >
                 <div className="shelf-filemodal__content">
                     <div className="shelf-filemodal__cover">
-                        <Media src="https://via.placeholder.com/595x842" width="300" alt="Placeholder" title={ activeFile.name } />
+                        <Media src={ `http://localhost:3001/${activeFile.cover}` } width="300" alt="Placeholder" title={ activeFile.name } />
                     </div>
 
                     <div className="shelf-filemodal__details">
