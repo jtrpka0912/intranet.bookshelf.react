@@ -36,14 +36,15 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
  const Item: React.FunctionComponent<ItemProps> = (props) => {
 
     const renderImage = (image: string) => {
-        const style: CSSProperties = {
-            backgroundImage: `url(${image})` as string
+        const styles: CSSProperties = {
+            // Need the encodeURI to encode spaces
+            backgroundImage: `url(${encodeURI(image)})` as string
         };
 
-        console.info('style', style);
+        console.info('Styles', styles);
 
         return (
-            <div className="common-item__visual common-item__visual--image" style={ style } />
+            <div className="common-item__visual common-item__visual--image" style={ styles } />
         )
     };
 
