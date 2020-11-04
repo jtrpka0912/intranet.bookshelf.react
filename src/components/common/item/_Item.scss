@@ -5,7 +5,7 @@
         cursor: pointer;
         margin: 18px 20px;
 
-        &__icon {
+        &__visual {
             border: 1px solid;
         }
 
@@ -30,8 +30,10 @@
             display: flex;
 
             #{$commonItem} {
-                &__icon {
-                    padding: 4px 5px;
+                &__visual {
+                    &--icon {
+                        padding: 4px 5px;
+                    }
                 }
 
                 &__name {
@@ -66,8 +68,10 @@
             
             #{$commonItem} {
                 // Do not show the icon
-                &__icon {
-                    display: none;
+                &__visual {
+                    &--icon {
+                        display: none;
+                    }
                 }
 
                 &__name {
@@ -79,14 +83,16 @@
 
         &--tile {
             #{$commonItem} {
-                &__icon {
-                    display: flex;
-                    flex-flow: column nowrap;
-                    justify-content: center;
-                    align-items: center;
-
+                &__visual {
                     width: 100%;
                     box-shadow: $boxShadows;
+                    
+                    &--icon {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        justify-content: center;
+                        align-items: center;    
+                    }
                 }
 
                 &__name {
@@ -119,14 +125,16 @@
                 max-width: $width-constraint;
 
                 #{$commonItem} {
-                    &__icon {
+                    &__visual {
                         height: $height-constraint;
                         max-width: $width-constraint;
                         max-height: $height-constraint;
                         padding: $padding;
 
-                        svg {
-                            font-size: $font-size;
+                        &--icon {
+                            svg {
+                                font-size: $font-size;
+                            }
                         }
                     }
                 }

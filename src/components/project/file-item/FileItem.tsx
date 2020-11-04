@@ -37,6 +37,7 @@ const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
 
     return (
         <Item className={ `shelf-fileitem ${ props.className }` }
+            image={ `http://localhost:3001/${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }
         >{ props.file.name }</Item>

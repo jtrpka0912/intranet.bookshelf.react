@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,6 +35,18 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
   */
  const Item: React.FunctionComponent<ItemProps> = (props) => {
 
+    const renderImage = (image: string) => {
+        const style: CSSProperties = {
+            backgroundImage: `url(${image})` as string
+        };
+
+        console.info('style', style);
+
+        return (
+            <div className="common-item__visual common-item__visual--image" style={ style } />
+        )
+    };
+
     /**
      * @function renderIcon
      * @summary Render the icon
@@ -44,11 +56,11 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
      */
     const renderIcon = (icon: IconDefinition) => {
         return (
-            <div className="common-item__icon">
+            <div className="common-item__visual common-item__visual--icon">
                 <FontAwesomeIcon icon={ icon } />
             </div>
         );
-    }
+    };
 
     /**
      * @function renderVisual
@@ -58,14 +70,14 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
      */
     const renderVisual = () => {
         if(props.image) {
-            return null;
+            return renderImage(props.image);
         } else if(props.icon) {
             return renderIcon(props.icon);
         } else {
             // Render a default icon if all else fails
             return renderIcon(faSmile);
         }
-    }
+    };
 
     return (
         <div className={ `common-item ${props.className}` } onClick={ props.onClick }>

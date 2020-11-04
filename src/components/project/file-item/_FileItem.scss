@@ -1,9 +1,9 @@
 .shelf-fileitem {
     .common {
         &-item {
-            &__icon {
-                background-color: #fefefe;
-                border-color: #333;
+            &__visual {
+                background-size: cover;
+                background-position: center center;
             }
         }
     }
