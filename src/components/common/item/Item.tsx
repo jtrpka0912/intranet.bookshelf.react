@@ -4,6 +4,7 @@ import React from 'react';
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @interface ItemProps
@@ -13,12 +14,14 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
  * @property { React.ReactNode } children
  * @property { string } baseClass
  * @property { IconDefinition } icon
+ * @property { string } image
  * @property { function } onClick
  */
  interface ItemProps {
     children: React.ReactNode,
     className: string,
-    icon: IconDefinition,
+    icon?: IconDefinition,
+    image?: string,
     onClick: () => void
  };
 
@@ -31,11 +34,43 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
   * @returns { React.ReactNode }
   */
  const Item: React.FunctionComponent<ItemProps> = (props) => {
+
+    /**
+     * @function renderIcon
+     * @summary Render the icon
+     * @author J.T.
+     * @param { IconDefinition } icon 
+     * @returns { React.ReactNode }
+     */
+    const renderIcon = (icon: IconDefinition) => {
+        return (
+            <div className="common-item__icon">
+                <FontAwesomeIcon icon={ icon } />
+            </div>
+        );
+    }
+
+    /**
+     * @function renderVisual
+     * @description Either render an image or an icon (either given or a default)
+     * @author J.T.
+     * @returns { React.ReactNode }
+     */
+    const renderVisual = () => {
+        if(props.image) {
+            return null;
+        } else if(props.icon) {
+            return renderIcon(props.icon);
+        } else {
+            // Render a default icon if all else fails
+            return renderIcon(faSmile);
+        }
+    }
+
     return (
         <div className={ `common-item ${props.className}` } onClick={ props.onClick }>
-            <div className="common-item__icon">
-                <FontAwesomeIcon icon={ props.icon } />
-            </div>
+            
+            { renderVisual() }
 
             <h3 className="common-item__name">{ props.children }</h3>
         </div>
