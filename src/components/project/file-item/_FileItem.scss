@@ -2,8 +2,15 @@
     .common {
         &-item {
             &__visual {
-                background-size: cover;
-                background-position: center center;
+                &--image {
+                    background-size: cover;
+                    background-position: center center;
+                }
+
+                &--icon {
+                    background-color: #fefefe;
+                    border-color: #333;
+                }
             }
         }
     }
