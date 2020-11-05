@@ -12,7 +12,8 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
  * @description The acceptable props for the Item component
  * @author J.T.
  * @property { React.ReactNode } children
- * @property { string } baseClass
+ * @property { string } className
+ * @property { string } display
  * @property { IconDefinition } icon
  * @property { string } image
  * @property { function } onClick
@@ -20,6 +21,7 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
  interface ItemProps {
     children: React.ReactNode,
     className: string,
+    display: 'tile' | 'list' | 'breadcrumb',
     icon?: IconDefinition,
     image?: string,
     onClick: () => void
@@ -61,10 +63,28 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
         );
     };
 
-    console.info('Props', props);
+    /**
+     * @function wrapperClasses
+     * @description Output the wrapper class selectors for the item component
+     * @author J.T.
+     * @returns { string }
+     */
+    const wrapperClasses = () => {
+        // Set the base selector
+        const baseSelector = 'common-item';
+        let classArray = [baseSelector];
+
+        // Set the display class selector
+        classArray.push(`${baseSelector}--${props.display}`);
+
+        // Then, if any, child class selectors
+        if(props.className) classArray.push(props.className);
+
+        return classArray.join(' ');
+    }
 
     return (
-        <div className={ `common-item ${props.className}` } onClick={ props.onClick }>
+        <div className={ wrapperClasses() } onClick={ props.onClick }>
             
             { props.image ? renderImage(props.image) : null }
 

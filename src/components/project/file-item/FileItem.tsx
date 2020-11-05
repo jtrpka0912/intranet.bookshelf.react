@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 
 // Contexts
+import { ListViews } from '../../contexts/AppContext';
 import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Types
@@ -17,12 +18,12 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
  * @interface FileItemProps
  * @description The acceptable props for the File Item component
  * @author J.T.
- * @property { string } className
  * @property { FileType } file
+ * @property { ListViews } display
  */
 interface FileItemProps {
-    className?: string,
-    file: FileType
+    file: FileType,
+    display: ListViews
 };
 
 /**
@@ -36,7 +37,8 @@ const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
     const { setToActiveFile } = useContext(ShelfContext);
 
     return (
-        <Item className={ `shelf-fileitem ${ props.className }` }
+        <Item className="shelf-fileitem"
+            display={ props.display }
             image={ `http://localhost:3001/${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }

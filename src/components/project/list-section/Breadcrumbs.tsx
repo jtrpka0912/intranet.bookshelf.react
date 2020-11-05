@@ -52,16 +52,7 @@ const Breadcrumbs: React.FunctionComponent = () => {
     const renderActiveShelf = (): React.ReactNode => {
         // Make sure active shelf and active directory is not null
         if(activeShelf !== null && !activeDirectory !== null) {
-            let listViewClass: string = '';
-
-            if(breadcrumbView === ListViews.Tile) {
-                listViewClass = 'common-item--tile';
-                
-            } else if(breadcrumbView === ListViews.Breadcrumb) {
-                listViewClass = 'common-item--breadcrumb';
-            }
-
-            return <ShelfItem className={ listViewClass } shelf={ activeShelf } />
+            return <ShelfItem display={ breadcrumbView } shelf={ activeShelf } />
         }
 
         return null;
@@ -84,17 +75,9 @@ const Breadcrumbs: React.FunctionComponent = () => {
                     { renderActiveShelf() }
                     
                     { breadcrumbs.map((directory: DirectoryType) => {
-                        let listViewClass: string = '';
-
-                        if(breadcrumbView === ListViews.Tile) {
-                            listViewClass = 'common-item--tile';
-                        } else if(breadcrumbView === ListViews.Breadcrumb) {
-                            listViewClass = 'common-item--breadcrumb';
-                        }
-
                         return (
                             <FolderItem key={ directory._id } 
-                                className={ listViewClass }
+                                display={ breadcrumbView }
                                 directory={ directory} 
                                 opened={ true } 
                             />

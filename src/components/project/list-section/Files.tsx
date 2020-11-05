@@ -82,20 +82,9 @@ const Files: React.FunctionComponent = () => {
                 <div className={ viewTypesItemsClass() }>
                     {
                         files.map((file: FileType) => {
-                            let listViewClass: string = '';
-
-                            if(fileView === ListViews.Tile) {
-                                listViewClass = 'common-item--tile';
-                            } else if(fileView === ListViews.List) {
-                                listViewClass = 'common-item--list';
-                            } else {
-                                // Return nothing
-                                return null;
-                            }
-
                             return (
                                 <FileItem key={ file._id }
-                                    className={ listViewClass }
+                                    display={ fileView }
                                     file={ file }
                                 />
                             );

@@ -58,20 +58,9 @@ const Directories: React.FunctionComponent = () => {
                 <div className={ viewTypesItemsClass() }>
                     { 
                         directories.map((directory: DirectoryType) => {
-                            let listViewClass: string = '';
-
-                            if(directoryView === ListViews.Tile) {
-                                listViewClass = 'common-item--tile';
-                            } else if(directoryView === ListViews.List) {
-                                listViewClass = 'common-item--list';
-                            } else {
-                                // Return nothing
-                                return null;
-                            }
-
                             return (
-                                <FolderItem key={ directory._id } 
-                                    className={ listViewClass } 
+                                <FolderItem key={ directory._id }
+                                    display={ directoryView }
                                     directory={ directory} 
                                     opened={ false } 
                                 />
