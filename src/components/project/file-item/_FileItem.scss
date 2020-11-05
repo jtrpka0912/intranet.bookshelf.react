@@ -7,24 +7,4 @@
             }
         }
     }
-
-    &.common {
-        &-item {
-            &--tile {
-                .common-item__visual {
-                    &--icon {
-                        display: none;
-                    }
-                }
-            }
-
-            &--list {
-                .common-item__visual {
-                    &--image {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
 }

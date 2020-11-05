@@ -83,12 +83,23 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
         return classArray.join(' ');
     }
 
+    const displayView = () => {
+        console.info('Props', props.display, props.image, props.icon);
+        switch(props.display) {
+            case 'tile':
+                if(props.image) return renderImage(props.image);
+                else if(props.icon) return renderIcon(props.icon);
+                else return renderIcon(faSmile);
+            case 'list':
+                if(props.icon) return renderIcon(props.icon);
+                else return renderIcon(faSmile);
+        }
+    }
+
     return (
         <div className={ wrapperClasses() } onClick={ props.onClick }>
             
-            { props.image ? renderImage(props.image) : null }
-
-            { props.icon ? renderIcon(props.icon) : renderIcon(faSmile) }
+            { displayView() }
 
             <h3 className="common-item__name">{ props.children }</h3>
         </div>

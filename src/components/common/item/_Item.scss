@@ -23,6 +23,12 @@
                 &__name {
                     margin: 0; // Resetting
                 }
+
+                &__visual {
+                    &--image {
+                        display: none;
+                    }
+                }
             }
         }
 
