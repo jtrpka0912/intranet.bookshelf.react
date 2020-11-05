@@ -3,8 +3,7 @@ import React, { CSSProperties } from 'react';
 
 // Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { faSmile } from '@fortawesome/free-solid-svg-icons';
+import { faSmile, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @interface ItemProps

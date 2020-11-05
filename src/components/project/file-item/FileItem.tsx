@@ -12,7 +12,8 @@ import FileType from '../../../types/File';
 import Item from '../../common/item/Item';
 
 // Font Awesome
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @interface FileItemProps
@@ -36,13 +37,35 @@ interface FileItemProps {
 const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
     const { setToActiveFile } = useContext(ShelfContext);
 
+    const outputTitle = () => {
+        if(props.file.didRead) {
+            if(props.display === ListViews.Tile) {
+                return (
+                    <React.Fragment>
+                        <FontAwesomeIcon icon={ faCheckCircle } /> { props.file.name }
+                    </React.Fragment>
+                );
+            } else if(props.display === ListViews.List) {
+                return (
+                    <React.Fragment>
+                        { props.file.name } <FontAwesomeIcon icon={ faCheckCircle } />
+                    </React.Fragment>
+                )
+            } else {
+                return null;
+            }
+        } else {
+            return props.file.name;
+        }
+    }
+
     return (
         <Item className="shelf-fileitem"
             display={ props.display }
             image={ `http://localhost:3001/${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }
-        >{ props.file.name }</Item>
+    >{ outputTitle() }</Item>
     )
 };
 
