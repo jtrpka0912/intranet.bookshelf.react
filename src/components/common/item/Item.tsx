@@ -38,10 +38,8 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
     const renderImage = (image: string) => {
         const styles: CSSProperties = {
             // Need the encodeURI to encode spaces
-            backgroundImage: `url(${encodeURI(image)})` as string
+            backgroundImage: `url(${ encodeURI(image) })` as string
         };
-
-        console.info('Styles', styles);
 
         return (
             <div className="common-item__visual common-item__visual--image" style={ styles } />
@@ -63,27 +61,14 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
         );
     };
 
-    /**
-     * @function renderVisual
-     * @description Either render an image or an icon (either given or a default)
-     * @author J.T.
-     * @returns { React.ReactNode }
-     */
-    const renderVisual = () => {
-        if(props.image) {
-            return renderImage(props.image);
-        } else if(props.icon) {
-            return renderIcon(props.icon);
-        } else {
-            // Render a default icon if all else fails
-            return renderIcon(faSmile);
-        }
-    };
+    console.info('Props', props);
 
     return (
         <div className={ `common-item ${props.className}` } onClick={ props.onClick }>
             
-            { renderVisual() }
+            { props.image ? renderImage(props.image) : null }
+
+            { props.icon ? renderIcon(props.icon) : renderIcon(faSmile) }
 
             <h3 className="common-item__name">{ props.children }</h3>
         </div>
