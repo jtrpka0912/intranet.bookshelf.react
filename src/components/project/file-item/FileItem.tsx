@@ -65,7 +65,7 @@ const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
             image={ `http://localhost:3001/${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }
-    >{ outputTitle() }</Item>
+        >{ outputTitle() }</Item>
     )
 };
 

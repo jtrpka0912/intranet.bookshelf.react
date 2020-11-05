@@ -33,9 +33,6 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
     // Context
     const { activeFile, setToActiveFile } = useContext(ShelfContext);
 
-    // State
-    const [didRead, toggleDidRead] = useState(activeFile?.didRead);
-
     /**
      * @function onCloseFileModal
      * @description Close the file modal by unset the active file.
@@ -56,6 +53,18 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
         if(activeFile) {
             window.open(activeFile.path, 'Download');
         }
+    }
+
+    /**
+     * @function toggleDidRead
+     * @description Change the flag if the file has been read
+     * @author J.T.
+     * @param { boolean } didRead 
+     */
+    const toggleDidRead = (didRead: boolean) => {
+        console.info('Did Read?', didRead);
+
+        // TODO: Create an endpoint to change the didRead flag
     }
 
     /**
@@ -98,8 +107,8 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
 
                         <label>
                             <input type="checkbox"
-                                checked={ didRead } 
-                                onChange={ () => toggleDidRead(!didRead) }
+                                checked={ activeFile.didRead } 
+                                onChange={ () => toggleDidRead(!activeFile.didRead) }
                             /> Did Read?
                         </label>
                     </div>

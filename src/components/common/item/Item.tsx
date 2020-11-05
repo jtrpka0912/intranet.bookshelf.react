@@ -83,7 +83,6 @@ import { faSmile, IconDefinition } from '@fortawesome/free-solid-svg-icons';
     }
 
     const displayView = () => {
-        console.info('Props', props.display, props.image, props.icon);
         switch(props.display) {
             case 'tile':
                 if(props.image) return renderImage(props.image);
