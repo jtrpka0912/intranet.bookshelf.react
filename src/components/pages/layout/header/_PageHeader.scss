@@ -36,22 +36,14 @@
     }
 
     &--light {
-        #{$shelf} {
-            &-layout {
-                &__header {
-                    background-color: $lightPrimary;
-                }
-            }
+        #{$shelf}-layout__header {
+            background-color: $lightPrimary;
         }
     }
 
     &--dark {
-        #{$shelf} {
-            &-layout {
-                &__header {
-                    background-color: $darkPrimary;
-                }
-            }
+        #{$shelf}-layout__header {
+            background-color: $darkPrimary;
         }
     }
 }

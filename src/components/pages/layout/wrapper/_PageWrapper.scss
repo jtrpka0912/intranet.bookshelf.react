@@ -11,22 +11,14 @@
     }
 
     &--light {
-        #{$shelf} {
-            &-layout {
-                &__content {
-                    background-color: $lightLight;
-                }
-            }
+        #{$shelf}-layout__content {
+            background-color: $lightLight;
         }
     }
 
     &--dark {
-        #{$shelf} {
-            &-layout {
-                &__content {
-                    background-color: $darkLight;
-                }
-            }
+        #{$shelf}-layout__content {
+            background-color: $darkLight;
         }
     }
 }

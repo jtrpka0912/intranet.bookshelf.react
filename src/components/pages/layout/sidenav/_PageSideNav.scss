@@ -132,37 +132,29 @@
     }
 
     &--light {
-        #{$shelf} {
-            &-layout {
-                &__sidebar { 
-                    background-color: $lightTernary;
+        #{$shelf}-layout__sidebar { 
+            background-color: $lightTernary;
 
-                    @include minPhoneDevice() {
-                        border-color: $lightDark;
-                    }
+            @include minPhoneDevice() {
+                border-color: $lightDark;
+            }
 
-                    h3 {
-                        border-color: $lightDark;
-                    }
-                }
+            h3 {
+                border-color: $lightDark;
             }
         }
     }
 
     &--dark {
-        #{$shelf} {
-            &-layout {
-                &__sidebar { 
-                    background-color: $darkTernary;
+        #{$shelf}-layout__sidebar { 
+            background-color: $lightTernary;
 
-                    @include minPhoneDevice() {
-                        border-color: $darkDark;
-                    }
+            @include minPhoneDevice() {
+                border-color: $darkDark;
+            }
 
-                    h3 {
-                        border-color: $darkDark;
-                    }
-                }
+            h3 {
+                border-color: $darkDark;
             }
         }
     }

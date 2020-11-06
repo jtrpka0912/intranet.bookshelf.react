@@ -1,16 +1,32 @@
-.shelf-fileitem {
-    .common {
-        &-item {
-            &__visual {
-                &--image {
-                    background-size: cover;
-                    background-position: center center;
+.shelf {
+    $shelf: &;
+    &-fileitem {
+        .common {
+            &-item {
+                &__visual {
+                    &--image {
+                        background-size: cover;
+                        background-position: center center;
+                    }
                 }
+            }
+        }
+    }
 
-                &--icon {
-                    background-color: #fefefe;
-                    border-color: #333;
-                }
+    &--light {
+        #{$shelf}-fileitem {
+            .common-item__visual--icon {
+                background-color: $lightSecondary;
+                border-color: $lightDark;
+            }
+        }
+    }
+
+    &--dark {
+        #{$shelf}-fileitem {
+            .common-item__visual--icon {
+                background-color: $darkSecondary;
+                border-color: $darkDark;
             }
         }
     }

@@ -3,7 +3,6 @@
     &-layout {
         &__footer {
             padding: 18px 20px;
-            background-color: cyan;
             text-align: center;
             
             p {
@@ -14,22 +13,14 @@
     }
 
     &--light {
-        #{$shelf} {
-            &-layout {
-                &__footer {
-                    background-color: $lightPrimary;
-                }
-            }
+        #{$shelf}-layout__footer {
+            background-color: $lightPrimary;
         }
     }
 
     &--dark {
-        #{$shelf} {
-            &-layout {
-                &__footer {
-                    background-color: $darkPrimary;
-                }
-            }
+        #{$shelf}-layout__footer {
+            background-color: $darkPrimary;
         }
     }
 }
