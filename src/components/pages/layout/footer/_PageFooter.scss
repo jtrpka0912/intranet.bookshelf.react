@@ -1,4 +1,5 @@
 .shelf {
+    $shelf: &;
     &-layout {
         &__footer {
             padding: 18px 20px;
@@ -8,6 +9,26 @@
             p {
                 margin: 0;
                 margin-bottom: 4px;
+            }
+        }
+    }
+
+    &--light {
+        #{$shelf} {
+            &-layout {
+                &__footer {
+                    background-color: $lightPrimary;
+                }
+            }
+        }
+    }
+
+    &--dark {
+        #{$shelf} {
+            &-layout {
+                &__footer {
+                    background-color: $darkPrimary;
+                }
             }
         }
     }

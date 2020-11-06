@@ -11,6 +11,8 @@
 }
 
 .shelf {
+    $shelf: &;
+
     &-layout {
         &__sidebar {
             $shelfLayoutSidebar: &;
@@ -23,14 +25,13 @@
 
             height: 100vh;
             padding: 18px 20px;
-            background-color: orange;
 
             transition: 0.5s ease-out;
 
             // Only take up some width;
             @include minPhoneDevice() {
                 width: 300px;
-                border-right: 1px solid #333;
+                border-right: 1px solid;
                 box-shadow: $boxShadows;
             }
 
@@ -57,7 +58,7 @@
                 margin: 0;
                 margin-bottom: 9px;
                 padding-bottom: 9px;
-                border-bottom: 1px solid #333;
+                border-bottom: 1px solid;
             }
 
             &__closebutton {
@@ -125,6 +126,42 @@
 
                 &--info {
                     cursor: pointer;
+                }
+            }
+        }
+    }
+
+    &--light {
+        #{$shelf} {
+            &-layout {
+                &__sidebar { 
+                    background-color: $lightTernary;
+
+                    @include minPhoneDevice() {
+                        border-color: $lightDark;
+                    }
+
+                    h3 {
+                        border-color: $lightDark;
+                    }
+                }
+            }
+        }
+    }
+
+    &--dark {
+        #{$shelf} {
+            &-layout {
+                &__sidebar { 
+                    background-color: $darkTernary;
+
+                    @include minPhoneDevice() {
+                        border-color: $darkDark;
+                    }
+
+                    h3 {
+                        border-color: $darkDark;
+                    }
                 }
             }
         }
