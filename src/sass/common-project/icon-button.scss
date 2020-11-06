@@ -1,0 +1,13 @@
+.shelf {
+    $shelf: &;
+
+    &--light {
+        .common-iconbutton--active {
+            background-color: $lightTernary;
+        }
+    }
+
+    &--dark {
+        background-color: $darkTernary;
+    }
+}

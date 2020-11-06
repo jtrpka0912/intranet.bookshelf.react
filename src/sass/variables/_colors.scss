@@ -12,6 +12,14 @@ $green: #00ff00;
 $red: #ff0000;
 $blue: #0000ff;
 $yellow: #ffff00;
+$violet: #ff00ff;
+
+// Default Mode
+$defaultPrimary: $blue;
+$defaultSecondary: $green;
+$defaultTernary: $violet;
+$defaultLight: $lightGray;
+$defaultDark: $darkGray;
 
 // Light Mode
 $lightPrimary: $pastalPink;

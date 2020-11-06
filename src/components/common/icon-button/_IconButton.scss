@@ -2,8 +2,8 @@
     &-iconbutton {
         cursor: pointer;
         padding: 4px 5px;
-        background-color: #fff;
-        border: 1px solid #333;
+        background-color: $defaultLight;
+        border: 1px solid $defaultDark;
 
         &--small {
             svg {
@@ -24,7 +24,7 @@
         }
 
         &--active {
-            background-color: #cdcdcd;
+            background-color: $defaultTernary;
         }
     }
 }
