@@ -1,4 +1,6 @@
 .shelf {
+    $shelf: &;
+
     &-layout {
         &__wrapper {
             position: relative;
@@ -6,9 +8,25 @@
             grid-template-rows: [page-header]auto [page-content]1fr [page-footer]auto;
             height: 100vh; // This will make the wrapper full height
         }
+    }
 
-        &__content {
-            background-color: lime;
+    &--light {
+        #{$shelf} {
+            &-layout {
+                &__content {
+                    background-color: $lightLight;
+                }
+            }
+        }
+    }
+
+    &--dark {
+        #{$shelf} {
+            &-layout {
+                &__content {
+                    background-color: $darkLight;
+                }
+            }
         }
     }
 }

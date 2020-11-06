@@ -68,7 +68,7 @@ const defaultState: AppContextType = {
     isSideNavOpen: false,
     toastMessage: '',
     isToastOpen: false,
-    isDarkMode: true, // TODO: Set back to false
+    isDarkMode: false,
     breadcrumbView: ListViews.Breadcrumb,
     directoryView: ListViews.Tile,
     fileView: ListViews.List,
@@ -141,6 +141,7 @@ const AppContextProvider = (props: AppContextProps) => {
      * @author J.T.
      */
     const switchColorMode = () => {
+        // TODO: Put in local storage
         toggleDarkMode(!isDarkMode);
     }
 
