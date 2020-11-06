@@ -21,14 +21,15 @@
 @import '../components/common/textfield/TextField';
 @import '../components/common/toast/Toast';
 
-// Common Project Themes
-@import './common-project/item';
-
 // Layout Components
 @import '../components/pages/layout/footer/PageFooter';
 @import '../components/pages/layout/header/PageHeader';
 @import '../components/pages/layout/sidenav/PageSideNav';
 @import '../components/pages/layout/wrapper/PageWrapper';
+
+// Common Project Themes
+@import './common-project/item';
+@import './common-project/modal';
 
 // Project-specific Components
 @import '../components/project/file-modal/FileModal';

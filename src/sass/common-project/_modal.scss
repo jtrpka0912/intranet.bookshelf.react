@@ -1,0 +1,31 @@
+.shelf {
+    $shelf: &;
+
+    &--light {
+        .common-modal {
+            &__header,
+            &__footer {
+                background-color: $lightPrimary;
+                border-color: $lightDark;
+            }
+
+            &__body {
+                background-color: $lightLight;
+            }
+        }
+    }
+
+    &--dark {
+        .common-modal {
+            &__header,
+            &__footer {
+                background-color: $darkPrimary;
+                border-color: $darkDark;
+            }
+
+            &__body {
+                background-color: $darkLight;
+            }
+        }
+    }
+}

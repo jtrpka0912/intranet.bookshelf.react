@@ -68,7 +68,6 @@
             height: 55vh;
 
             margin: auto;
-            padding: 9px 10px;
             background-color: #fff;
             box-shadow: 10px 9px 5px 4px rgba(0,0,0,0.3);
 
@@ -96,9 +95,8 @@
 
         &__header {
             position: relative;
-            margin-bottom: 9px;
-            padding: 0 35px 9px 0;
-            border-bottom: 1px solid #333;
+            padding: 9px 45px 9px 10px;
+            border-bottom: 1px solid;
 
             &__title {
                 margin: 0;
@@ -106,20 +104,20 @@
 
             &__close {
                 position: absolute;
-                top: 2px; right: 10px;
+                top: 11px; right: 10px;
                 font-size: 1.5em;
             }
         }
 
         &__body {
-            margin-bottom: 9px;
+            padding: 9px 10px;
         }
 
         &__footer {
             display: flex;
             justify-content: flex-end;
-            padding-top: 9px;
-            border-top: 1px solid #333;
+            padding: 9px 10px;
+            border-top: 1px solid;
         }
     }
 }

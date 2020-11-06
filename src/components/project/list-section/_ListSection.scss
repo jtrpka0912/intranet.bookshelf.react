@@ -13,10 +13,8 @@
         position: relative;
         overflow: hidden;
 
-        // TODO: width for now is temporary
-        width: 90vw;
+        width: 95vw;
         margin: 9px auto 0;
-        background-color: yellow;
 
         &:hover {
             & #{$shelfListSections}__list-display {
