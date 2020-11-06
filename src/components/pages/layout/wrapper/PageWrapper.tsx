@@ -17,7 +17,7 @@ import Toast from '../../../common/toast/Toast';
  */
 const PageWrapper: React.FunctionComponent = (props) => {
     return (
-        <main className="shelf-layout__wrapper shelf--light">
+        <main className="shelf-layout__wrapper shelf--dark">
             <PageSideNav />
             <PageHeader />
             <div className="shelf-layout__content">

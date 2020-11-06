@@ -1,9 +1,18 @@
-.shelf-shelfitem {
-    .common {
-        &-item {
-            &__visual {
-                background-color: #cdcdcd;
-                border-color: #333;
+.shelf {
+    $shelf: &;
+
+    &--light {
+        #{$shelf}-shelfitem {
+            .common-item__visual {
+                background-color: $lightTernary;
+            }
+        }
+    }
+
+    &--dark {
+        #{$shelf}-shelfitem {
+            .common-item__visual {
+                background-color: $darkTernary;
             }
         }
     }

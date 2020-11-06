@@ -21,6 +21,9 @@
 @import '../components/common/textfield/TextField';
 @import '../components/common/toast/Toast';
 
+// Common Project Themes
+@import './common-project/item';
+
 // Layout Components
 @import '../components/pages/layout/footer/PageFooter';
 @import '../components/pages/layout/header/PageHeader';
@@ -28,9 +31,7 @@
 @import '../components/pages/layout/wrapper/PageWrapper';
 
 // Project-specific Components
-@import '../components/project/file-item/FileItem';
 @import '../components/project/file-modal/FileModal';
-@import '../components/project/folder-item/FolderItem';
 @import '../components/project/list-section/ListSection';
 @import '../components/project/shelf-form/ShelfForm';
 @import '../components/project/shelf-item/ShelfItem';

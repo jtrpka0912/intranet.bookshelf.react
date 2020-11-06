@@ -1,0 +1,17 @@
+.shelf {
+    $shelf: &;
+
+    &--light {
+        .common-item__visual--icon {
+            background-color: $lightSecondary;
+            border-color: $lightDark;
+        }
+    }
+
+    &--dark {
+        .common-item__visual--icon {
+            background-color: $darkSecondary;
+            border-color: $darkDark;
+        }
+    }
+}
