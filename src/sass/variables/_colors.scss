@@ -1,0 +1,34 @@
+// NOTE: https://coolors.co/ffcdb2-ffb4a2-e5989b-b5838d-6d6875
+$apricot: #FFCDB2;
+$melon: #FFB4A2;
+$pastalPink: #E5989B;
+$englishLavendar: #B5838D;
+$oldLavendar: #6D6875;
+
+$lightGray: #efefef;
+$darkGray: #333;
+
+$green: #00ff00;
+$red: #ff0000;
+$blue: #0000ff;
+$yellow: #ffff00;
+
+// Light Mode
+$lightPrimary: $pastalPink;
+$lightSecondary: $melon;
+$lightTernary: $englishLavendar;
+$lightLight: $lightGray;
+$lightDark: $darkGray;
+
+// Dark Mode
+$darkPrimary: $pastalPink;
+$darkSecondary: $melon;
+$darkTernary: $englishLavendar;
+$darkLight: $apricot;
+$darkDark: $oldLavendar;
+
+// Alerts
+$info: darken($blue, 15);
+$success: darken($green, 15);
+$warning : darken($yellow, 15);
+$error: darken($red, 15);
