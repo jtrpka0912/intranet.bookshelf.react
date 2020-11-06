@@ -32,45 +32,50 @@ export enum ListSections {
 };
 
 /**
- * @type AppContextType
+ * @interface AppContextType
  * @summary Application Context Type
  * @description Definition of the application context type
  * @author J.T.
  * @property { boolean } isSideNavOpen
  * @property { string } toastMessage
  * @property { boolean } isToastOpen
+ * @property { boolean } isDarkMode
  * @property { ListView } breadcrumbView
  * @property { ListView } directoryView
  * @property { ListView } fileView
  * @property { function } toggleSideNav
- * @property { function } switchBreadcrumbView
- * @property { function } switchDirectoryView
- * @property { function } switchFileView
+ * @property { function } toggleToastMessage
+ * @property { function } switchColorMode
+ * @property { function } switchListView
  */
-type AppContextType = {
+interface AppContextType {
     // State
     isSideNavOpen: boolean,
     toastMessage: string,
     isToastOpen: boolean,
+    isDarkMode: boolean,
     breadcrumbView: ListViews,
     directoryView: ListViews,
     fileView: ListViews
     // Actions
     toggleSideNav: (state: boolean) => void,
     toggleToastMessage: (message: string) => void,
-    switchListView: (listSection: ListSections, listView: ListViews) => void,
+    switchColorMode: () => void,
+    switchListView: (listSection: ListSections, listView: ListViews) => void
 };
 
 const defaultState: AppContextType = {
     isSideNavOpen: false,
     toastMessage: '',
     isToastOpen: false,
+    isDarkMode: true, // TODO: Set back to false
     breadcrumbView: ListViews.Breadcrumb,
     directoryView: ListViews.Tile,
     fileView: ListViews.List,
-    toggleSideNav: toggleSideNav => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
-    toggleToastMessage: toggleToastMessage => console.warn('toggleToastMessage is not available (check context provider in heirarchy)'),
-    switchListView: switchListView => console.warn('switchListView is not available (check context provider in heirarchy)')
+    toggleSideNav: (state: boolean) => console.warn('toggleSideNav is not available (check context provider in heirarchy)'),
+    toggleToastMessage: (message: string) => console.warn('toggleToastMessage is not available (check context provider in heirarchy)'),
+    switchColorMode: () => console.warn('switchColorMode is not available (check context provider in heirarchy)'),
+    switchListView: (listSection: ListSections, listView: ListViews) => console.warn('switchListView is not available (check context provider in heirarchy)')
 };
 
 export const AppContext: React.Context<AppContextType> = createContext<AppContextType>(defaultState);
@@ -105,6 +110,7 @@ const AppContextProvider = (props: AppContextProps) => {
     const [isSideNavOpen, toggleSideNav] = useState(defaultState.isSideNavOpen);
     const [toastMessage, setToastMessage] = useState(defaultState.toastMessage);
     const [isToastOpen, toggleToast] = useState(defaultState.isToastOpen);
+    const [isDarkMode, toggleDarkMode] = useState(defaultState.isDarkMode);
 
     // State List Sections
     const [breadcrumbView, toggleBreadcrumbView] = useState(defaultState.breadcrumbView);
@@ -128,6 +134,15 @@ const AppContextProvider = (props: AppContextProps) => {
             toggleToast(false);
         }, 5000);
     };
+
+    /**
+     * @function switchColorMode
+     * @description Toggle either light or dark mode.
+     * @author J.T.
+     */
+    const switchColorMode = () => {
+        toggleDarkMode(!isDarkMode);
+    }
 
     useEffect(() => {
         /**
@@ -181,12 +196,14 @@ const AppContextProvider = (props: AppContextProps) => {
             isSideNavOpen,
             toastMessage,
             isToastOpen,
+            isDarkMode,
             breadcrumbView,
             directoryView,
             fileView,
             toggleSideNav,
-            switchListView,
             toggleToastMessage,
+            switchColorMode,
+            switchListView
         }}>
             { props.children }
         </AppContext.Provider>
