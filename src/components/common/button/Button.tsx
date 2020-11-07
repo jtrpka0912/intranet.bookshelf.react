@@ -7,6 +7,7 @@ import React from 'react';
  * @author J.T.
  * @property { React.ReactNode } children
  * @property { string } type
+ * @property { string } color
  * @property { boolean } boolean
  * @property { boolean } boolean
  * @property { function } onClick
@@ -14,6 +15,7 @@ import React from 'react';
 interface ButtonProps {
     children: React.ReactNode,
     type?: 'button' | 'reset' | 'submit',
+    color?: 'primary' | 'secondary' | 'ternary' | 'dark' | 'light',
     block?: boolean,
     rounded?: boolean,
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
@@ -44,6 +46,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
 
         if(props.block) classArray.push('common-button--block');
         if(props.rounded) classArray.push('common-button--rounded');
+        if(props.color) classArray.push(`common-button--${props.color}`);
 
         // Return as a string
         return classArray.join(' ');
@@ -58,7 +61,8 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
 };
 
 Button.defaultProps = {
-    type: 'button'
+    type: 'button',
+    color: 'primary'
 };
 
 export default Button;

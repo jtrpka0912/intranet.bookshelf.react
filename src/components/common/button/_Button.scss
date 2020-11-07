@@ -3,10 +3,8 @@
         $commonButton: &;
         display: inline-block;
         padding: 9px 20px;
-        background-color: #eee;
-        border: 1px solid #ccc;
-        color: #333;
-
+        border: 1px solid;
+        font-weight: 600;
         
         &#{$commonButton}--block {
             display: block;
@@ -15,6 +13,36 @@
 
         &#{$commonButton}--rounded {
             border-radius: 12px;
+        }
+
+        &#{$commonButton}--primary {
+            background-color: $defaultPrimary;
+            border-color: $defaultDark;
+            color: $defaultLight;
+        }
+
+        &#{$commonButton}--secondary {
+            background-color: $defaultSecondary;
+            border-color: $defaultDark;
+            color: $defaultDark;
+        }
+
+        &#{$commonButton}--ternary {
+            background-color: $defaultTernary;
+            border-color: $defaultDark;
+            color: $defaultLight;
+        }
+
+        &#{$commonButton}--light {
+            background-color: $defaultLight;
+            border-color: $defaultDark;
+            color: $defaultDark;
+        }
+
+        &#{$commonButton}--dark {
+            background-color: $defaultDark;
+            border-color: $defaultDark;
+            color: $defaultLight;
         }
     }
 }

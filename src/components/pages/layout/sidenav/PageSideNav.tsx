@@ -95,7 +95,7 @@ const PageSideNav: React.FunctionComponent = () => {
                     }) }
                 </ul>
                     
-                { activeShelf ? <Button rounded block onClick={ () => toggleShelfModal(true) }>Edit { activeShelf.name }</Button> : null}
+                { activeShelf ? <Button rounded block color="dark" onClick={ () => toggleShelfModal(true) }>Edit { activeShelf.name }</Button> : null}
             </section>
 
             <section className="shelf-page-sidebar-form">
