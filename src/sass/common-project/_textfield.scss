@@ -1,0 +1,19 @@
+.shelf {
+    &--light {
+        .common-textfield {
+            &__input {
+                background-color: $lightLight;
+                color: $lightDark;
+            }
+        }
+    }
+
+    &--dark {
+        .common-textfield {
+            &__input {
+                background-color: $darkLight;
+                color: $darkDark;
+            }
+        }
+    }
+}
