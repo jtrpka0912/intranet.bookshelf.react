@@ -10,6 +10,7 @@ import { IconDefinition, faSmile } from '@fortawesome/free-solid-svg-icons';
  * @description The acceptable props for the Icon Button component
  * @author J.T.
  * @property { IconButtonProps } icon
+ * @property { string } color
  * @property { string } title
  * @property { boolean } active
  * @property { string } size
@@ -17,8 +18,8 @@ import { IconDefinition, faSmile } from '@fortawesome/free-solid-svg-icons';
  */
 interface IconButtonProps {
     icon: IconDefinition,
+    color?: 'primary' | 'secondary' | 'ternary' | 'dark' | 'light',
     title?: string,
-    active?: boolean,
     size?: 'small' | 'medium' | 'large',
     onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
 };
@@ -43,7 +44,7 @@ const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
         let classArray = [baseClass];
 
         classArray.push(`${baseClass}--${props.size}`);
-        if(props.active) classArray.push(`${baseClass}--active`);
+        classArray.push(`${baseClass}--${props.color}`);
 
         return classArray.join(' ');
     }
@@ -60,7 +61,7 @@ const IconButton: React.FunctionComponent<IconButtonProps> = (props) => {
 
 IconButton.defaultProps = {
     icon: faSmile,
-    active: false,
+    color: 'primary',
     size: 'medium'
 };
 

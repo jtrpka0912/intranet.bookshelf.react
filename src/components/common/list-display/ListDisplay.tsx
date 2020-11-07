@@ -47,7 +47,7 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.tile ? 
                     <IconButton title="Tile View" 
                         icon={ faGripHorizontal } 
-                        active={ props.isTileActive }
+                        color={ props.isTileActive ? 'dark' : 'light' }
                         size="small"
                         onClick={ props.onClickTile ? props.onClickTile : () => null }
                     /> : null 
@@ -56,7 +56,7 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.list ? 
                     <IconButton title="List View" 
                         icon={ faList } 
-                        active={ props.isListActive }
+                        color={ props.isListActive ? 'dark' : 'light' }
                         size="small"
                         onClick={ props.onClickList ? props.onClickList : () => null }
                     /> : null 
@@ -65,7 +65,7 @@ const ListDisplay: React.FunctionComponent<ListDisplayProps> = (props) => {
                 { props.breadcrumb ? 
                     <IconButton title="Breadcrumbs View" 
                         icon={ faBreadSlice } 
-                        active={ props.isBreadcrumbActive }
+                        color={ props.isBreadcrumbActive ? 'dark' : 'light' }
                         size="small"
                         onClick={ props.onClickBreadcrumb ? props.onClickBreadcrumb : () => null }
                     /> : null 

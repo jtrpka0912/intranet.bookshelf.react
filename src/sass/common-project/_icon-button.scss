@@ -1,15 +1,67 @@
 .shelf {
-    $shelf: &;
-
     &--light {
-        .common-iconbutton--active {
-            background-color: $lightTernary;
+        .common-iconbutton {
+            $commonIconButton: &;
+
+            border-color: $lightDark;
+
+            &--primary {
+                background-color: $lightPrimary;
+                color: $lightLight;
+            }
+
+            &--secondary {
+                background-color: $lightSecondary;
+                color: $lightDark;
+            }
+
+            &--ternary {
+                background-color: $lightTernary;
+                color: $lightLight;
+            }
+
+            &--light {
+                background-color: $lightLight;
+                color: $lightDark;
+            }
+
+            &--dark {
+                background-color: $lightDark;
+                color: $lightLight;
+            }
         }
     }
 
     &--dark {
-        .common-iconbutton--active {
-            background-color: $darkTernary;
+        .common-iconbutton {
+            $commonIconButton: &;
+
+            border-color: $darkDark;
+
+            &--primary {
+                background-color: $darkPrimary;
+                color: $darkLight;
+            }
+
+            &--secondary {
+                background-color: $darkSecondary;
+                color: $darkDark;
+            }
+
+            &--ternary {
+                background-color: $darkTernary;
+                color: $darkLight;
+            }
+
+            &--light {
+                background-color: $darkLight;
+                color: $darkDark;
+            }
+
+            &--dark {
+                background-color: $darkDark;
+                color: $darkLight;
+            }
         }
     }
 }
