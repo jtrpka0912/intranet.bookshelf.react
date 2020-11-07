@@ -38,13 +38,13 @@
 
     &--light {
         #{$shelf}-layout__header {
-            background-color: $lightPrimary;
+            background-color: $lightSecondary;
         }
     }
 
     &--dark {
         #{$shelf}-layout__header {
-            background-color: $darkPrimary;
+            background-color: $darkTernary;
         }
     }
 }

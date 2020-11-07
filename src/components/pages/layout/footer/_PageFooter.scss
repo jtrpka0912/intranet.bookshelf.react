@@ -14,13 +14,13 @@
 
     &--light {
         #{$shelf}-layout__footer {
-            background-color: $lightPrimary;
+            background-color: $lightSecondary;
         }
     }
 
     &--dark {
         #{$shelf}-layout__footer {
-            background-color: $darkPrimary;
+            background-color: $darkTernary;
         }
     }
 }

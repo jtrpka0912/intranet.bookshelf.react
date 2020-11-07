@@ -8,6 +8,8 @@
     }
 
     &--dark {
-        background-color: $darkTernary;
+        .common-iconbutton--active {
+            background-color: $darkTernary;
+        }
     }
 }
