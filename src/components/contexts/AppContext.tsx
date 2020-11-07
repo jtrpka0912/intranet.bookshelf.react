@@ -104,6 +104,7 @@ const AppContextProvider = (props: AppContextProps) => {
     const localStorageBreadcrumbListView: string = 'breadcrumbListView';
     const localStorageDirectoryListView: string = 'directoryListView';
     const localStorageFileListView: string = 'fileListView';
+    const localStorageColorMode: 'dark' | 'light' = 'light';
 
     // State Components
     // TODO: Need to figure out how to toggle when clicking ANYWHERE outside of side navigation.
@@ -142,28 +143,32 @@ const AppContextProvider = (props: AppContextProps) => {
      */
     const switchColorMode = () => {
         // TODO: Put in local storage
+        localStorage.setItem(localStorageColorMode, !isDarkMode ? 'dark' : 'light');
         toggleDarkMode(!isDarkMode);
     }
 
     useEffect(() => {
         /**
-         * @function retrieveListViewStates
-         * @description Retrieve the list view states from local storage to state
+         * @function retrieveLocalStorageSettings
+         * @description Retrieve the settings from local storage into state.
          * @author J.T.
          */
-        const retrieveListViewStates = () => {
+        const retrieveLocalStorageSettings = () => {
             // Retrieve the list view states from local storage, but converted to ListViews enum
             const retrieveBreadcrumbState: ListViews | null = localStorage.getItem(localStorageBreadcrumbListView) as ListViews;
             const retrieveDirectoryState: ListViews | null = localStorage.getItem(localStorageDirectoryListView) as ListViews;
             const retrieveFileState: ListViews | null = localStorage.getItem(localStorageFileListView) as ListViews;
+            const retrieveColorMode: string | null = localStorage.getItem(localStorageColorMode) as string;
 
             // Assign the list view states to ... state
             toggleBreadcrumbView(retrieveBreadcrumbState ? retrieveBreadcrumbState : defaultState.breadcrumbView);
             toggleDirectoryView(retrieveDirectoryState ? retrieveDirectoryState : defaultState.directoryView);
             toggleFileView(retrieveFileState ? retrieveFileState : defaultState.fileView);
+            toggleDarkMode(retrieveColorMode === 'dark' ? true : false);
         };
 
-        retrieveListViewStates();
+        retrieveLocalStorageSettings();
+
     }, []);
 
     /**

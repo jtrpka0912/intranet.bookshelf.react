@@ -1,5 +1,8 @@
 // React
-import React from 'react';
+import React, { useContext } from 'react';
+
+// Contexts
+import { AppContext } from '../../../contexts/AppContext';
 
 // Components
 import PageHeader from '../header/PageHeader';
@@ -16,8 +19,10 @@ import Toast from '../../../common/toast/Toast';
  * @returns { React.ReactNode }
  */
 const PageWrapper: React.FunctionComponent = (props) => {
+    const { isDarkMode } = useContext(AppContext);
+
     return (
-        <main className="shelf-layout__wrapper shelf--light">
+        <main className={ `shelf-layout__wrapper shelf--${isDarkMode ? 'dark' : 'light'}` }>
             <PageSideNav />
             <PageHeader />
             <div className="shelf-layout__content">

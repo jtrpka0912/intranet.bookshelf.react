@@ -17,7 +17,8 @@ import { AppContext } from '../../../contexts/AppContext';
  */
 const PageHeader: React.FunctionComponent = () => {
     // Context
-    const { isSideNavOpen, toggleSideNav } = useContext(AppContext);
+    const { isSideNavOpen, isDarkMode, toggleSideNav, switchColorMode } = useContext(AppContext);
+
     return (
         <header className="shelf-layout__header">
             <div className="shelf-layout__header__sidebutton">
@@ -30,7 +31,7 @@ const PageHeader: React.FunctionComponent = () => {
 
             <nav className="shelf-layout__header__links">
                 <ul className="no-bullets">
-                    <li>Dark Mode</li>
+                    <li onClick={ () => switchColorMode() }>{ isDarkMode ? 'Dark' : 'Light' } Mode</li>
                     <li>Login</li>
                     <li>Sign Up</li>
                 </ul>
