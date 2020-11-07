@@ -1,0 +1,32 @@
+.shelf {
+    &--light {
+        .common-button {
+            border-color: $lightDark;
+
+            &--primary {
+                background-color: $lightPrimary;
+                color: $lightLight;
+            }
+
+            &--secondary {
+                background-color: $lightSecondary;
+                color: $lightDark;
+            }
+
+            &--ternary {
+                background-color: $lightTernary;
+                color: $lightLight;
+            }
+
+            &--light {
+                background-color: $lightLight;
+                color: $lightDark;
+            }
+
+            &--dark {
+                background-color: $lightDark;
+                color: $lightLight;
+            }
+        }
+    }
+}

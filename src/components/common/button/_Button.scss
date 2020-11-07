@@ -3,7 +3,7 @@
         $commonButton: &;
         display: inline-block;
         padding: 9px 20px;
-        border: 1px solid;
+        border: 1px solid $defaultDark;
         font-weight: 600;
         
         &#{$commonButton}--block {
@@ -17,31 +17,26 @@
 
         &#{$commonButton}--primary {
             background-color: $defaultPrimary;
-            border-color: $defaultDark;
             color: $defaultLight;
         }
 
         &#{$commonButton}--secondary {
             background-color: $defaultSecondary;
-            border-color: $defaultDark;
             color: $defaultDark;
         }
 
         &#{$commonButton}--ternary {
             background-color: $defaultTernary;
-            border-color: $defaultDark;
             color: $defaultLight;
         }
 
         &#{$commonButton}--light {
             background-color: $defaultLight;
-            border-color: $defaultDark;
             color: $defaultDark;
         }
 
         &#{$commonButton}--dark {
             background-color: $defaultDark;
-            border-color: $defaultDark;
             color: $defaultLight;
         }
     }
