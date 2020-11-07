@@ -3,7 +3,7 @@
         .common-modal {
             &__header,
             &__footer {
-                background-color: $lightPrimary;
+                background-color: $lightSecondary;
                 border-color: $lightDark;
             }
 
@@ -17,12 +17,13 @@
         .common-modal {
             &__header,
             &__footer {
-                background-color: $darkPrimary;
+                background-color: $darkTernary;
                 border-color: $darkDark;
+                color: $darkLight;
             }
 
             &__body {
-                background-color: $darkLight;
+                background-color: $darkPrimary;
             }
         }
     }

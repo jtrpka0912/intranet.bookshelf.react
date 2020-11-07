@@ -38,15 +38,15 @@
 
     &--light {
         #{$shelf}-layout__header {
-            color: $lightDark;
             background-color: $lightSecondary;
+            color: $lightDark;
         }
     }
 
     &--dark {
         #{$shelf}-layout__header {
-            color: $darkLight;
             background-color: $darkTernary;
+            color: $darkLight;
         }
     }
 }

@@ -211,7 +211,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
                 onChange={ () => onChangeMultiFile() }
             />
 
-            <Button type="submit" block rounded>
+            <Button type="submit" block rounded color="secondary">
                 { props.buttonLabel ? props.buttonLabel : 'Submit' }
             </Button>
         </form>
