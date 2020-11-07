@@ -16,6 +16,7 @@
     &-layout {
         &__sidebar {
             $shelfLayoutSidebar: &;
+
             position: fixed;
             z-index: 10;
 
@@ -26,7 +27,11 @@
             height: 100vh;
             padding: 18px 20px;
 
-            transition: 0.5s ease-out;
+            transition: 
+                left 0.5s ease-out, 
+                background-color 2s, 
+                border-color 2s,
+                color 2s;
 
             // Only take up some width;
             @include minPhoneDevice() {
@@ -59,6 +64,7 @@
                 margin-bottom: 9px;
                 padding-bottom: 9px;
                 border-bottom: 1px solid;
+                transition: border-color 2s;
             }
 
             &__closebutton {
@@ -133,7 +139,8 @@
 
     &--light {
         #{$shelf}-layout__sidebar { 
-            background-color: $lightTernary;
+            background-color: $lightPrimary;
+            color: $lightDark;
 
             @include minPhoneDevice() {
                 border-color: $lightDark;
@@ -148,13 +155,14 @@
     &--dark {
         #{$shelf}-layout__sidebar { 
             background-color: $lightTernary;
+            color: $darkLight;
 
             @include minPhoneDevice() {
                 border-color: $darkDark;
             }
 
             h3 {
-                border-color: $darkDark;
+                border-color: $darkLight;
             }
         }
     }

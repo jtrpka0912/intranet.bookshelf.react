@@ -1,7 +1,3 @@
-* {
-    transition: color 2s, background-color 2s;
-}
-
 .shelf {
     $shelf: &;
 
@@ -11,6 +7,10 @@
             display: grid;
             grid-template-rows: [page-header]auto [page-content]1fr [page-footer]auto;
             height: 100vh; // This will make the wrapper full height
+        }
+
+        &__content {
+            transition: background-color 2s;
         }
     }
 
@@ -22,7 +22,7 @@
 
     &--dark {
         #{$shelf}-layout__content {
-            background-color: $darkLight;
+            background-color: $darkPrimary;
         }
     }
 }
