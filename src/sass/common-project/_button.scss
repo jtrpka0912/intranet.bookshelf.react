@@ -29,4 +29,35 @@
             }
         }
     }
+
+    &--dark {
+        .common-button {
+            border-color: $darkDark;
+
+            &--primary {
+                background-color: $darkPrimary;
+                color: $darkLight;
+            }
+
+            &--secondary {
+                background-color: $darkSecondary;
+                color: $darkDark;
+            }
+
+            &--ternary {
+                background-color: $darkTernary;
+                color: $darkLight;
+            }
+
+            &--light {
+                background-color: $darkLight;
+                color: $darkDark;
+            }
+
+            &--dark {
+                background-color: $darkDark;
+                color: $darkLight;
+            }
+        }
+    }
 }
