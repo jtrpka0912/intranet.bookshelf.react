@@ -1,7 +1,8 @@
 // React
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 // Context
+import { AppContext } from '../../contexts/AppContext';
 import { ShelfContext } from '../../contexts/ShelfContext';
 
 // Components
@@ -31,7 +32,8 @@ interface FileModalProps {
  */
 const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
     // Context
-    const { activeFile, setToActiveFile } = useContext(ShelfContext);
+    const { toggleToastMessage } = useContext(AppContext);
+    const { files, activeFile, setToActiveFile } = useContext(ShelfContext);
 
     /**
      * @function onCloseFileModal
@@ -56,15 +58,50 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
     }
 
     /**
+     * @async
      * @function toggleDidRead
      * @description Change the flag if the file has been read
      * @author J.T.
      * @param { boolean } didRead 
      */
-    const toggleDidRead = (didRead: boolean) => {
+    const toggleDidRead = async (didRead: boolean) => {
         console.info('Did Read?', didRead);
 
-        // TODO: Create an endpoint to change the didRead flag
+        try {
+            if(activeFile) {
+                const apiEndPoint: string = `http://localhost:3001/api/v1/ebooks/${activeFile._id}/did-read`;
+    
+                const toggledFileResponse = await fetch(apiEndPoint, {
+                    body: JSON.stringify({
+                        didRead
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'PATCH'
+                });
+    
+                // TODO: Not only get entity object, but also error object
+                // TODO: any -> File | Error
+                const toggledFileResponseJson = await toggledFileResponse.json();
+
+                if(toggledFileResponse.status !== 200 && !toggledFileResponse.ok) throw new Error(toggledFileResponseJson.errorMessageBody);
+
+                // Update the active file
+                setToActiveFile(toggledFileResponseJson);
+
+                // Find the index of the file where it resides in the array of files
+                const foundFileIndex = files.findIndex((fileItem) => fileItem._id === toggledFileResponseJson._id);
+
+                // Update the found file in the array.
+                files[foundFileIndex] = toggledFileResponseJson;
+            } else {
+                throw new Error('There is no active file set');
+            }
+        } catch(error) {
+            console.error('ShelfForm - onSubmitForm(): ', error);
+            toggleToastMessage(error.message);
+        }
     }
 
     /**
