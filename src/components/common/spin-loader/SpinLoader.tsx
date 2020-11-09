@@ -27,6 +27,7 @@ interface SpinLoaderProps {
  */
 const SpinLoader: React.FunctionComponent<SpinLoaderProps> = (props) => {
     const { isSpinLoader } = useContext(AppContext);
+    
     return (
         <div className={ `common-spinloader ${ isSpinLoader ? 'common-spinloader--open' : 'common-spinloader--close' }` }>
             <FontAwesomeIcon className="common-spinloader__icon" icon={ props.icon ? props.icon : faSmile } />

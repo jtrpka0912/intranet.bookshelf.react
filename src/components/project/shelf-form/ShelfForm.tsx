@@ -43,7 +43,7 @@ interface ShelfRequestBody {
  */
 const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
     // Context
-    const { toggleToastMessage } = useContext(AppContext);
+    const { toggleToastMessage, toggleSpinLoader } = useContext(AppContext);
     const { addOneToShelves, setToActiveShelf } = useContext(ShelfContext);
 
     const defaultProps = {
@@ -74,6 +74,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
         e.preventDefault();
 
         try {
+            toggleSpinLoader(true);
             const modifyShelf: boolean = id !== '' ? true : false;
 
             // Replace back slashes with forward slashes on the path, but make it discreet with the revisedPathOfShelf variable
@@ -122,10 +123,11 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             }
 
             setToActiveShelf(shelf);
-            
+            toggleSpinLoader(false);
         } catch(error) {
             console.error('ShelfForm - onSubmitForm(): ', error);
             toggleToastMessage(error.message);
+            toggleSpinLoader(false);
         }
     }
 

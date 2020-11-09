@@ -12,16 +12,11 @@ import ShelfContextProvider from '../contexts/ShelfContext';
 import Breadcrumbs from '../project/list-section/Breadcrumbs';
 import Directories from '../project/list-section/Directories';
 import Files from '../project/list-section/Files';
-import SpinLoader from '../common/spin-loader/SpinLoader';
-
-// Font Awesome
-import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
     return (
         <AppContextProvider>
             <ShelfContextProvider>
-                <SpinLoader icon={ faBook } />
                 <PageWrapper>
                     <Breadcrumbs />
                     <Directories />

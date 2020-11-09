@@ -9,6 +9,10 @@ import PageHeader from '../header/PageHeader';
 import PageSideNav from '../sidenav/PageSideNav';
 import PageFooter from '../footer/PageFooter';
 import Toast from '../../../common/toast/Toast';
+import SpinLoader from '../../../common/spin-loader/SpinLoader';
+
+// Font Awesome
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * @function PageWrapper
@@ -29,7 +33,9 @@ const PageWrapper: React.FunctionComponent = (props) => {
                 { props.children }
             </div>
             <PageFooter />
+
             <Toast />
+            <SpinLoader icon={ faBook } />
         </main>
     );
 };

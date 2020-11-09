@@ -2,6 +2,7 @@
     &-spinloader {
         $commonSpinLoader: &;
         @include hoveringOverlay();
+        z-index: 20;
 
         &--open {
             display: block;
