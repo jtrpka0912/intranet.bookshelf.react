@@ -27,13 +27,9 @@ interface SpinLoaderProps {
 const SpinLoader: React.FunctionComponent<SpinLoaderProps> = (props) => {
     return (
         <div className="common-spinloader">
-            <FontAwesomeIcon icon={ props.icon } />
+            <FontAwesomeIcon className="common-spinloader__icon" icon={ props.icon ? props.icon : faSmile } />
         </div>
     )
 };
-
-SpinLoader.defaultProps = {
-    icon: faSmile
-}
 
 export default SpinLoader;

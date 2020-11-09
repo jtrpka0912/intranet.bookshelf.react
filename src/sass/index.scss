@@ -9,6 +9,7 @@
 
 // Mixins
 @import './mixins/media-queries';
+@import './mixins/styles';
 
 // Common Components
 @import '../components/common/button/Button';
@@ -18,6 +19,7 @@
 @import '../components/common/list-display/ListDisplay';
 @import '../components/common/media/Media';
 @import '../components/common/modal/Modal';
+@import '../components/common/spin-loader/SpinLoader';
 @import '../components/common/textfield/TextField';
 @import '../components/common/toast/Toast';
 
