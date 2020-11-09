@@ -3,6 +3,14 @@
         $commonSpinLoader: &;
         @include hoveringOverlay();
 
+        &--open {
+            display: block;
+        }
+
+        &--close {
+            display: none;
+        }
+
         &__icon {
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;

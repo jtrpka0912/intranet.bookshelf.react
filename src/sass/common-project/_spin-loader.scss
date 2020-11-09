@@ -1,0 +1,13 @@
+.shelf {
+    &--light {
+        .common-spinloader__icon {
+            color: $lightLight;
+        }
+    }
+
+    &--dark {
+        .common-spinloader__icon {
+            color: $darkLight;
+        }
+    }
+}
