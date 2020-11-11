@@ -6,6 +6,9 @@ import ShelfType from '../../types/Shelf';
 import DirectoryType from '../../types/Directory';
 import FileType from '../../types/File';
 
+// API
+import { getContentsByShelf, getContentsByShelfAndFolder } from '../../api/ContentsApi';
+
 // Contexts
 import { AppContext } from './AppContext';
 
@@ -187,14 +190,13 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
      */
     const retrieveShelfContents = async (shelf: ShelfType, directory?: DirectoryType) => {
         try{
-            let api: string = `http://localhost:3001/api/v1/contents/shelf/${shelf._id}`;
+            let response: Response;
 
-            // If directory, then add the folder property to the endpoint.
             if(directory) {
-                api = api.concat(`/folder/${directory._id}`);
+                response = await getContentsByShelfAndFolder(shelf, directory);
+            } else {
+                response = await getContentsByShelf(shelf);
             }
-
-            const response: Response = await fetch(api);
 
             if(response.status !== 200 && !response.ok) {
                 throw Error('Unable to get response to retrieve contents.');
@@ -202,14 +204,6 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
 
             // Retrieve the data
             const responseJSON: EbookResponse = await response.json();
-            console.group('Retrieved JSON');
-            console.log('Breadcrumbs');
-            console.table(responseJSON.breadcrumbs);
-            console.log('Directories');
-            console.table(responseJSON.directories);
-            console.log('Files');
-            console.table(responseJSON.files);
-            console.groupEnd();
 
             // Check if data is there
             if(responseJSON.breadcrumbs && responseJSON.directories && responseJSON.files) {
