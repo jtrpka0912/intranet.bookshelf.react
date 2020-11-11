@@ -69,8 +69,6 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
      * @param { boolean } didRead 
      */
     const toggleDidRead = async (didRead: boolean) => {
-        console.info('Did Read?', didRead);
-
         try {
             if(activeFile) {
                 const toggledFileResponse = await updateFileDidRead(activeFile, didRead);

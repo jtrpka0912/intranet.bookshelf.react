@@ -5,13 +5,18 @@ import React, { useState, useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import { ShelfContext } from '../../contexts/ShelfContext';
 
+// API
+import { createShelf, updateShelf } from '../../../api/shelvesApi';
+
 // Types
 import ShelfType from '../../../types/Shelf';
+import ShelfRequestType from '../../../types/ShelfRequest';
 
 // Components
 import Button from '../../common/button/Button';
 import TextField from '../../common/textfield/TextField';
 import CheckRadio from '../../common/check-radio/CheckRadio';
+import { expectError } from '../../../api/api';
 
 /**
  * @interface ShelfFormProps
@@ -25,14 +30,6 @@ interface ShelfFormProps {
     shelf?: ShelfType,
     buttonLabel?: string
 };
-
-interface ShelfRequestBody {
-    id?: string,
-    name: string,
-    root: string,
-    showDirectories?: boolean,
-    multiFile?: boolean
-}
 
 /**
  * @function ShelfForm
@@ -84,8 +81,8 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             if(!nameOfShelf) throw Error('Name of shelf is required.');
             if(!revisedPathOfShelf) throw Error('Path of shelf is required.');
 
-            // Convert to a Shelf Request Body
-            const requestBody: ShelfRequestBody = {
+            // Convert to a Shelf Request Type
+            const requestBody: ShelfRequestType = {
                 name: nameOfShelf,
                 root: revisedPathOfShelf,
                 showDirectories,
@@ -96,18 +93,23 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             if(modifyShelf) {
                 requestBody.id = id;
             }
+            
+            // Either create or update a shelf
+            let response: Response;
 
-            // Set this at POST at start
-            let method = 'POST';
-
-            // Unless id is set above 0 then set method to PUT
+            // Unless id is anything but 0
             if(requestBody.id !== undefined && modifyShelf) { // Need to check if id is also undefined
-                method = 'PUT';
+                response = await updateShelf(requestBody);
+            } else {
+                response = await createShelf(requestBody);
             }
 
+            expectError(response, 'Bad Request to Server');
+
+            const responseJson = await response.json();
+
             // Submit and retrieve the newly created shelf from the backend
-            const response = await sendShelfRequest(requestBody, method);
-            const shelf: ShelfType = response;
+            const shelf: ShelfType = responseJson;
 
             // Clear the form data
             setId('');
@@ -129,32 +131,6 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             toggleToastMessage(error.message);
             toggleSpinLoader(false);
         }
-    }
-
-    /**
-     * @async
-     * @function sendShelfRequest
-     * @description Send a request to the server to either create or update a shelf.
-     * @author J.T.
-     * @param { ShelfRequestBody } requestBody - Request body object
-     * @param { string } method - Type of request to server
-     * @returns { JSON }
-     */
-    const sendShelfRequest = async (requestBody: ShelfRequestBody, method: string) => {
-        const apiEndPoint: string = `http://localhost:3001/api/v1/shelves/${ method === 'PUT' ? requestBody.id : '' }`;
-
-        // TODO: Figure out how to be secured (https)
-        const shelfFormResponse = await fetch(apiEndPoint, {
-            body: JSON.stringify(requestBody),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method
-        });
-
-        if(shelfFormResponse.status !== 200 && !shelfFormResponse.ok) throw Error('Bad Request to Server');
-
-        return await shelfFormResponse.json();
     }
 
     /**
