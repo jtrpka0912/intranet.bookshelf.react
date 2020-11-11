@@ -4,6 +4,9 @@ import React, { useContext } from 'react';
 // Context
 import { ShelfContext } from '../../contexts/ShelfContext';
 
+// API
+import { refreshShelf } from '../../../api/shelvesApi';
+
 // Components
 import Button from '../../common/button/Button';
 import Modal from '../../common/modal/Modal';
@@ -50,7 +53,7 @@ const ShelfModal: React.FunctionComponent<ShelfModalProps> = (props) => {
         const onClickRefreshShelf = async () => {
             if(activeShelf) {
                 toggleSpinLoader(true);
-                await fetch(`http://localhost:3001/api/v1/shelves/${ activeShelf._id }/refresh`);
+                refreshShelf(activeShelf);
                 setToActiveShelf(activeShelf); // Refresh the contents
                 props.onClickToggle(false);
                 toggleSpinLoader(false);

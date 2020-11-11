@@ -1,3 +1,4 @@
+import ShelfType from '../types/Shelf';
 import ShelfRequestType from '../types/ShelfRequest';
 
 const baseEndpoint = `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/api/v1/shelves`;
@@ -49,4 +50,18 @@ export const updateShelf = async (requestBody: ShelfRequestType) => {
         },
         method: 'PUT'
     });
+}
+
+/**
+ * @async
+ * @function refreshShelf
+ * @description Refresh the shelf
+ * @author J.T.
+ * @param { ShelfType } shelf
+ * @returns { Response } 
+ */
+export const refreshShelf = async (shelf: ShelfType) => {
+    const api = baseEndpoint + `/${shelf._id}/refresh`;
+
+    return await fetch(api);
 }
