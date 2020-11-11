@@ -7,7 +7,10 @@ import DirectoryType from '../../types/Directory';
 import FileType from '../../types/File';
 
 // API
-import { getContentsByShelf, getContentsByShelfAndFolder } from '../../api/ContentsApi';
+import { getContentsByShelf, getContentsByShelfAndFolder } from '../../api/contentsApi';
+import { getShelves } from '../../api/shelvesApi';
+import { expectError } from '../../api/api';
+
 
 // Contexts
 import { AppContext } from './AppContext';
@@ -198,9 +201,7 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
                 response = await getContentsByShelf(shelf);
             }
 
-            if(response.status !== 200 && !response.ok) {
-                throw Error('Unable to get response to retrieve contents.');
-            }
+            expectError(response, 'Unable to get response to retrieve contents.');
 
             // Retrieve the data
             const responseJSON: EbookResponse = await response.json();
@@ -272,11 +273,9 @@ const ShelfContextProvider = (props: ShelfContextProps) => {
          * @returns ShelfType[]
          */
         const retrieveAvailableShelves = async () => {
-            const response = await fetch('http://localhost:3001/api/v1/shelves');
+            const response = await getShelves();
 
-            if(response.status !== 200 && !response.ok) {
-                throw Error('Unable to retrieve response');
-            }
+            expectError(response, 'Unable to retrieve response');
 
             const responseJSON: any[] = await response.json();
             let shelfArray: ShelfType[] = responseJSON;
