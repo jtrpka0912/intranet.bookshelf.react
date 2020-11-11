@@ -5,6 +5,10 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import { ShelfContext } from '../../contexts/ShelfContext';
 
+// API
+import { updateFileDidRead } from '../../../api/ebooksApi';
+import { expectError } from '../../../api/api';
+
 // Components
 import Modal from '../../common/modal/Modal';
 import Button from '../../common/button/Button';
@@ -69,23 +73,11 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
 
         try {
             if(activeFile) {
-                const apiEndPoint: string = `http://localhost:3001/api/v1/ebooks/${activeFile._id}/did-read`;
-    
-                const toggledFileResponse = await fetch(apiEndPoint, {
-                    body: JSON.stringify({
-                        didRead
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    method: 'PATCH'
-                });
-    
-                // TODO: Not only get entity object, but also error object
-                // TODO: any -> File | Error
-                const toggledFileResponseJson = await toggledFileResponse.json();
+                const toggledFileResponse = await updateFileDidRead(activeFile, didRead);
 
-                if(toggledFileResponse.status !== 200 && !toggledFileResponse.ok) throw new Error(toggledFileResponseJson.errorMessageBody);
+                expectError(toggledFileResponse, 'Unable to change did read status');
+    
+                const toggledFileResponseJson = await toggledFileResponse.json();
 
                 // Update the active file
                 setToActiveFile(toggledFileResponseJson);
