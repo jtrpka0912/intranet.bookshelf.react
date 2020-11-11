@@ -6,7 +6,7 @@ import { AppContext } from '../../contexts/AppContext';
 import { ShelfContext } from '../../contexts/ShelfContext';
 
 // API
-import { createShelf, updateShelf } from '../../../api/shelvesApi';
+import { createShelf, updateShelf, refreshShelf } from '../../../api/shelvesApi';
 
 // Types
 import ShelfType from '../../../types/Shelf';
@@ -122,8 +122,10 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             // If new shelf then add to current listing.
             if(!modifyShelf) {
                 addOneToShelves(shelf);
+                refreshShelf(shelf); // Retrieve the contents from the file system
             }
 
+            // Finally set the created or updated shelf and then it'll fetch its contents from database.
             setToActiveShelf(shelf);
             toggleSpinLoader(false);
         } catch(error) {
