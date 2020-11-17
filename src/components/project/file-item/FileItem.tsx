@@ -59,10 +59,11 @@ const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
         }
     }
 
+    // No need to add the slash between the host:port and the file cover
     return (
         <Item className="shelf-fileitem"
             display={ props.display }
-            image={ `http://localhost:3001/${ props.file.cover }` }
+            image={ `http://localhost:${process.env.REACT_APP_BACKEND_PORT}${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }
         >{ outputTitle() }</Item>
