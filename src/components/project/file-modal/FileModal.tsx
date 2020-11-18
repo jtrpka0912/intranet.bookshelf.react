@@ -120,7 +120,7 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
             >
                 <div className="shelf-filemodal__content">
                     <div className="shelf-filemodal__cover">
-                        <Media src={ `http://localhost:3001/${activeFile.cover}` } width="300" alt="Placeholder" title={ activeFile.name } />
+                        <Media src={ `http://localhost:${process.env.REACT_APP_BACKEND_PORT}${activeFile.cover}` } width="300" alt="Placeholder" title={ activeFile.name } />
                     </div>
 
                     <div className="shelf-filemodal__details">
