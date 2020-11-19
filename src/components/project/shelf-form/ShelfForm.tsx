@@ -122,7 +122,7 @@ const ShelfForm: React.FunctionComponent<ShelfFormProps> = (props) => {
             // If new shelf then add to current listing.
             if(!modifyShelf) {
                 addOneToShelves(shelf);
-                refreshShelf(shelf); // Retrieve the contents from the file system
+                await refreshShelf(shelf); // Retrieve the contents from the file system
             }
 
             // Finally set the created or updated shelf and then it'll fetch its contents from database.

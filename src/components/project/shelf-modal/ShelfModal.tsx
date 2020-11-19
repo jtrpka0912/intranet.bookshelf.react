@@ -53,7 +53,7 @@ const ShelfModal: React.FunctionComponent<ShelfModalProps> = (props) => {
         const onClickRefreshShelf = async () => {
             if(activeShelf) {
                 toggleSpinLoader(true);
-                refreshShelf(activeShelf);
+                await refreshShelf(activeShelf);
                 setToActiveShelf(activeShelf); // Refresh the contents
                 props.onClickToggle(false);
                 toggleSpinLoader(false);
