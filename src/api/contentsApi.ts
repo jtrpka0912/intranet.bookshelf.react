@@ -1,7 +1,7 @@
 import ShelfType from '../types/Shelf';
 import DirectoryType from '../types/Directory';
 
-const baseEndpoint = `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/api/v1/contents`;
+const baseEndpoint = `http://${process.env.REACT_APP_BACKEND_HOST}:${process.env.REACT_APP_BACKEND_PORT}/api/v1/contents`;
 
 /**
  * @async

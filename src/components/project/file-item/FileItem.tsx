@@ -63,7 +63,7 @@ const FolderItem: React.FunctionComponent<FileItemProps> = (props) => {
     return (
         <Item className="shelf-fileitem"
             display={ props.display }
-            image={ `http://localhost:${process.env.REACT_APP_BACKEND_PORT}${ props.file.cover }` }
+            image={ `http://${process.env.REACT_APP_BACKEND_HOST}:${process.env.REACT_APP_BACKEND_PORT}${ props.file.cover }` }
             icon={ faBook }    
             onClick={ () => setToActiveFile(props.file) }
         >{ outputTitle() }</Item>
