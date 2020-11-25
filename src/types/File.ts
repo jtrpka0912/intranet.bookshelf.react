@@ -7,6 +7,7 @@
  * @property { string } type
  * @property { string } name
  * @property { string } path
+ * @property { string } download
  * @property { string } cover
  * @property { boolean } didRead
  */
@@ -15,6 +16,7 @@ type FileType = {
     type: string, // TODO: Might be an enum
     name: string,
     path: string,
+    download: string, 
     cover: string,
     didRead: boolean
 };

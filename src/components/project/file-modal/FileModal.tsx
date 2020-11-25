@@ -57,7 +57,7 @@ const FileModal: React.FunctionComponent<FileModalProps> = (props) => {
      */
     const onClickDownloadFile = async () => {
         if(activeFile) {
-            window.open(activeFile.path, 'Download');
+            window.open(`http://${process.env.REACT_APP_BACKEND_HOST}:${process.env.REACT_APP_BACKEND_PORT}${activeFile.download}`, 'Download');
         }
     }
 
